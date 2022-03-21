@@ -1,0 +1,3 @@
+[submodule "ansible-github"]
+	path = ansible
+	url = https://github.com/lj020326/ansible-datacenter.git
