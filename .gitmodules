@@ -1,7 +1,0 @@
-[submodule "ansible"]
-	path = ansible
-	url = git@github.com:lj020326/ansible-datacenter.git
-	branch = main
-[submodule "ansible-datacenter"]
-	path = ansible-datacenter
-	url = https://github.com/lj020326/ansible-datacenter.git
