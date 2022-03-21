@@ -1,4 +1,0 @@
----
-
-firewalld_packages:
-  - firewalld

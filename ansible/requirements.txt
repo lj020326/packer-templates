@@ -1,9 +1,0 @@
-#ansible==2.9.4
-ansible
-
-## to operate openstack
-python-openstackclient
-
-## dell open management sdk
-## ref: https://github.com/dell/dellemc-openmanage-ansible-modules
-omsdk

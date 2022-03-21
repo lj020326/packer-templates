@@ -1,5 +1,0 @@
----
-## ref: https://github.com/ansible/ansible/issues/40903
-plugin: openstack
-expand_hostvars: yes
-fail_on_errors: yes

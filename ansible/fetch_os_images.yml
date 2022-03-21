@@ -1,8 +1,0 @@
----
-
-- name: "Fetch OS images"
-  hosts: localhost
-  connection: local
-  gather_facts: false
-  roles:
-    - role: fetch-os-images
