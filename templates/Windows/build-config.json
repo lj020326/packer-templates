@@ -15,10 +15,14 @@
       "folder": "{{user `vcenter_folder`}}",
 
       "communicator": "winrm",
-      "winrm_username": "Administrator",
-      "winrm_password": "{{user `winadmin_password`}}",
-      "winrm_timeout": "5m",
+      "winrm_username": "{{user `winrm_username`}}",
+      "winrm_password": "{{user `winrm_password`}}",
+      "winrm_timeout": "8h",
 
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Build Complete\"",
+      "shutdown_timeout": "1h",
+
+      "remove_cdrom": "{{user `vm_cdrom_remove`}}",
       "convert_to_template": "true",
 
       "vm_name": "{{user `vm_build_id`}}",
@@ -35,7 +39,7 @@
           "disk_thin_provisioned": "{{user `vm_disk_thin_provisioned`}}"
         }
       ],
-      "disk_controller_type": "{{user `vm_disk_type`}}",
+      "disk_controller_type": ["{{user `vm_disk_type`}}"],
 
       "network_adapters": [
         {
@@ -44,8 +48,6 @@
         }
       ],
 
-      "shutdown_command": "shutdown /s /t 5",
-
       "iso_paths": [
         "[{{user `vm_remote_cache_datastore`}}] {{user `iso_base_dir`}}/{{user `iso_dir`}}/{{user `iso_file`}}",
         "[] /vmimages/tools-isoimages/windows.iso"
@@ -53,16 +55,28 @@
 
       "floppy_files": [
         "{{ user `unattended_file_path` }}",
-        "_common/scripts/disable-network-discovery.cmd",
-        "_common/scripts/enable-rdp.cmd",
-        "_common/scripts/enable-winrm.ps1",
-        "_common/scripts/install-vm-tools.cmd"
+        "_common/scripts/install-vm-tools.cmd",
+        "_common/scripts/bootstrap.ps1",
+        "_common/scripts/windows_updates.ps1"
+      ],
+
+      "boot_command": [
+        "{{ user `boot_command` }}"
       ],
       "boot_wait": "{{user `vm_boot_wait`}}",
+
       "boot_order": "{{user `vm_boot_order_install`}}",
       "ip_wait_timeout": "{{user `ip_wait_timeout`}}",
       "ip_settle_timeout": "{{user `ip_settle_timeout`}}",
       "notes": "{{user `vm_build_notes`}}",
+      "configuration_parameters": {
+        "devices.hotplug": "false",
+        "guestInfo.svga.wddm.modeset": "false",
+        "guestInfo.svga.wddm.modesetCCD": "false",
+        "guestInfo.svga.wddm.modesetLegacySingle": "false",
+        "guestInfo.svga.wddm.modesetLegacyMulti": "false"
+      },
+
       "iso_checksum": "{{user `iso_checksum_type`}}:{{user `iso_checksum`}}"
     },
     {
@@ -163,21 +177,26 @@
     "compression_level": "6",
     "disk_adapter_type": "sata",
     "vm_disk_size": "40000",
-    "vm_disk_type": "lsilogic-sas",
+    "vm_disk_type_orig": "lsilogic-sas",
+    "vm_disk_type": "pvscsi",
+    "vm_version": "17",
     "vm_firmware_old": "bios",
     "vm_firmware": "efi",
+    "vm_cdrom_remove": "true",
     "vm_guest_os_type": "windows9Server64Guest",
     "iso_checksum_type": "",
     "iso_checksum": "",
+    "iso_base_dir": "iso-repos",
     "iso_url": "",
     "vm_mem_size": "2048",
     "vagrant_cloud_token": "",
     "vagrant_cloud_username": "",
     "vm_cpu_num": "2",
     "virtualbox_guest_type": "",
-    "vm_name": "",
-    "winrm_password": "vagrant",
-    "winrm_username": "vagrant",
+    "vm_name": "win2016dccore",
+    "vm_boot_wait": "3s",
+    "winrm_password": "packer",
+    "winrm_username": "packer",
     "vmware_guest_type": ""
   }
 }

@@ -21,3 +21,13 @@ Sources used to further enhance:
 
 * https://blog.danielhanaj.com/post/2021/08/16/build_basic_windows_image_with_packer/
 * https://madlabber.wordpress.com/2019/06/23/how-to-build-a-windows-vm-from-scratch-with-ansible/
+
+* Windows 2016 vsphere packer template getting stuck - Packer - HashiCorp Discuss
+  * https://discuss.hashicorp.com/t/windows-2016-vsphere-packer-template-getting-stuck/7060 
+
+* Packer vpshere-iso Windows Repo - vGemba.net
+  * https://www.vgemba.net/vmware/Packer-vsphere-iso/ 
+
+* cwestwater/packer-vsphere-iso: A collection of Windows Builds using Packer and the vsphere-iso Builder
+  * https://github.com/cwestwater/packer-vsphere-iso 
+

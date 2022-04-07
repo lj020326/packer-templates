@@ -9,8 +9,9 @@
   "vm_network_card": "vmxnet3",
   "vm_network_mgt": "VM Network",
   "vm_guest_os_type": "windows9Server64Guest",
+  "boot_command": "<spacebar>",
   "ip_settle_timeout": "1m",
   "ip_settle_timeout_bad": "1m",
-  "unattended_file_path": "autounattend.xml",
-  "winadmin_password": "success123"
+  "ansible_inventory_groups_save": "vm_template,windows,ca_domain",
+  "unattended_file_path": "./answer_files/2016/autounattend.xml"
 }

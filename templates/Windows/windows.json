@@ -6,7 +6,7 @@
       "cpus": "{{ user `vm_cpu_num` }}",
       "disk_size": "{{ user `disk_size` }}",
       "floppy_files": [
-        "{{ user `autounattend` }}",
+        "{{ user `unattended_file_path` }}",
         "_common/scripts/bootstrap.ps1",
         "_common/scripts/windows_updates.ps1"
       ],
@@ -35,7 +35,7 @@
       "disk_size": "{{ user `disk_size` }}",
       "disk_type_id": 0,
       "floppy_files": [
-        "{{ user `autounattend` }}",
+        "{{ user `unattended_file_path` }}",
         "_common/scripts/bootstrap.ps1",
         "_common/scripts/windows_updates.ps1"
       ],
