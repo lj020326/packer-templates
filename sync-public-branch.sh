@@ -87,6 +87,20 @@ rsync_cmd="rsync ${RSYNC_OPTS_GIT_UPDATE[@]} ${TMP_DIR}/ ${PROJECT_DIR}/"
 echo "${rsync_cmd}"
 eval $rsync_cmd
 
+mirrorDirList="
+inspec
+templates
+"
+
+
+IFS=$'\n'
+for dir in ${mirrorDirList}
+do
+  echo "Mirror ${TMP_DIR}/${dir}/ to project dir $PROJECT_DIR/${dir}/"
+  rsync_cmd="rsync ${RSYNC_OPTS_GIT_UPDATE[@]} --delete --update --exclude=save ${TMP_DIR}/${dir}/ ${PROJECT_DIR}/${dir}/"
+  echo "${rsync_cmd}"
+  eval $rsync_cmd
+done
 
 echo "Resetting/re-initializing submodule for public branch"
 #git submodule deinit -f .
