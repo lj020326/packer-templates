@@ -68,7 +68,7 @@
       "ssh_username": "{{user `ssh_username`}}",
       "ssh_password": "{{user `ssh_password`}}",
       "ssh_timeout": "{{user `ssh_timeout`}}",
-      "ssh_pty": "{{user `ssh_pty`}}",
+      "ssh_pty": "{{user `ssh_pty`}}"
     },
     {
       "accelerator": "{{ user `qemu_accelerator` }}",

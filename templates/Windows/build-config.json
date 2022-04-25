@@ -55,9 +55,34 @@
 
       "floppy_files": [
         "{{ user `unattended_file_path` }}",
-        "_common/scripts/install-vm-tools.cmd",
-        "_common/scripts/bootstrap.ps1",
-        "_common/scripts/windows_updates.ps1"
+        "./answer_files/2016/sysprep-unattend.xml",
+        "_common/windows/vmware/drivers/pvscsi64/pvscsi.cat",
+        "_common/windows/vmware/drivers/pvscsi64/pvscsi.inf",
+        "_common/windows/vmware/drivers/pvscsi64/pvscsi.sys",
+        "_common/windows/vmware/drivers/pvscsi64/txtsetup.oem",
+        "_common/windows/scripts/install-vm-tools.cmd",
+        "_common/windows/scripts/install-vmware-tools.ps1",
+        "_common/windows/scripts/downloadandinstallcertificate.ps1",
+        "_common/windows/scripts/remove_default_apps.ps1",
+        "_common/windows/scripts/variables.ps1",
+        "_common/windows/scripts/set-power-config.ps1",
+        "_common/windows/scripts/microsoft-updates.ps1",
+        "_common/windows/scripts/win-updates.ps1",
+        "_common/windows/scripts/windows_updates.ps1",
+        "_common/windows/scripts/run-sysprep.ps1",
+        "_common/windows/scripts/run-sysprep.cmd",
+        "_common/windows/scripts/disable-winrm.ps1",
+        "_common/windows/scripts/disable-network-discovery.cmd",
+        "_common/windows/scripts/enable-winrm.ps1",
+        "_common/windows/scripts/enable-winrm.task.ps1",
+        "_common/windows/scripts/fixnetwork.ps1",
+        "_common/windows/scripts/set-temp.ps1",
+        "_common/windows/scripts/elevate.exe",
+        "_common/windows/scripts/sdelete.exe",
+        "_common/windows/scripts/sdelete.ps1",
+        "_common/windows/scripts/Set-ClientWSUSSetting.ps1",
+        "_common/windows/scripts/Set-ClientWSUSSetting.task.ps1",
+        "_common/windows/scripts/ConfigureRemotingForAnsible.ps1"
       ],
 
       "boot_command": [
@@ -86,8 +111,8 @@
       "disk_size": "{{ user `vm_disk_size` }}",
       "floppy_files": [
         "{{ user `unattended_file_path` }}",
-        "_common/scripts/bootstrap.ps1",
-        "_common/scripts/windows_updates.ps1"
+        "_common/windows/scripts/bootstrap.ps1",
+        "_common/windows/scripts/windows_updates.ps1"
       ],
       "guest_additions_mode": "attach",
       "guest_os_type": "{{ user `virtualbox_guest_type` }}",
@@ -115,8 +140,8 @@
       "disk_type_id": 0,
       "floppy_files": [
         "{{ user `unattended_file_path` }}",
-        "_common/scripts/bootstrap.ps1",
-        "_common/scripts/windows_updates.ps1"
+        "_common/windows/scripts/bootstrap.ps1",
+        "_common/windows/scripts/windows_updates.ps1"
       ],
       "guest_os_type": "{{ user `vmware_guest_type` }}",
       "headless": true,
@@ -146,14 +171,15 @@
       "type": "windows-restart"
     },
     {
+      "type": "powershell",
       "scripts": [
-        "_common/scripts/base.ps1",
-        "_common/scripts/remove_default_apps.ps1",
-        "_common/scripts/virtualbox.ps1",
-        "_common/scripts/vmware.ps1",
-        "_common/scripts/cleanup.ps1"
-      ],
-      "type": "powershell"
+        "_common/windows/scripts/install-7zip.ps1",
+        "_common/windows/scripts/ConfigureRemotingForAnsible.ps1",
+        "_common/windows/scripts/cleanup.ps1",
+        "_common/windows/scripts/ultradefrag.ps1",
+        "_common/windows/scripts/optimize-drive.ps1",
+        "_common/windows/scripts/sdelete.ps1"
+      ]
     }
   ],
   "post-processors": [
@@ -161,7 +187,8 @@
       {
         "compression_level": "{{ user `compression_level` }}",
         "output": "{{ user `vm_name` }}-{{.Provider}}-{{ timestamp }}.box",
-        "type": "vagrant"
+        "type": "vagrant",
+        "except": ["vsphere-iso"]
       },
       {
         "output": "manifest.json",
@@ -178,10 +205,12 @@
     "disk_adapter_type": "sata",
     "vm_disk_size": "40000",
     "vm_disk_type_orig": "lsilogic-sas",
+    "vm_disk_type_new": "pvscsi",
     "vm_disk_type": "pvscsi",
     "vm_version": "17",
     "vm_firmware_old": "bios",
-    "vm_firmware": "efi",
+    "vm_firmware_alt": "efi",
+    "vm_firmware": "bios",
     "vm_cdrom_remove": "true",
     "vm_guest_os_type": "windows9Server64Guest",
     "iso_checksum_type": "",
@@ -195,8 +224,11 @@
     "virtualbox_guest_type": "",
     "vm_name": "win2016dccore",
     "vm_boot_wait": "3s",
-    "winrm_password": "packer",
-    "winrm_username": "packer",
+    "winrm_password_save": "administrator",
+    "winrm_username_save": "yourpassword",
+    "winrm_password": "vagrant",
+    "winrm_username": "vagrant",
     "vmware_guest_type": ""
-  }
+  },
+  "sensitive-variables": ["vcenter_password", "winrm_password"]
 }

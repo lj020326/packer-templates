@@ -13,6 +13,7 @@ Sources used to further enhance:
 * https://github.com/acloud56/packer-windows-2016/blob/main/windows2019.json
 * https://github.com/madlabber/NewWindowsVM-Ansible
 
+* https://github.com/guillermo-musumeci/packer-vsphere-iso-windows
 
 * https://github.com/joefitzgerald/packer-windows
 * https://github.com/joefitzgerald/packer-windows/blob/master/windows_2016.json

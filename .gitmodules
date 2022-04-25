@@ -1,9 +1,12 @@
-#[submodule "ansible"]
-#    path = ansible
-#    url = git@bitbucket.org:lj020326/ansible-datacenter.git
-#    branch = master
-#    #url = git@github.com:lj020326/ansible-datacenter.git
-[submodule "ansible-github"]
+[submodule "ansible"]
     path = ansible
-    url = https://github.com/lj020326/ansible-datacenter.git
-    branch = main
+    url = git@bitbucket.org:lj020326/ansible-datacenter.git
+    branch = master
+    #url = git@github.com:lj020326/ansible-datacenter.git
+#[submodule "ansible-github"]
+#    path = ansible
+#    url = https://github.com/lj020326/ansible-datacenter.git
+#    branch = main
+[submodule "ansible-github"]
+	path = ansible
+	url = https://github.com/lj020326/ansible-datacenter.git

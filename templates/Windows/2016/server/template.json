@@ -1,12 +1,13 @@
 {
   "unattended_file_path": "./answer_files/2016/Autounattend.xml",
-  "iso_checksum_type": "md5",
+  "unattended_file_path_save": "./answer_files/2016/datacentercore/autounattend.xml",
+  "iso_checksum_type": "sha1",
   "iso_url": "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
   "iso_checksum": "772700802951b36c8cb26a61c040b9a8dc3816a3",
   "boot_command_orig": "<esc><esc><esc><enter><wait>",
   "boot_command": "<wait><enter><wait><wait><enter>",
-  "unattended_file_path": "./answer_files/2016/datacentercore/autounattend.xml",
   "virtualbox_guest_type": "Windows2016_64",
-  "vm_name": "windows2016-server-packer-template",
+  "vm_name_orig": "windows2016-server-packer-template",
+  "vm_name": "packer-template-win2016dccore",
   "vmware_guest_type": "windows8srv-64"
 }

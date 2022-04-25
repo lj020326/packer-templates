@@ -88,7 +88,7 @@ echo "${rsync_cmd}"
 eval $rsync_cmd
 
 
-echo "Resetting/re-initializing submodule"
+echo "Resetting/re-initializing submodule for public branch"
 #git submodule deinit -f .
 git submodule add --force --name ansible-github https://github.com/lj020326/ansible-datacenter.git ansible/
 
@@ -133,3 +133,8 @@ echo "Pushing branch '${LOCAL_BRANCH}' to remote '${REMOTE}' branch '${REMOTE_BR
 git push -f -u ${REMOTE} ${LOCAL_BRANCH}:${REMOTE_BRANCH} || true && \
 echo "Finally, checkout master branch:" && \
 git checkout master
+
+echo "Resetting ansible submodule for private"
+git submodule deinit -f . && \
+git submodule update --init --recursive --remote && \
+gitcommitpush

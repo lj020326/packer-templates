@@ -10,6 +10,7 @@
   "vm_network_mgt": "VM Network",
   "vm_guest_os_type": "windows9Server64Guest",
   "boot_command": "<spacebar>",
+  "iso_base_dir": "iso-repos",
   "ip_settle_timeout": "1m",
   "ip_settle_timeout_bad": "1m",
   "ansible_inventory_groups_save": "vm_template,windows,ca_domain",
