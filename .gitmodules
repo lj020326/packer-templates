@@ -4,6 +4,6 @@
 #    branch = master
 #    #url = git@github.com:lj020326/ansible-datacenter.git
 [submodule "ansible-github"]
-	path = ansible
-	url = https://github.com/lj020326/ansible-datacenter.git
+    path = ansible
+    url = https://github.com/lj020326/ansible-datacenter.git
     branch = main
