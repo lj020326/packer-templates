@@ -9,6 +9,7 @@
   "vm_network_card": "vmxnet3",
   "vm_network_mgt": "VM Network",
   "vm_guest_os_type": "windows9Server64Guest",
+  "virtualbox_guest_type": "Windows2016_64",
   "boot_command": "<spacebar>",
   "iso_base_dir": "iso-repos",
   "ip_settle_timeout": "1m",

@@ -7,10 +7,9 @@
   "iso_checksum_type": "sha1",
   "iso_checksum": "6a16387c8d9e2972945b35d0150fd515209b6f83",
   "iso_url": "https://archiva.admin.dettonville.int/repository/internal/org/dettonville/infra/windows/SRV2016.ENU.APR2017.14393-970/windows-SRV2016.ENU.APR2017.14393-970.iso",
-  "boot_command_orig": "<esc><esc><esc><enter><wait>",
-  "boot_command": "<wait><enter><wait><wait><enter>",
-  "virtualbox_guest_type": "Windows2016_64",
+  "vm_firmware_save": "efi",
+  "vm_boot_wait": "30s",
+  "boot_command": "<wait10><wait><down><wait5><enter><wait5><enter>",
   "vm_name_orig": "windows2016-server-packer-template",
-  "vm_name": "packer-template-win2016dccore",
-  "vmware_guest_type": "windows8srv-64"
+  "vm_name": "packer-template-win2016dccore"
 }

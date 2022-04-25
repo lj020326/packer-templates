@@ -222,13 +222,13 @@
     "vagrant_cloud_username": "",
     "vm_cpu_num": "2",
     "virtualbox_guest_type": "",
-    "vm_name": "win2016dccore",
+    "vm_name": "windows-server",
     "vm_boot_wait": "3s",
     "winrm_password_save": "administrator",
     "winrm_username_save": "yourpassword",
     "winrm_password": "vagrant",
     "winrm_username": "vagrant",
-    "vmware_guest_type": ""
+    "vmware_guest_type": "windows9Server64Guest"
   },
   "sensitive-variables": ["vcenter_password", "winrm_password"]
 }
