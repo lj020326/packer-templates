@@ -1,6 +1,10 @@
 */packer_cache/*
 packer_cache/*
 !packer_cache/.gitkeep
+
+.govmomi
+templates/manifest.json
+
 iso/*
 *.iso
 */output-virtualbox-iso/*
