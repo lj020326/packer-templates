@@ -119,8 +119,8 @@ gitresetpublicsub
 ##git submodule update --recursive --remote
 #gitcommitpush
 
-echo "Removing files cached in git"
-git rm -r --cached .
+#echo "Removing files cached in git"
+#git rm -r --cached .
 
 echo "Mirror ${TMP_DIR} to project dir $PROJECT_DIR"
 #echo "rsync ${RSYNC_OPTS_GIT_UPDATE[@]} ${TMP_DIR}/ ${PROJECT_DIR}/"
