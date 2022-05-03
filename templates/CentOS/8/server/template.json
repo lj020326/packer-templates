@@ -1,5 +1,4 @@
 {
-  "boot_command_prefix": "inst.text inst.ks",
   "iso_checksum_type": "sha256",
   "iso_url_dvd": "http://mirrors.edge.kernel.org/centos/8.3.2011/isos/x86_64/CentOS-8.3.2011-x86_64-dvd1.iso",
   "iso_checksum_dvd": "aaf9d4b3071c16dbbda01dfe06085e5d0fdac76df323e3bbe87cce4318052247",
@@ -7,7 +6,6 @@
   "iso_url": "http://mirrors.kernel.org/centos/8.3.2011/isos/x86_64/CentOS-8.3.2011-x86_64-boot.iso",
   "iso_checksum": "2b801bc5801816d0cf27fc74552cf058951c42c7b72b1fe313429b1070c3876c",
   "kickstart_cfg": "ks.8.cfg",
-  "vm_name_orig": "centos8-server-packer-template",
   "vm_name": "packer-template-centos8",
   "vm_guest_os_type": "centos8_64Guest"
 }

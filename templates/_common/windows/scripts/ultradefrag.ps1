@@ -53,4 +53,5 @@ if ($SkipDefrag){
 	exit 0
 }
 
-&"$install_path\udefrag.exe" --optimize --repeat $($env:SystemDrive)
+# &"$install_path\udefrag.exe" --optimize --repeat $($env:SystemDrive)
+&"$install_path\udefrag" --optimize --repeat $($env:SystemDrive)

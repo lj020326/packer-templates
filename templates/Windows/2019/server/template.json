@@ -6,7 +6,6 @@
   "iso_checksum_type": "sha1",
   "iso_checksum": "5caaad8e9d4f36caa7a61633ea572bddc88fa1bd",
   "iso_url": "https://archiva.admin.dettonville.int/repository/internal/org/dettonville/infra/windows/SRV2019.DC.ENU.MAY2021/windows-SRV2019.DC.ENU.MAY2021.iso",
-  "vm_firmware_save": "efi",
   "vm_boot_wait": "30s",
   "boot_command": "<wait10><wait><down><wait5><enter><wait5><enter>",
   "vm_name_orig": "windows2019-server-packer-template",

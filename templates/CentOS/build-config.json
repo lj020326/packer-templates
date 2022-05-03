@@ -1,6 +1,64 @@
 {
   "builders": [
     {
+      "name": "vsphere-iso",
+      "type": "vsphere-iso",
+      "boot_command": [
+        "<tab> {{ user `boot_command_prefix` }}=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos/{{ user `kickstart_cfg` }}<enter><wait>"
+      ],
+      "boot_wait": "{{user `vm_boot_wait`}}",
+      "boot_order": "{{user `vm_boot_order_install`}}",
+      "boot_keygroup_interval": "{{user `vm_boot_keygroup_interval`}}",
+      "http_directory": "{{user `vm_boot_http_directory`}}",
+      "ip_wait_timeout": "{{user `ip_wait_timeout`}}",
+      "ip_settle_timeout": "{{user `ip_settle_timeout`}}",
+      "vcenter_server": "{{user `vcenter_host`}}",
+      "username": "{{user `vcenter_username`}}",
+      "password": "{{user `vcenter_password`}}",
+      "insecure_connection": "true",
+      "datacenter": "{{user `vcenter_datacenter`}}",
+      "cluster": "{{user `vcenter_cluster`}}",
+      "datastore": "{{user `vm_datastore`}}",
+      "folder": "{{user `vcenter_folder`}}",
+      "vm_name": "{{user `vm_build_id`}}",
+      "host": "{{user `vm_host`}}",
+      "notes": "{{user `vm_build_notes`}}",
+      "convert_to_template": true,
+      "communicator": "ssh",
+      "configuration_parameters": {
+        "bios.bootDelay": "5000",
+        "bootOrder": "{{user `vm_boot_order`}}"
+      },
+      "iso_paths": [
+        "[{{user `vm_remote_cache_datastore`}}] {{user `iso_base_dir`}}/{{user `iso_dir`}}/{{user `iso_file`}}"
+      ],
+      "iso_checksum": "{{user `iso_checksum_type`}}:{{user `iso_checksum`}}",
+      "shutdown_command": "echo '{{user `ssh_password`}}'| sudo -S /sbin/halt -h -p",
+      "ssh_handshake_attempts": "{{user `ssh_handshake_attempts`}}",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_timeout": "{{user `ssh_timeout`}}",
+      "ssh_pty": "{{user `ssh_pty`}}",
+      "guest_os_type": "{{user `vm_guest_os_type`}}",
+      "CPUs": "{{user `vm_cpu_num`}}",
+      "RAM": "{{user `vm_mem_size`}}",
+      "RAM_reserve_all": false,
+      "firmware": "{{user `vm_firmware`}}",
+      "disk_controller_type": "{{user `vm_disk_type`}}",
+      "storage": [
+        {
+          "disk_size": "{{user `vm_disk_size`}}",
+          "disk_thin_provisioned": "{{user `vm_disk_thin_provisioned`}}"
+        }
+      ],
+      "network_adapters": [
+        {
+          "network": "{{user `vm_network_mgt`}}",
+          "network_card": "{{user `vm_network_card`}}"
+        }
+      ]
+    },
+    {
       "accelerator": "{{ user `qemu_accelerator` }}",
       "boot_command": [
         "<tab> {{ user `boot_command_prefix` }}=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos/{{ user `kickstart_cfg` }}<enter><wait>"
@@ -75,63 +133,6 @@
         "ethernet0.pciSlotNumber": "32"
       },
       "vmx_remove_ethernet_interfaces": true
-    },
-    {
-      "name": "vsphere-iso",
-      "type": "vsphere-iso",
-      "boot_command": [
-        "<tab> {{ user `boot_command_prefix` }}=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos/{{ user `kickstart_cfg` }}<enter><wait>"
-      ],
-      "boot_wait": "{{user `vm_boot_wait`}}",
-      "boot_order": "{{user `vm_boot_order_install`}}",
-      "boot_keygroup_interval": "{{user `vm_boot_keygroup_interval`}}",
-      "http_directory": "{{user `vm_boot_http_directory`}}",
-      "ip_wait_timeout": "{{user `ip_wait_timeout`}}",
-      "ip_settle_timeout": "{{user `ip_settle_timeout`}}",
-      "vcenter_server": "{{user `vcenter_host`}}",
-      "username": "{{user `vcenter_username`}}",
-      "password": "{{user `vcenter_password`}}",
-      "insecure_connection": "true",
-      "datacenter": "{{user `vcenter_datacenter`}}",
-      "cluster": "{{user `vcenter_cluster`}}",
-      "datastore": "{{user `vm_datastore`}}",
-      "folder": "{{user `vcenter_folder`}}",
-      "vm_name": "{{user `vm_build_id`}}",
-      "host": "{{user `vm_host`}}",
-      "notes": "{{user `vm_build_notes`}}",
-      "convert_to_template": true,
-      "communicator": "ssh",
-      "configuration_parameters": {
-        "bios.bootDelay": "5000",
-        "bootOrder": "{{user `vm_boot_order`}}"
-      },
-      "iso_paths": [
-        "[{{user `vm_remote_cache_datastore`}}] {{user `iso_base_dir`}}/{{user `iso_dir`}}/{{user `iso_file`}}"
-      ],
-      "iso_checksum": "{{user `iso_checksum_type`}}:{{user `iso_checksum`}}",
-      "shutdown_command": "echo '{{user `ssh_password`}}'| sudo -S /sbin/halt -h -p",
-      "ssh_handshake_attempts": "{{user `ssh_handshake_attempts`}}",
-      "ssh_username": "{{user `ssh_username`}}",
-      "ssh_password": "{{user `ssh_password`}}",
-      "ssh_timeout": "{{user `ssh_timeout`}}",
-      "ssh_pty": "{{user `ssh_pty`}}",
-      "guest_os_type": "{{user `vm_guest_os_type`}}",
-      "CPUs": "{{user `vm_cpu_num`}}",
-      "RAM": "{{user `vm_mem_size`}}",
-      "RAM_reserve_all": false,
-      "disk_controller_type": "{{user `vm_disk_type`}}",
-      "storage": [
-        {
-          "disk_size": "{{user `vm_disk_size`}}",
-          "disk_thin_provisioned": "{{user `vm_disk_thin_provisioned`}}"
-        }
-      ],
-      "network_adapters": [
-        {
-          "network": "{{user `vm_network_mgt`}}",
-          "network_card": "{{user `vm_network_card`}}"
-        }
-      ]
     }
   ],
   "post-processors": [

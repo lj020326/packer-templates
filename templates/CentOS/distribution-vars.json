@@ -1,7 +1,8 @@
 {
     "vm_cpu_num": "1",
     "vm_mem_size": "1024",
-    "vm_disk_type": "pvscsi",
+    "vm_disk_type_new": "pvscsi",
+    "vm_disk_type": "lsilogic",
     "vm_disk_size_orig": "32768",
     "vm_disk_size": "16240",
     "vm_disk_thin_provisioned": "true",
@@ -15,5 +16,5 @@
     "vm_boot_wait": "5s",
     "vm_boot_keygroup_interval": "200ms",
     "boot_command_prefix": "inst.text inst.ks",
-    "boot_command": "install auto=true priority=critical url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/debian/preseed.cfg"
+    "boot_command_prefix_old": "install auto=true priority=critical url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/debian/preseed.cfg"
 }

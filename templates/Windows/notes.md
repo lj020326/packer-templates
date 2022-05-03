@@ -9,9 +9,11 @@ Main source used for initial vsphere-iso windows build-config.json:
 
 Sources used to further enhance:
 * https://github.com/chef/bento/blob/main/packer_templates/windows/
+* https://github.com/guillermo-musumeci/packer-vsphere-iso-windows-v2
 * https://github.com/acloud56/packer-windows-2016
 * https://github.com/acloud56/packer-windows-2016/blob/main/windows2019.json
 * https://github.com/madlabber/NewWindowsVM-Ansible
+* https://blog.v12n.io/creating-vsphere-vm-templates-with-packer-part-5/
 
 * https://github.com/guillermo-musumeci/packer-vsphere-iso-windows
 

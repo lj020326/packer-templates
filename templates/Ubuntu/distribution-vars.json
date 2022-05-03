@@ -12,6 +12,7 @@
   "vm_network_mgt": "VM Network",
   "vm_guest_os_type": "ubuntu64Guest",
   "vm_guest_os_type_old": "ubuntu-64",
+  "vm_firmware": "bios",
   "ip_settle_timeout": "1m",
   "ip_settle_timeout_bad": "1m",
   "vm_boot_wait": "5s",

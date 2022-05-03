@@ -13,3 +13,39 @@ The following software must be installed/present on your local machine before yo
   - [VirtualBox](https://www.virtualbox.org/)
   - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
+
+## Jenkins Pipeline Usage
+
+### Setup pipeline automation library used by all jenkins jobs
+The pipeline automation library used can be found [here](https://github.com/lj020326/pipeline-automation-lib).
+[The pipeline automation library](https://github.com/lj020326/pipeline-automation-lib) defines the shared jenkins templates that are used throughout all of the jenkins ansible pipelines.  
+
+Configure the library in jenkins as seen below.
+![Jenkins - Configure shared Pipeline Automation Library](./docs/screenshots/packer-templates-00-pipeline-library.png)
+
+
+### Site Root folder
+
+A root folder for the packer-templates environment can be setup similar to the following.
+![Site Root](./docs/screenshots/packer-templates-0-toplevel.png)
+
+### VM Packer Template OS folders
+
+Then setup folders for each VM OS defined as follows.
+![Site Environments](./docs/screenshots/packer-templates-1a-os.png)
+
+
+### VM Packer Template OS Version folders
+
+Then setup folders for each VM OS Version defined as follows.
+![Site Environments](./docs/screenshots/packer-templates-1a-os-versions.png)
+![Site Environments](./docs/screenshots/packer-templates-1a-os-version-builds.png)
+
+### VM Packer Template builder pipeline folders
+
+For each template build node at the leaf level, setup a jenkins folder to run the groovy pipeline wrapper used to start the packer VM template builder process.
+
+The folder definition for each VM template build folder should be as follows.
+![Site Environments](./docs/screenshots/packer-templates-1a-template-build-wrapper.png)
+
+If defining the ansible playbooks as a submodule the same way done in this repo, make sure that the git repo option to "Recursively update submodules" is set/checked.

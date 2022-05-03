@@ -1,4 +1,6 @@
 #cloud-config
+## ref: https://gist.github.com/tlhakhan/97ee4d9f22eed7530c4be339a80a6f68
+## ref: https://ubuntu.com/server/docs/install/autoinstall
 autoinstall:
   version: 1
   early-commands:
@@ -38,7 +40,6 @@ autoinstall:
     - bc
     - lsb-release
     - openssh-server
-#    - ntp
     - wget
     - curl
     - rsync

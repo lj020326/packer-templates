@@ -176,7 +176,6 @@
         "_common/windows/scripts/install-7zip.ps1",
         "_common/windows/scripts/ConfigureRemotingForAnsible.ps1",
         "_common/windows/scripts/cleanup.ps1",
-        "_common/windows/scripts/ultradefrag.ps1",
         "_common/windows/scripts/optimize-drive.ps1",
         "_common/windows/scripts/sdelete.ps1"
       ]
@@ -208,7 +207,6 @@
     "vm_disk_type_new": "pvscsi",
     "vm_disk_type": "pvscsi",
     "vm_version": "17",
-    "vm_firmware_old": "bios",
     "vm_firmware_alt": "efi",
     "vm_firmware": "bios",
     "vm_cdrom_remove": "true",
