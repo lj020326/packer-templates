@@ -151,3 +151,5 @@ echo "Resetting ansible submodule for private"
 git submodule deinit -f . && \
 git submodule update --init --recursive --remote
 #gitcommitpush
+
+chmod +x *.sh
