@@ -105,6 +105,9 @@ eval $rsync_cmd
 echo "Checkout public branch"
 git checkout public
 
+#echo "Removing existing non-dot files for clean sync"
+#rm -fr *
+
 gitresetpublicsub
 
 #echo "Resetting/re-initializing submodule for public branch"
@@ -118,9 +121,6 @@ gitresetpublicsub
 
 echo "Removing files cached in git"
 git rm -r --cached .
-
-#echo "Removing existing non-dot files for clean sync"
-#rm -fr *
 
 echo "Mirror ${TMP_DIR} to project dir $PROJECT_DIR"
 #echo "rsync ${RSYNC_OPTS_GIT_UPDATE[@]} ${TMP_DIR}/ ${PROJECT_DIR}/"
