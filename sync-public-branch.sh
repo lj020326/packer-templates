@@ -24,6 +24,16 @@ function gitcommitpush() {
   git push ${REMOTE} ${LOCAL_BRANCH}:${REMOTE_BRANCH}
 }
 
+function resetpublicsub() {
+  echo "Resetting/re-initializing submodule for public branch" && \
+  git submodule deinit -f . && \
+  rm -fr ansible && \
+  git submodule add --force --name ansible-github https://github.com/lj020326/ansible-datacenter.git ansible/ && \
+  echo "Pull latest changes from submodules:" && \
+  git submodule update --init --recursive --remote && \
+  gitcommitpush
+}
+
 ## https://www.pixelstech.net/article/1577768087-Create-temp-file-in-Bash-using-mktemp-and-trap
 TMP_DIR="$(mktemp -d -p ~)"
 
@@ -95,14 +105,16 @@ eval $rsync_cmd
 echo "Checkout public branch"
 git checkout public
 
-echo "Resetting/re-initializing submodule for public branch"
-git submodule deinit -f . && \
-rm -fr ansible && \
-git submodule add --force --name ansible-github https://github.com/lj020326/ansible-datacenter.git ansible/ && \
-echo "Pull latest changes from submodules:" && \
-git submodule update --init --recursive --remote
-#git submodule update --recursive --remote
-gitcommitpush
+resetpublicsub
+
+#echo "Resetting/re-initializing submodule for public branch"
+#git submodule deinit -f . && \
+#rm -fr ansible && \
+#git submodule add --force --name ansible-github https://github.com/lj020326/ansible-datacenter.git ansible/ && \
+#echo "Pull latest changes from submodules:" && \
+#git submodule update --init --recursive --remote
+##git submodule update --recursive --remote
+#gitcommitpush
 
 echo "Removing files cached in git"
 git rm -r --cached .
