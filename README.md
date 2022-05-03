@@ -48,4 +48,9 @@ For each template build node at the leaf level, setup a jenkins folder to run th
 The folder definition for each VM template build folder should be as follows.
 ![Site Environments](./docs/screenshots/packer-templates-1a-template-build-wrapper.png)
 
+See the job console for the VM packer template build pipeline output.
+![Job Console Output](./docs/screenshots/packer-templates-1a-template-build-output.png)
+
+The detailed [pipeline job console output](./docs/jenkins-consoleText-packer-build-ubuntu-log.md).
+
 If defining the ansible playbooks as a submodule the same way done in this repo, make sure that the git repo option to "Recursively update submodules" is set/checked.

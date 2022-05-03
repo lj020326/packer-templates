@@ -43,7 +43,6 @@
       "CPUs": "{{user `vm_cpu_num`}}",
       "RAM": "{{user `vm_mem_size`}}",
       "RAM_reserve_all": false,
-      "firmware": "{{user `vm_firmware`}}",
       "disk_controller_type": "{{user `vm_disk_type`}}",
       "storage": [
         {
