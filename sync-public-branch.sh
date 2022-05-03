@@ -24,7 +24,7 @@ function gitcommitpush() {
   git push ${REMOTE} ${LOCAL_BRANCH}:${REMOTE_BRANCH}
 }
 
-function resetpublicsub() {
+function gitresetpublicsub() {
   echo "Resetting/re-initializing submodule for public branch" && \
   git submodule deinit -f . && \
   rm -fr ansible && \
@@ -105,7 +105,7 @@ eval $rsync_cmd
 echo "Checkout public branch"
 git checkout public
 
-resetpublicsub
+gitresetpublicsub
 
 #echo "Resetting/re-initializing submodule for public branch"
 #git submodule deinit -f . && \
