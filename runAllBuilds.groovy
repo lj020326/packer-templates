@@ -22,10 +22,13 @@ logLevel: DEBUG
 jobList: 
 - stage: Build Templates
   jobs: 
-    - job: "${jobFolder}/centos7"
-    - job: "${jobFolder}/centos8"
-    - job: "${jobFolder}/ubuntu18"
-    - job: "${jobFolder}/ubuntu20"
+    - job: "${jobFolder}/CentOS/7"
+    - job: "${jobFolder}/CentOS/8"
+    - job: "${jobFolder}/CentOS/8-stream"
+    - job: "${jobFolder}/Ubuntu/bionic64"
+    - job: "${jobFolder}/Ubuntu/focal64"
+    - job: "${jobFolder}/Windows/2016"
+    - job: "${jobFolder}/Windows/2019"
 """
 
 Map config = readYaml text: configYmlStr

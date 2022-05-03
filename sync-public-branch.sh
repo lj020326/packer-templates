@@ -4,6 +4,26 @@
 # exit when any command fails
 set -e
 
+function gitcommitpush() {
+  LOCAL_BRANCH="$(git symbolic-ref --short HEAD)" && \
+  REMOTE_AND_BRANCH=$(git rev-parse --abbrev-ref ${LOCAL_BRANCH}@{upstream}) && \
+  IFS=/ read REMOTE REMOTE_BRANCH <<< ${REMOTE_AND_BRANCH} && \
+  echo "Staging changes:" && \
+  git add . || true && \
+  COMMENT_PREFIX=$(echo "${LOCAL_BRANCH}" | cut -d- -f1-2) && \
+  COMMENT_BODY="$(LANG=C git -c color.status=false status \
+      | sed -n -r -e '1,/Changes to be committed:/ d' \
+            -e '1,1 d' \
+            -e '/^Untracked files:/,$ d' \
+            -e 's/^\s*//' \
+            -e '/./p' \
+            | sed -e '/git restore/ d')" && \
+  echo "Committing changes:" && \
+  git commit -am "${COMMENT_PREFIX} - ${COMMENT_BODY}" || true && \
+  echo "Pushing local branch ${LOCAL_BRANCH} to remote ${REMOTE} branch ${REMOTE_BRANCH}:" && \
+  git push ${REMOTE} ${LOCAL_BRANCH}:${REMOTE_BRANCH}
+}
+
 ## https://www.pixelstech.net/article/1577768087-Create-temp-file-in-Bash-using-mktemp-and-trap
 TMP_DIR="$(mktemp -d -p ~)"
 
@@ -75,6 +95,15 @@ eval $rsync_cmd
 echo "Checkout public branch"
 git checkout public
 
+echo "Resetting/re-initializing submodule for public branch"
+git submodule deinit -f . && \
+rm -fr ansible && \
+git submodule add --force --name ansible-github https://github.com/lj020326/ansible-datacenter.git ansible/ && \
+echo "Pull latest changes from submodules:" && \
+git submodule update --init --recursive --remote
+#git submodule update --recursive --remote
+gitcommitpush
+
 echo "Removing files cached in git"
 git rm -r --cached .
 
@@ -92,7 +121,6 @@ inspec
 templates
 "
 
-
 IFS=$'\n'
 for dir in ${mirrorDirList}
 do
@@ -107,13 +135,6 @@ if [ -e $PUBLIC_GITIGNORE ]; then
   cp -p $PUBLIC_GITIGNORE .gitignore
 fi
 
-echo "Resetting/re-initializing submodule for public branch"
-git submodule deinit -f . && \
-rm -fr ansible && \
-git submodule add --force --name ansible-github https://github.com/lj020326/ansible-datacenter.git ansible/ && \
-echo "Pull latest changes from submodules:" && \
-git submodule update --init --recursive --remote
-#git submodule update --recursive --remote
 
 echo "Show changes before push:"
 git status

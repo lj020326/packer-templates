@@ -243,6 +243,7 @@
     "iso_checksum": "",
     "iso_checksum_type": "sha256",
     "iso_url": "",
+    "iso_base_dir": "iso-repos/linux",
     "iso_dir": "",
     "iso_file": "",
     "vm_mem_size": "1024",

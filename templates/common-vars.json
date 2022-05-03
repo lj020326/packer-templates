@@ -52,7 +52,6 @@
   "disk_adapter_type": "scsi",
   "disk_size": "36864",
   "inspec_timeout": "50m",
-  "iso_base_dir": "iso-repos",
   "iso_name": "{{ env `JOB_BASE_NAME` }}",
   "iso_dir": "",
   "iso_file": "",
