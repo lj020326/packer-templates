@@ -102,6 +102,11 @@ do
   eval $rsync_cmd
 done
 
+if [ -e $PUBLIC_GITIGNORE ]; then
+  echo "Update public files:"
+  cp -p $PUBLIC_GITIGNORE .gitignore
+fi
+
 echo "Resetting/re-initializing submodule for public branch"
 git submodule deinit -f . && \
 rm -fr ansible && \
@@ -109,11 +114,6 @@ git submodule add --force --name ansible-github https://github.com/lj020326/ansi
 echo "Pull latest changes from submodules:" && \
 git submodule update --init --recursive --remote
 #git submodule update --recursive --remote
-
-if [ -e $PUBLIC_GITIGNORE ]; then
-  echo "Update public files:"
-  cp -p $PUBLIC_GITIGNORE .gitignore
-fi
 
 echo "Show changes before push:"
 git status
