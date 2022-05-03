@@ -105,9 +105,8 @@ done
 echo "Resetting/re-initializing submodule for public branch"
 git submodule deinit -f . && \
 rm -fr ansible && \
-git submodule add --force --name ansible-github https://github.com/lj020326/ansible-datacenter.git ansible/
-
-echo "Pull latest changes from submodules:"
+git submodule add --force --name ansible-github https://github.com/lj020326/ansible-datacenter.git ansible/ && \
+echo "Pull latest changes from submodules:" && \
 git submodule update --init --recursive --remote
 
 #git submodule update --recursive --remote
