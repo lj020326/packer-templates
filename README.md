@@ -11,7 +11,7 @@ The following software must be installed/present on your local machine before yo
   - [Packer](http://www.packer.io/)
   - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
-I use docker containers for my jenkins build agents have ansible and packer installed.
+I use docker containers for my jenkins build agents which have ansible and packer already installed.
 The [specification for the docker agent container image can be found here](https://github.com/lj020326/jenkins-docker-agent/blob/master/image/jenkins-cicd-agent/Dockerfile).
 The container leverages the 'jenkins/inbound-agent' image and the [cicd-build-tool image defined here](https://github.com/lj020326/jenkins-docker-agent/blob/master/image/cicd-build-tools/Dockerfile). 
 
