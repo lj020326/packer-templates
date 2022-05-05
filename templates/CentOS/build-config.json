@@ -4,7 +4,7 @@
       "name": "vsphere-iso",
       "type": "vsphere-iso",
       "boot_command": [
-        "<tab> {{ user `boot_command_prefix` }}=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos/{{ user `kickstart_cfg` }}<enter><wait>"
+        "{{ user `boot_command_prefix` }}=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos/{{ user `kickstart_cfg` }}<enter><wait>"
       ],
       "boot_wait": "{{user `vm_boot_wait`}}",
       "boot_order": "{{user `vm_boot_order_install`}}",
@@ -158,13 +158,6 @@
         "_common/scripts/base.sh",
         "_common/scripts/vmware.sh",
         "_common/scripts/sshd.sh"
-      ]
-    },
-    {
-      "type": "shell",
-      "execute_command": "echo '{{user `ssh_username`}}' | {{.Vars}} sudo -H -S -E bash '{{.Path}}'",
-      "scripts": [
-        "_common/scripts/ansible.sh"
       ]
     },
     {

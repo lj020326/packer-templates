@@ -45,6 +45,7 @@ autoinstall:
     - rsync
     - git
     - jq
+    - ansible
     - python3
     - python3-pip
     - python3-apt

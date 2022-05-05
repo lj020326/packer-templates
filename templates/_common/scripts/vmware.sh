@@ -3,7 +3,7 @@
 set -e
 set -x
 
-if [[ "$PACKER_BUILDER_TYPE" != "vmware-iso" || "$PACKER_BUILDER_TYPE" != "vsphere-iso" ]]; then
+if [[ "$PACKER_BUILDER_TYPE" != "vmware-iso" && "$PACKER_BUILDER_TYPE" != "vsphere-iso" ]]; then
     exit 0
 fi
 

@@ -1,7 +1,9 @@
 {
   "iso_checksum_type": "sha256",
-  "iso_url": "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20210416-dvd1.iso",
-  "iso_checksum": "d40e44d8a3358df0b57ca727beafda66dc5a7b122af4acc9b040a8beaedefd2e",
+  "iso_url": "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-latest-dvd1.iso",
+  "iso_checksum": "file:https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CHECKSUM",
+  "iso_url_old": "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20210416-dvd1.iso",
+  "iso_checksum_old": "d40e44d8a3358df0b57ca727beafda66dc5a7b122af4acc9b040a8beaedefd2e",
   "kickstart_cfg": "ks.8-stream.cfg",
   "vm_name": "packer-template-centos8-stream",
   "vm_guest_os_type": "centos8_64Guest"

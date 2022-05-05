@@ -181,13 +181,6 @@
     },
     {
       "type": "shell",
-      "execute_command": "echo '{{user `ssh_username`}}' | {{.Vars}} sudo -H -S -E bash '{{.Path}}'",
-      "scripts": [
-        "_common/scripts/ansible.sh"
-      ]
-    },
-    {
-      "type": "shell",
       "inline": [
         "echo '{{user `ansible_vault_password`}}' > ~/.vault_pass",
         "chmod 600 ~/.vault_pass"
