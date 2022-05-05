@@ -52,6 +52,7 @@ SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 PROJECT_DIR="$( cd "$SCRIPT_DIR/" && git rev-parse --show-toplevel )"
 
 PUBLIC_GITIGNORE=pub.gitignore
+PUBLIC_GITMODULES=pub.gitmodules
 
 ## ref: https://stackoverflow.com/questions/53839253/how-can-i-convert-an-array-into-a-comma-separated-string
 declare -a EXCLUDES_ARRAY
@@ -110,6 +111,8 @@ git checkout public
 
 gitresetpublicsub
 
+#exit 0
+
 #echo "Resetting/re-initializing submodule for public branch"
 #git submodule deinit -f . && \
 #rm -fr ansible && \
@@ -127,6 +130,13 @@ echo "Mirror ${TMP_DIR} to project dir $PROJECT_DIR"
 rsync_cmd="rsync ${RSYNC_OPTS_GIT_UPDATE[@]} ${TMP_DIR}/ ${PROJECT_DIR}/"
 echo "${rsync_cmd}"
 eval $rsync_cmd
+
+#if [ -e $PUBLIC_GITMODULES ]; then
+#  echo "Update public submodules:"
+#  cp -np $PUBLIC_GITMODULES .gitmodules
+#  git submodule update --recursive --remote
+#fi
+
 
 mirrorDirList="
 inspec
