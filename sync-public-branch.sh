@@ -109,18 +109,7 @@ git checkout public
 #echo "Removing existing non-dot files for clean sync"
 #rm -fr *
 
-gitresetpublicsub
-
-#exit 0
-
-#echo "Resetting/re-initializing submodule for public branch"
-#git submodule deinit -f . && \
-#rm -fr ansible && \
-#git submodule add --force --name ansible-github https://github.com/lj020326/ansible-datacenter.git ansible/ && \
-#echo "Pull latest changes from submodules:" && \
-#git submodule update --init --recursive --remote
-##git submodule update --recursive --remote
-#gitcommitpush
+#gitresetpublicsub
 
 #echo "Removing files cached in git"
 #git rm -r --cached .
@@ -130,13 +119,6 @@ echo "Mirror ${TMP_DIR} to project dir $PROJECT_DIR"
 rsync_cmd="rsync ${RSYNC_OPTS_GIT_UPDATE[@]} ${TMP_DIR}/ ${PROJECT_DIR}/"
 echo "${rsync_cmd}"
 eval $rsync_cmd
-
-#if [ -e $PUBLIC_GITMODULES ]; then
-#  echo "Update public submodules:"
-#  cp -np $PUBLIC_GITMODULES .gitmodules
-#  git submodule update --recursive --remote
-#fi
-
 
 mirrorDirList="
 inspec
@@ -157,9 +139,17 @@ if [ -e $PUBLIC_GITIGNORE ]; then
   cp -p $PUBLIC_GITIGNORE .gitignore
 fi
 
+if [ -e $PUBLIC_GITMODULES ]; then
+  echo "Update public submodules:"
+  cp -p $PUBLIC_GITMODULES .gitmodules
+  git submodule deinit -f . && \
+  git submodule update --init --recursive --remote
+fi
 
 echo "Show changes before push:"
 git status
+
+exit 0
 
 ## https://stackoverflow.com/questions/5989592/git-cannot-checkout-branch-error-pathspec-did-not-match-any-files-kn
 ## git diff --name-only public master --
