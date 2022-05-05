@@ -149,7 +149,7 @@ fi
 echo "Show changes before push:"
 git status
 
-exit 0
+#exit 0
 
 ## https://stackoverflow.com/questions/5989592/git-cannot-checkout-branch-error-pathspec-did-not-match-any-files-kn
 ## git diff --name-only public master --
