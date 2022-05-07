@@ -35,19 +35,21 @@ elif [[ $id == "arch" ]]; then
 elif [[ $id == "centos" || $id == "ol" ]]; then
 
     if [[ $id == "centos" ]]; then
-      ## ref: https://techglimpse.com/failed-metadata-repo-appstream-centos-8/
-      ## ref: https://forums.centos.org/viewtopic.php?t=78708
-      ## ref: https://gist.github.com/forevergenin/4bf75a5396183b83121fa971e54d7b04
-      sudo sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux*
-      sudo sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Linux*
+      if [[ $os_version_id_short -ge 8 ]]; then
+        ## ref: https://techglimpse.com/failed-metadata-repo-appstream-centos-8/
+        ## ref: https://forums.centos.org/viewtopic.php?t=78708
+        ## ref: https://gist.github.com/forevergenin/4bf75a5396183b83121fa971e54d7b04
+        sudo sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux*
+        sudo sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Linux*
 
-      sudo dnf clean all
-      sudo dnf swap -y centos-linux-repos centos-stream-repos
-      sudo dnf swap -y centos-linux-repos centos-stream-repos
+        sudo dnf clean all
+        sudo dnf swap -y centos-linux-repos centos-stream-repos
+        sudo dnf swap -y centos-linux-repos centos-stream-repos
 
-      sudo dnf -y update
-      sudo systemctl daemon-reload
-      sudo dnf -y install epel-release
+        sudo dnf -y update
+        sudo systemctl daemon-reload
+        sudo dnf -y install epel-release
+      fi
     else
         if [[ $os_version_id_short -eq 7 ]]; then
             sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
