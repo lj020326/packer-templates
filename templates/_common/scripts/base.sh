@@ -42,11 +42,10 @@ elif [[ $id == "centos" || $id == "ol" ]]; then
         if [ "$(ls /etc/yum.repos.d/CentOS-Linux* | wc -l)" -ge "1" ]; then
           sudo sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux*
           sudo sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Linux*
+          sudo dnf clean all
+          sudo dnf swap -y centos-linux-repos centos-stream-repos
+          sudo dnf swap -y centos-linux-repos centos-stream-repos
         fi
-
-        sudo dnf clean all
-        sudo dnf swap -y centos-linux-repos centos-stream-repos
-        sudo dnf swap -y centos-linux-repos centos-stream-repos
 
         sudo dnf -y update
         sudo systemctl daemon-reload
