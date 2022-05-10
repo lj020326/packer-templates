@@ -47,11 +47,21 @@ Then setup folders for each VM OS Version defined as follows.
 For each template build node at the leaf level, setup a jenkins folder to run the groovy pipeline wrapper used to start the packer VM template builder process.
 
 The folder definition for each VM template build folder should be as follows.
-![Site Environments](./docs/screenshots/packer-templates-1a-template-build-wrapper.png)
+![Build Template Pipeline Folders](./docs/screenshots/packer-templates-1a-template-build-wrapper.png)
 
 See the job console for the VM packer template build pipeline output.
 ![Job Console Output](./docs/screenshots/packer-templates-1a-template-build-output.png)
 
 The detailed [pipeline job console output](./docs/jenkins-consoleText-packer-build-ubuntu-log.md).
+
+### Setup job to run all build template pipelines
+
+Then setup a pipeline job at the top level folder to run the [runAllBuilds.groovy.groovy](./runAllBuilds.groovy) as seen below.
+![Job Definition](./docs/screenshots/packer-templates-2a-run-all-builds-config.png)
+
+This job will launch all of the VM template build jobs defined in [runAllBuilds.groovy.groovy](./runAllBuilds.groovy) with output similar to below.
+![Job Console Output](./docs/screenshots/packer-templates-2b-run-all-builds-output.png)
+
+## Notes, Considerations & Final Thoughts...
 
 If defining the ansible playbooks as a submodule the same way done in this repo, make sure that the git repo option to "Recursively update submodules" is set/checked.
