@@ -11,12 +11,11 @@
     "vm_network_card": "vmxnet3",
     "vm_network_mgt": "VM Network",
     "vm_guest_os_type": "debian10_64Guest",
-
     "ip_settle_timeout": "1m",
     "ip_settle_timeout_bad": "1m",
-
     "vm_boot_wait": "5s",
     "vm_boot_keygroup_interval": "200ms",
     "boot_command_prefix": "<esc><wait>",
-    "boot_command": "install auto=true priority=critical url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/debian/preseed.cfg"
+    "boot_command": "install auto=true priority=critical url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/debian/preseed.cfg",
+    "ansible_inventory_groups": "vm_template,linux"
 }

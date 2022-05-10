@@ -71,7 +71,7 @@
   "ansible_vault_password": "{{env `ANSIBLE_VAULT_PASSWORD`}}",
   "ansible_python_interpreter_save": "/usr/bin/python3",
   "ansible_inventory_groups_save": "vm_template,linux,ca_domain,ldap_client,docker",
-  "ansible_inventory_groups": "vm_template",
+  "ansible_inventory_groups": "vm_template,linux",
   "ansible_inventory_group_vars": "../ansible/inventory/group_vars",
   "ansible_inventory_file": "../ansible/inventory/vm_template.ini",
   "ansible_galaxy_req_file": "../ansible/roles/requirements.packer.yml",

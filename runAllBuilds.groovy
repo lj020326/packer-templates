@@ -22,6 +22,8 @@ logLevel: DEBUG
 jobList: 
 - stage: Build Templates
   jobs: 
+    - job: "${jobFolder}/Debian/buster64"
+    - job: "${jobFolder}/Debian/stretch64"
     - job: "${jobFolder}/CentOS/7"
     - job: "${jobFolder}/CentOS/8"
     - job: "${jobFolder}/CentOS/8-stream"

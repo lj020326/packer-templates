@@ -18,5 +18,5 @@
   "boot_command": "<spacebar>",
   "ip_settle_timeout": "1m",
   "ip_settle_timeout_bad": "1m",
-  "ansible_inventory_groups_save": "vm_template,windows,ca_domain"
+  "ansible_inventory_groups": "vm_template,windows"
 }
