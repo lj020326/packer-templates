@@ -56,10 +56,10 @@ The detailed [pipeline job console output](./docs/jenkins-consoleText-packer-bui
 
 ### Setup job to run all build template pipelines
 
-Then setup a pipeline job at the top level folder to run the [runAllBuilds.groovy.groovy](./runAllBuilds.groovy) as seen below.
+Then setup a pipeline job at the top level folder to run the [runAllBuilds.groovy](./runAllBuilds.groovy) as seen below.
 ![Job Definition](./docs/screenshots/packer-templates-2a-run-all-builds-config.png)
 
-This job will launch all of the VM template build jobs defined in [runAllBuilds.groovy.groovy](./runAllBuilds.groovy) with output similar to below.
+This job will launch all of the VM template build jobs defined in [runAllBuilds.groovy](./runAllBuilds.groovy) with output similar to below.
 ![Job Console Output](./docs/screenshots/packer-templates-2b-run-all-builds-output.png)
 
 ## Notes, Considerations & Final Thoughts...
