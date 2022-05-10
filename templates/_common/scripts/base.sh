@@ -39,8 +39,10 @@ elif [[ $id == "centos" || $id == "ol" ]]; then
         ## ref: https://techglimpse.com/failed-metadata-repo-appstream-centos-8/
         ## ref: https://forums.centos.org/viewtopic.php?t=78708
         ## ref: https://gist.github.com/forevergenin/4bf75a5396183b83121fa971e54d7b04
-        sudo sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux*
-        sudo sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Linux*
+        if [ "$(ls /etc/yum.repos.d/CentOS-Linux* | wc -l)" -ge "1" ]; then
+          sudo sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux*
+          sudo sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Linux*
+        fi
 
         sudo dnf clean all
         sudo dnf swap -y centos-linux-repos centos-stream-repos
