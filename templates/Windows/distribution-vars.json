@@ -17,6 +17,5 @@
   "winrm_password_orig": "{{ env `PACKER_SSH_PASSWORD` }}",
   "boot_command": "<spacebar>",
   "ip_settle_timeout": "1m",
-  "ip_settle_timeout_bad": "1m",
-  "ansible_inventory_groups": "vm_template,windows"
+  "ip_settle_timeout_bad": "1m"
 }

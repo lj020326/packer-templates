@@ -18,6 +18,5 @@
     "vm_boot_wait": "5s",
     "vm_boot_keygroup_interval": "200ms",
     "boot_command_prefix": "<esc><esc><esc><enter><wait>",
-    "boot_command": "/casper/vmlinuz root=/dev/sr0 initrd=/casper/initrd autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu/",
-    "ansible_inventory_groups": "vm_template,linux"
+    "boot_command": "/casper/vmlinuz root=/dev/sr0 initrd=/casper/initrd autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu/"
 }

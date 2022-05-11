@@ -15,6 +15,5 @@
     "ip_settle_timeout_bad": "1m",
     "vm_boot_wait": "5s",
     "vm_boot_keygroup_interval": "200ms",
-    "boot_command_prefix": "<tab> inst.text inst.ks",
-    "ansible_inventory_groups": "vm_template,linux"
+    "boot_command_prefix": "<tab> inst.text inst.ks"
 }

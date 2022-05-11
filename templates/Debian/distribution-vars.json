@@ -16,6 +16,5 @@
     "vm_boot_wait": "5s",
     "vm_boot_keygroup_interval": "200ms",
     "boot_command_prefix": "<esc><wait>",
-    "boot_command": "install auto=true priority=critical url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/debian/preseed.cfg",
-    "ansible_inventory_groups": "vm_template,linux"
+    "boot_command": "install auto=true priority=critical url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/debian/preseed.cfg"
 }
