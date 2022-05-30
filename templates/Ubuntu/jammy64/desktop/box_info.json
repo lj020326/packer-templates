@@ -1,0 +1,8 @@
+{
+  "auto_build": "True",
+  "box_name": "focal64-desktop",
+  "box_tag": "dettonville/focal64-desktop",
+  "description": "Ubuntu 20.04 (Focal Fossa) Desktop",
+  "private": "False",
+  "short_description": "Ubuntu Focal Desktop"
+}

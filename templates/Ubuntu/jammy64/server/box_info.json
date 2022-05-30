@@ -1,0 +1,8 @@
+{
+  "auto_build": "True",
+  "box_name": "jammy64",
+  "box_tag": "dettonville/jammy64",
+  "description": "Ubuntu 22.04 (Jammy Jellyfish) Server",
+  "private": "False",
+  "short_description": "Ubuntu Jammy Jellyfish"
+}
