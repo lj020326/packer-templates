@@ -1,0 +1,203 @@
+{
+  "variables": {
+    "vagrant_username": "42n4",
+    "vagrant_name": "pfsense",
+    "version": "1.1",
+    "cloud_token": "{{ env `VAGRANT_CLOUD_TOKEN` }}",
+    "vm_name": "pfsense_vbox",
+    "cpu": "2",
+    "guest_os_type": "FreeBSD_64",
+    "ram_size": "2048",
+    "disk_size": "8192",
+    "post_shutdown_delay": "1m",
+    "export_product": "pfSense",
+    "export_producturl": "https://www.pfsense.org",
+    "export_vendor": "pwasiewi",
+    "export_vendorurl": "https://github.com/pwasiewi",
+    "export_version": "2.4.4",
+    "export_repository": "https://github.com/pwasiewi/packer-pfSense",
+    "http_directory": "./files/http/pfsense/network",
+    "interface_mgmt_bridgeadapter0": "intnet0",
+    "interface_mgmt_bridgeadapter1": "intnet1",
+    "bridgeadapter": "enp0s31f6",
+    "iso_url": "/mnt/tmp/IMAGES/pfSense-CE-2.4.4-RELEASE-p1-amd64.iso",
+    "iso_checksum": "e2ed9c0e73c5808533e31952e9abf0d2d34ed46924de896134fe7622ebc03890",
+    "iso_checksum_type": "sha256",
+    "wan_host": "192.168.1.101",
+    "wan_gate": "192.168.1.1",
+    "ssh_host": "192.168.1.101",
+    "ssh_skip_nat_mapping": "true",
+    "ssh_username": "root",
+    "ssh_password": "vagrant",
+    "virtualbox_version": "5.2.26",
+    "vm_dir": "/mnt/dc/VBox"
+  },
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "vm_name": "{{user `vm_name`}}",
+      "format": "ova",
+      "guest_os_type": "{{user `guest_os_type`}}",
+      "headless": true,
+      "boot_wait": "60s",
+      "boot_command": [
+        "A",   "<enter>", "<wait>",
+        "<enter>", "<enter>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10>",
+	"<tab>","<enter>",
+        "cp /conf/config.xml /conf/config.xml.org", "<enter>", "<wait>",
+        "reboot", "<enter>", 
+	"<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
+        "8", "<enter>", "<wait>",
+        "pkg update", "<wait>", "<enter>", "<wait10>",
+        "pkg install -y pfSense-pkg-sudo", "<wait>", "<enter>", "<wait10><wait10>",
+        "pkg add http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/libICE-1.0.9_3,1.txz", "<wait>", "<enter>", "<wait5>",
+        "pkg add http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/libSM-1.2.3,1.txz", "<wait>", "<enter>", "<wait5>",
+        "pkg add http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/libXau-1.0.9.txz", "<wait>", "<enter>", "<wait5>",
+        "pkg add http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/xorgproto-2018.4.txz", "<wait>", "<enter>", "<wait5>",
+        "pkg add http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/libXdmcp-1.1.2_2.txz", "<wait>", "<enter>", "<wait5>",
+        "pkg add http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/libpthread-stubs-0.4.txz", "<wait>", "<enter>", "<wait5>",
+        "pkg add http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/libxcb-1.13.1.txz", "<wait>", "<enter>", "<wait5>",
+        "pkg add http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/libX11-1.6.7,1.txz", "<wait>", "<enter>", "<wait5>",
+        "pkg add http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/dbus-1.12.12.txz", "<wait>", "<enter>", "<wait5>",
+        "pkg add http://pkg.freebsd.org/freebsd:11:x86:64/latest/All/virtualbox-ose-additions-nox11-5.2.26_4.txz", "<wait>", "<enter>", "<wait5>",
+        "rehash", "<enter>", "<wait5>",
+        "echo vagrant | pw user add vagrant -m -h 0", "<enter>", "<wait>",
+        "pw group mod wheel -m vagrant", "<enter>", "<wait>",
+        "chmod 660 /usr/local/etc/sudoers &&  echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers &&  echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers &&  chmod 440 /usr/local/etc/sudoers && chflags schg /usr/local/etc/sudoers", "<enter>", "<wait5>",
+	"echo 'PermitRootLogin yes' >> /etc/sshd_extra","<enter><wait>",
+        "echo 'Etap provision'", "<wait>", "<enter>", "<wait>",
+	"echo 'Setting up the vagrant ssh keys...'", "<wait>", "<enter>", "<wait>",
+	"[ ! -d /home/vagrant/.ssh ] && mkdir -p /home/vagrant/.ssh", "<wait>", "<enter>", "<wait5>",
+	"chmod 0700 /home/vagrant/.ssh", "<wait>", "<enter>", "<wait5>",
+	"echo 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA6NF8iallvQVp22WDkTkyrtvp9eWW6A8YVr+kz4TjGYe7gHzIw+niNltGEFHzD8+v1I2YJ6oXevct1YeS0o9HZyN1Q9qgCgzUFtdOKLv6IedplqoPkcmF0aYet2PkEDo3MlTBckFXPITAMzF8dJSIFo9D8HfdOV0IAdx4O7PtixWKn5y2hMNG0zQPyUecp4pzC6kivAIhyfHilFR61RGL+GPXQ2MWZWFYbAGjyiYJnAmCP3NOTd0jMZEnDkbUvxhMmBYSdETk1rRgm+R4LOzFUGaHqHDLKLX+FIPKcF96hrucXzcWyLbIbEgE98OHlnVYCzRdK8jlqm8tehUc9c9WhQ== vagrant insecure public key' >> /home/vagrant/.ssh/authorized_keys", "<wait>", "<enter>", "<wait5>",
+	"chown -R vagrant /home/vagrant/.ssh", "<wait>", "<enter>", "<wait5>",
+	"chmod 0600 /home/vagrant/.ssh/authorized_keys", "<wait>", "<enter>", "<wait5>",
+        "exit", "<enter>",
+        "14", "<enter>", "<wait>",  "y", "<enter>","<wait10>",
+        "1", "<enter>", "n", "<enter>",
+        "em1", "<enter>",
+        "em2", "<enter>",
+        "em3", "<enter>",
+        "em0", "<enter>",
+        "y", "<enter>", "<wait10>", "<wait10>", "<wait10>", "<wait10>", "<wait10>",
+        "2", "<enter>", "4", "<enter>",
+        "10.0.2.15", "<enter>", "24", "<enter>",
+        "10.0.2.2", "<enter>", "<enter>", "n", "<enter>", "n", "<enter>", "<wait5>", "<enter>",
+        "2", "<enter>", "1", "<enter>", "n", "<enter>",
+        "{{user `wan_host`}}", "<enter>", "24", "<enter>",
+        "{{user `wan_gate`}}", "<enter>", "n", "<enter>", "<enter>", "n", "<enter>", "<wait5>", "<enter>",
+        "8", "<enter>", "<wait>",
+        "cp /conf/config.xml /conf/config.xml.new", "<enter>", "<wait>",
+        "rm -f /conf/trigger_initial_wizard", "<enter>", "<wait>",
+        "curl -sfSL {{ .HTTPIP }}:{{ .HTTPPort }}/config.xml-2.4.4 -o /conf/config.xml", "<enter>", "<wait5>",
+        "exit", "<enter>",
+        "5", "<enter>", "y", "<enter>"
+      ],
+      "export_opts": [
+        "--manifest",
+        "--vsys",        "0",
+        "--product",     "{{user `export_product`}}",
+        "--producturl",  "{{user `export_producturl`}}",
+        "--vendor",      "{{user `export_vendor`}}",
+        "--vendorurl",   "{{user `export_vendorurl`}}",
+        "--version",     "{{user `export_version`}}",
+        "--description", "Product:\t\t{{user `export_product`}} <{{user `export_producturl`}}>\nVersion:\t\t{{user `export_version`}}\n\nVendor:\t\t{{user `export_vendor`}} <{{user `export_vendorurl`}}>\nVagrant username:\t{{user `ssh_username`}}\nVagrant password:\t{{user `ssh_password`}}\nRepository:\t\t{{user `export_repository`}}\n\nCPU:\t\t{{user `cpu`}} Core\nMemory:\t\t{{user `ram_size`}} MB\nDISK Size:\t\t{{user `disk_size`}} MB\nInterface WAN:\tNAT\nInterface MGMT:\t{{user `interface_mgmt_bridgeadapter`}}\n\nPackage version:\t{{packer_version}}\nVirtualBox version:\t{{user `virtualbox_version`}}\nBuild time\t\t{{isotime `2018-01-02/150405 MST`}}"
+
+      ],
+      "floppy_files": [
+      ],
+      "floppy_dirs": [
+      ],
+      "sata_port_count": 1,
+      "disk_size": "{{user `disk_size`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_target_extension": "iso",
+      "iso_url": "{{user `iso_url`}}",
+      "guest_additions_mode": "disable",
+      "http_directory": "{{user `http_directory`}}",
+      "http_port_min": "8100",
+      "http_port_max": "9000",
+      "output_directory": "output-{{isotime `2018-03-10/231505 MST`}}",
+      "shutdown_command": "sudo shutdown -p now",
+      "post_shutdown_delay": "{{user `post_shutdown_delay`}}",
+      "shutdown_timeout": "20m",
+      "communicator": "ssh",
+      "ssh_host": "{{user `ssh_host`}}",
+      "ssh_port": 22,
+      "ssh_file_transfer_method": "sftp",
+      "ssh_timeout": "4h",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_skip_nat_mapping": true,
+      "vboxmanage": [
+
+        [ "modifyvm", "{{.Name}}", "--memory",           "{{user `ram_size`}}" ],
+        [ "modifyvm", "{{.Name}}", "--rtcuseutc",        "on"                  ],
+        [ "modifyvm", "{{.Name}}", "--paravirtprovider", "kvm"                 ],
+        [ "modifyvm", "{{.Name}}", "--vrde",             "on"                  ],
+        [ "modifyvm", "{{.Name}}", "--cpus",             "{{user `cpu`}}"      ],
+        [ "modifyvm", "{{.Name}}", "--audio",            "none"                ],
+        [ "modifyvm", "{{.Name}}", "--pae",              "off"                 ],
+
+        [ "modifyvm", "{{.Name}}", "--nic1",             "nat"                 ],
+        [ "modifyvm", "{{.Name}}", "--nicpromisc1",      "allow-all"           ],
+        [ "modifyvm", "{{.Name}}", "--cableconnected1",  "on"                  ],
+
+        [ "modifyvm", "{{.Name}}", "--nic2",             "bridged"             ],
+        [ "modifyvm", "{{.Name}}", "--nicpromisc2",      "allow-all"           ],
+        [ "modifyvm", "{{.Name}}", "--nictype2", 	 "82540EM"             ],
+        [ "modifyvm", "{{.Name}}", "--cableconnected2",  "on"                  ],
+        [ "modifyvm", "{{.Name}}", "--bridgeadapter2",   "{{user `bridgeadapter`}}" ],
+
+        [ "modifyvm", "{{.Name}}", "--nic3",             "intnet"            ],
+        [ "modifyvm", "{{.Name}}", "--nicpromisc3",      "allow-all"           ],
+        [ "modifyvm", "{{.Name}}", "--cableconnected3",  "on"                  ],
+        [ "modifyvm", "{{.Name}}", "--intnet3", "{{user `interface_mgmt_bridgeadapter0`}}" ],
+
+        [ "modifyvm", "{{.Name}}", "--nic4",             "intnet"            ],
+        [ "modifyvm", "{{.Name}}", "--nicpromisc4",      "allow-all"           ],
+        [ "modifyvm", "{{.Name}}", "--cableconnected4",  "on"                  ],
+        [ "modifyvm", "{{.Name}}", "--intnet4", "{{user `interface_mgmt_bridgeadapter1`}}" ]
+
+      ],
+      "virtualbox_version_file": ".vbox_version",
+      "vrdp_bind_address": "127.0.0.1"
+    }
+  ],
+  "provisioners": [
+        {
+            "inline": [
+                "echo 'Etap provision'",
+		"echo 'Setting up the vagrant ssh keys...'",
+		"[ ! -d /home/vagrant/.ssh ] && mkdir -p /home/vagrant/.ssh",
+		"chmod 0700 /home/vagrant/.ssh",
+		"echo 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA6NF8iallvQVp22WDkTkyrtvp9eWW6A8YVr+kz4TjGYe7gHzIw+niNltGEFHzD8+v1I2YJ6oXevct1YeS0o9HZyN1Q9qgCgzUFtdOKLv6IedplqoPkcmF0aYet2PkEDo3MlTBckFXPITAMzF8dJSIFo9D8HfdOV0IAdx4O7PtixWKn5y2hMNG0zQPyUecp4pzC6kivAIhyfHilFR61RGL+GPXQ2MWZWFYbAGjyiYJnAmCP3NOTd0jMZEnDkbUvxhMmBYSdETk1rRgm+R4LOzFUGaHqHDLKLX+FIPKcF96hrucXzcWyLbIbEgE98OHlnVYCzRdK8jlqm8tehUc9c9WhQ== vagrant insecure public key' >> /home/vagrant/.ssh/authorized_keys",
+		"chown -R vagrant /home/vagrant/.ssh",
+		"chmod 0600 /home/vagrant/.ssh/authorized_keys"
+            ],
+            "type": "shell"
+        }
+  ],
+  "post-processors": [
+    [
+        {
+            "type": "vagrant",
+            "vagrantfile_template": "vagrantfile.template",
+            "keep_input_artifact": false
+        },
+        {
+            "type": "vagrant-cloud",
+            "access_token": "{{user `cloud_token`}}",
+            "only": ["virtualbox-iso"],
+            "box_tag": "{{user `vagrant_username`}}/{{user `vagrant_name`}}",
+            "version": "{{user `version`}}"
+      }
+    ]
+  ],
+  "push": {
+    "name": "{{user `vagrant_username`}}/{{user `vagrant_name`}}",
+    "vcs": true
+  }
+}

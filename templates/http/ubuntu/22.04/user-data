@@ -1,0 +1,51 @@
+#cloud-config
+## ref: https://github.com/burkeazbill/ubuntu-22-04-packer-fusion-workstation/blob/master/http/user-data
+## ref: https://github.com/williamsanmartin/packer-template-ubuntu/blob/main/http/user-data
+autoinstall:
+  version: 1
+  locale: en_US
+  keyboard:
+    layout: us
+  identity:
+    hostname: ubuntu-server
+    username: packer
+    # Generated via: printf ${password} | mkpasswd -s -m sha-512
+    password: "$6$rounds=656000$MHGZkhSNI.8YWvX9$uDPTAoPNIJ7dHkMYxSfr6IjK7zsRMB26o/8Tbd5yIBG.cv6j9Xe0oRKjAVM8SbU7Hgm9UUdy2Ek4mbP7f7M7I."
+  apt:
+    geoip: true
+    disable_components: []
+    preserve_sources_list: false
+    primary:
+      - arches: [amd64, i386]
+        uri: http://us.archive.ubuntu.com/ubuntu
+      - arches: [default]
+        uri: http://ports.ubuntu.com/ubuntu-ports
+  early-commands:
+    - sudo systemctl stop ssh
+  ssh:
+    install-server: true
+    allow-pw: true
+  storage:
+    layout:
+      name: lvm
+  packages:
+    - open-vm-tools
+    - openssh-server
+    - cloud-init
+    - bc
+    - lsb-release
+    - wget
+    - curl
+    - rsync
+    - git
+    - jq
+    - python3
+    - python3-pip
+    - python3-apt
+    - python3-virtualenv
+  user-data:
+    disable_root: false
+    timezone: UTC
+  late-commands:
+    - echo 'packer ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/packer
+    - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config

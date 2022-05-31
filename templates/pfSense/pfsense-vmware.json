@@ -1,0 +1,88 @@
+{
+  "builders": [
+    {
+      "type": "vmware-iso",
+        "boot_wait": "20s",
+        "boot_command": [
+          "<wait5>A",
+          "<wait5><enter>",
+          "<wait5><enter>",
+          "<wait5><enter>",
+
+          "<wait10><wait5>",
+          "<wait5><wait>",
+          "<wait10><wait10><wait5>",
+          "<wait>n<enter><wait>",
+	  "<wait5>",
+	  "<wait><enter><wait>",
+
+          "<wait10><wait10><wait10><wait5>",
+          
+          "<wait>n<enter><wait5>",
+          "<wait>em0<enter><wait5>",
+          "<wait><enter><wait5>",
+          "<wait>y<enter><wait10>",
+          
+          "<wait10><wait10>",
+          "<wait>14<enter><wait5>",
+          "<wait>y<enter><wait5>",
+          "<wait>8<enter>",
+          "<wait>pkg update<wait><enter><wait5>",
+          "<wait>pkg upgrade -y<wait><enter><wait10>",
+          "<wait>pkg install -y sudo<wait><enter><wait10>",
+          "<wait>pkg install -y bash<wait><enter><wait10>",
+          "<wait>pkg install -y open-vm-tools-nox11<wait><enter><wait10>",
+          "<wait10>",
+          "<wait>rehash<enter>",
+          "<wait>pw usermod root -h 0<wait><enter>",
+	        "<wait>vagrant<enter>", 
+          "<wait>pw adduser vagrant -m -s /usr/local/bin/bash<enter>",
+          "<wait>pw usermod vagrant -h 0<enter>",
+          "<wait>vagrant<enter>",
+          "<wait>pw group mod wheel -m vagrant<enter>",
+          "<wait>echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers<enter>",
+          "<wait>chmod 0440 /usr/local/etc/sudoers<wait><enter>",
+          "<wait>",
+          "<wait>",
+          
+          "[ ! -d /home/vagrant/.ssh ] && mkdir -p /home/vagrant/.ssh", "<wait>", "<enter>", "<wait>",
+          "chmod 0700 /home/vagrant/.ssh", "<wait>", "<enter>", "<wait>",
+          "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA6NF8iallvQVp22WDkTkyrtvp9eWW6A8YVr+kz4TjGYe7gHzIw+niNltGEFHzD8+v1I2YJ6oXevct1YeS0o9HZyN1Q9qgCgzUFtdOKLv6IedplqoPkcmF0aYet2PkEDo3MlTBckFXPITAMzF8dJSIFo9D8HfdOV0IAdx4O7PtixWKn5y2hMNG0zQPyUecp4pzC6kivAIhyfHilFR61RGL+GPXQ2MWZWFYbAGjyiYJnAmCP3NOTd0jMZEnDkbUvxhMmBYSdETk1rRgm+R4LOzFUGaHqHDLKLX+FIPKcF96hrucXzcWyLbIbEgE98OHlnVYCzRdK8jlqm8tehUc9c9WhQ== vagrant insecure public key' >> /home/vagrant/.ssh/authorized_keys", "<wait>", "<enter>", "<wait>",
+          "chown -R vagrant /home/vagrant/.ssh", "<wait>", "<enter>", "<wait>",
+          "chmod 0600 /home/vagrant/.ssh/authorized_keys", "<wait>", "<enter>", "<wait>",
+          "<wait>",
+          "<wait>reboot<enter>"
+        ],
+      
+      "headless":false,
+      "disk_size": 4096,
+      
+      "guest_os_type": "freeBSD",
+
+      "iso_checksum": "sha256:5c9dce43d1f4188c686f11766d499ab6667edaf531fbd162213ed652c0534194",
+      "iso_urls": [ "pfSense-CE-2.5.0-RELEASE-amd64.iso" ], 
+
+      "shutdown_command": "sudo shutdown -p now",
+      "ssh_port": 22,
+
+      "ssh_password": "vagrant",
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "10000s",
+      "vm_name": "pfSense",
+      "vmx_data": {
+        "memsize": "1024",
+        "numvcpus": "1"
+      }
+      
+  }
+  ],
+   
+  "post-processors": [  
+    {
+      "type": "vagrant",
+	    "output" : "pfSense_{{.Provider}}.box",
+      "keep_input_artifact": false,
+      "vagrantfile_template": "vagrantfile-pfsense.template"
+    }
+  ]
+}

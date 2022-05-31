@@ -1,0 +1,8 @@
+{
+  "auto_build": "True",
+  "box_name": "pfSense-2.6.0",
+  "box_tag": "dettonville/pfSense",
+  "description": "pfSense Server",
+  "private": "False",
+  "short_description": "pfSense"
+}
