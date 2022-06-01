@@ -15,7 +15,7 @@
 
       "communicator": "ssh",
 
-      "convert_to_template": false,
+      "convert_to_template": true,
 
       "vm_name": "{{user `vm_build_id`}}",
       "guest_os_type": "{{user `vm_guest_os_type`}}",
@@ -37,10 +37,6 @@
         {
           "network": "{{user `vm_network_mgt`}}",
           "network_card": "{{user `vm_network_card`}}"
-        },
-        {
-          "network": "{{user `vm_network`}}",
-          "network_card": "{{user `vm_network_card`}}"
         }
       ],
 
@@ -51,39 +47,59 @@
       ],
 
       "boot_command": [
-        "<wait5>",
-        "<enter><wait5>",
-        "<enter><wait5>",
-        "<enter><wait5>",
-        "<enter><wait5>",
-        "<enter><wait5>",
-        "<enter><wait5>",
-        "<spacebar><enter><wait5>",
-        "y<wait2m>",
-        "y<wait10>",
-        "passwd<enter><wait5>",
-        "pfsense<enter><wait>pfsense<enter><wait>exit<enter><wait10>r<enter><wait2m>",
-
+        "A",
+        "<enter>", "<wait>",
+        "<enter>", "<wait>",
+        "<enter>", "<wait>",
+        "<enter>", "<wait>",
+        "<enter>", "<wait>",
+        "<space>",
+        "<enter>", "<wait>",
+        "Y", "<wait>",
+        "<wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>",
+        "<tab>","<enter>",
+        "cp /conf/config.xml /conf/config.xml.org",
+        "<enter>", "<wait>",
+        "reboot", "<enter>",
         "<wait10><wait10>",
-        "<wait>14<enter><wait5>",
-        "<wait>y<enter><wait5>",
-        "<wait>8<enter>",
-        "<wait>pkg update<wait><enter><wait5>",
+        "<enter>", "<down>", "<enter>", "<wait>",
+        "<wait>pkg update -y<wait><enter><wait5>",
         "<wait>pkg upgrade -y<wait><enter><wait10>",
         "<wait>pkg install -y sudo<wait><enter><wait10>",
         "<wait>pkg install -y bash<wait><enter><wait10>",
         "<wait>pkg install -y open-vm-tools-nox11<wait><enter><wait10>",
         "<wait10>",
         "<wait>rehash<enter>",
-        "<wait>pw usermod root -h 0<wait><enter>",
-        "<wait>pfsense<enter>",
-        "<wait>pw adduser vagrant -m -s /usr/local/bin/bash<enter>",
-        "<wait>pw usermod vagrant -h 0<enter>",
-        "<wait>vagrant<enter>",
-        "<wait>pw group mod wheel -m vagrant<enter>",
-        "<wait>echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers<enter>",
-        "<wait>chmod 0440 /usr/local/etc/sudoers<wait><enter>",
-        "<wait>reboot<enter>"
+        "echo vagrant | pw user add vagrant -m -h 0", "<enter>", "<wait>",
+        "pw group mod wheel -m vagrant", "<enter>", "<wait>",
+        "chmod 660 /usr/local/etc/sudoers &&  echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers &&  echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /usr/local/etc/sudoers &&  chmod 440 /usr/local/etc/sudoers && chflags schg /usr/local/etc/sudoers", "<enter>", "<wait5>",
+        "echo 'PermitRootLogin yes' >> /etc/sshd_extra","<enter><wait>",
+        "echo 'Etap provision'", "<wait>", "<enter>", "<wait>",
+        "echo 'Setting up the vagrant ssh keys...'", "<wait>", "<enter>", "<wait>",
+        "[ ! -d /home/vagrant/.ssh ] && mkdir -p /home/vagrant/.ssh", "<wait>", "<enter>", "<wait5>",
+        "chmod 0700 /home/vagrant/.ssh", "<wait>", "<enter>", "<wait5>",
+        "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMX0dPcvoiLIR3qdv+FXLE/yia1RYga28TBQcy762y/I5dgNs1hKNr9lCGlWj08Miiazb/BUS7OD9Pby+c4SK4BOwdqn/LMAGKe23JbMlhCVSwEll8U/ojW1Nm0OrfOnK6CIjkf8lXsTG0hh8DC7QGzGALeQJUpLMQpTvrWk2dJ66jGOFNnqVcJGiVIRuSreFoSbWGyOUbJ6wbXKKLUk+0uD3eAMc6pMDvP3cyhSBlfJce6gB7XzmVrnCSFYJK+s12WcseQa9HeInNgyHdhpinfn1bGMdOLEQz/bhviKosKg8e4L2i3pC3w+tJCGs36b5OmKZDkElfR8+LtuYyX6Rb== vagrant insecure public key' >> /home/vagrant/.ssh/authorized_keys", "<wait>", "<enter>", "<wait5>",
+        "chown -R vagrant /home/vagrant/.ssh", "<wait>", "<enter>", "<wait5>",
+        "chmod 0600 /home/vagrant/.ssh/authorized_keys", "<wait>", "<enter>", "<wait5>",
+        "exit", "<enter>",
+        "14", "<enter>", "<wait>",  "y", "<enter>","<wait10>",
+        "1", "<enter>", "n", "<enter>",
+        "em1", "<enter>",
+        "em2", "<enter>",
+        "em3", "<enter>",
+        "em0", "<enter>",
+        "y", "<enter>", "<wait10>", "<wait10>", "<wait10>", "<wait10>", "<wait10>",
+        "2", "<enter>", "4", "<enter>",
+        "10.0.2.15", "<enter>", "24", "<enter>",
+        "10.0.2.2", "<enter>", "<enter>", "n", "<enter>", "n", "<enter>", "<wait5>", "<enter>",
+        "2", "<enter>", "1", "<enter>", "n", "<enter>",
+        "{{user `wan_host`}}", "<enter>", "24", "<enter>",
+        "{{user `wan_gate`}}", "<enter>", "n", "<enter>", "<enter>", "n", "<enter>", "<wait5>", "<enter>",
+        "8", "<enter>", "<wait>",
+        "cp /conf/config.xml /conf/config.xml.new", "<enter>", "<wait>",
+        "rm -f /conf/trigger_initial_wizard", "<enter>", "<wait>",
+        "exit", "<enter>",
+        "5", "<enter>", "y", "<enter>"
       ],
       "boot_wait": "{{user `vm_boot_wait`}}",
       "boot_order": "{{user `vm_boot_order_install`}}",
@@ -108,21 +124,8 @@
       "ssh_wait_timeout": "10000s"
   }
   ],
-  "provisioners": [
-      {
-          "type": "shell",
-          "inline": [
-              "echo 'Etap provision'",
-              "echo 'Setting up the vagrant ssh keys...'",
-              "[ ! -d /home/vagrant/.ssh ] && mkdir -p /home/vagrant/.ssh",
-              "chmod 0700 /home/vagrant/.ssh",
-              "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMX0dPcvoiLIR3qdv+FXLE/yia1RYga28TBQcy762y/I5dgNs1hKNr9lCGlWj08Miiazb/BUS7OD9Pby+c4SK4BOwdqn/LMAGKe23JbMlhCVSwEll8U/ojW1Nm0OrfOnK6CIjkf8lXsTG0hh8DC7QGzGALeQJUpLMQpTvrWk2dJ66jGOFNnqVcJGiVIRuSreFoSbWGyOUbJ6wbXKKLUk+0uD3eAMc6pMDvP3cyhSBlfJce6gB7XzmVrnCSFYJK+s12WcseQa9HeInNgyHdhpinfn1bGMdOLEQz/bhviKosKg8e4L2i3pC3w+tJCGs36b5OmKZDkElfR8+LtuYyX6Rb== vagrant insecure public key' >> /home/vagrant/.ssh/authorized_keys",
-              "chown -R vagrant /home/vagrant/.ssh",
-              "chmod 0600 /home/vagrant/.ssh/authorized_keys"
-          ]
-      }
-  ],
   "post-processors": [
+    [
       {
         "compression_level": "{{ user `compression_level` }}",
         "output": "{{ user `vm_name` }}-{{.Provider}}-{{ timestamp }}.box",
@@ -134,25 +137,28 @@
         "strip_path": true,
         "type": "manifest"
       }
+    ]
   ],
   "variables": {
     "boot_command_prefix": "",
     "box_tag": "",
     "compression_level": "6",
+    "disk_adapter_type": "scsi",
+    "disk_size": "36864",
     "iso_checksum": "",
     "iso_checksum_type": "sha256",
     "iso_url": "",
     "iso_base_dir": "iso-repos/linux",
     "iso_dir": "",
     "iso_file": "",
-    "vm_guest_os_type": "FreeBSD_64",
-    "vm_network": "VM Network",
-    "vm_network_mgt": "Management Network",
-    "vm_network_card": "e1000",
-    "ssh_password": "pfsense",
-    "ssh_username": "root",
+    "vm_guest_os_type": "freeBSD",
+    "vm_mem_size": "4096",
+    "qemu_accelerator": "hvf",
+    "ssh_password": "vagrant",
+    "ssh_username": "vagrant",
     "vagrant_cloud_token": "",
     "vagrant_cloud_username": "",
+    "vm_cpu_num": "1",
     "vm_firmware": "bios",
     "vm_name": ""
   }

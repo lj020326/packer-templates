@@ -1,1 +1,12 @@
-{}
+{
+    "iso_base_dir": "iso-repos/linux",
+    "ssh_username": "root",
+    "vm_guest_os_type": "FreeBSD_64",
+    "vm_disk_size": "8192",
+    "vm_mem_size": "2048",
+    "vm_cpu_num": "2",
+    "vm_network": "VM Network",
+    "vm_network_mgt": "nested-management",
+    "vm_network_card": "e1000",
+    "vm_firmware": "bios"
+}
