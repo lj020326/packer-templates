@@ -70,6 +70,7 @@
   "ssh_handshake_attempts": "20",
   "vagrant_cloud_token": "",
   "vagrant_cloud_username": "",
+  "ansible_staging_directory": "/tmp/packer-provisioner-ansible-local",
   "ansible_vault_password": "{{env `ANSIBLE_VAULT_PASSWORD`}}",
   "ansible_python_interpreter_save": "/usr/bin/python3",
   "ansible_inventory_group_vars": "../ansible/inventory/group_vars",
