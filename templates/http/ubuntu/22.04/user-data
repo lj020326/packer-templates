@@ -34,6 +34,7 @@ autoinstall:
     timezone: UTC
     users:
       - name: packer
+        uid: 300
         # Generated via: printf ${password} | mkpasswd -s -m sha-512
         passwd: "$6$rounds=656000$MHGZkhSNI.8YWvX9$uDPTAoPNIJ7dHkMYxSfr6IjK7zsRMB26o/8Tbd5yIBG.cv6j9Xe0oRKjAVM8SbU7Hgm9UUdy2Ek4mbP7f7M7I."
         groups: [adm, cdrom, dip, plugdev, lxd, sudo]

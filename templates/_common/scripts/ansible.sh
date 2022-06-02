@@ -49,6 +49,8 @@ pip3 install --upgrade pip
 pip3 install --upgrade ansible
 #pip3 install --upgrade cryptography pyopenssl
 
+pip3 install --upgrade netaddr
+
 #ln -s /usr/local/bin/ansible /usr/bin/ansible
 #ln -s /usr/local/bin/ansible-galaxy /usr/bin/ansible-galaxy
 #ln -s /usr/local/bin/ansible-playbook /usr/bin/ansible-playbook

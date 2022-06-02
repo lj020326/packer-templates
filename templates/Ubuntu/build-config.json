@@ -41,6 +41,7 @@
       ],
 
       "shutdown_command": "echo '{{user `ssh_password`}}'| sudo -S /sbin/halt -h -p",
+      "shutdown_timeout": "15m",
 
       "iso_paths": [
         "[{{user `vm_remote_cache_datastore`}}] {{user `iso_base_dir`}}/{{user `iso_dir`}}/{{user `iso_file`}}"
