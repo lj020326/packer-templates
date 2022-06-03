@@ -12,7 +12,7 @@
       "datastore": "{{user `vm_datastore`}}",
       "folder": "{{user `vcenter_folder`}}",
 
-      "communicator",: "ssh",
+      "communicator": "ssh",
 
       "convert_to_template": true,
 
@@ -196,7 +196,7 @@
     {
       "type": "ansible-local",
       "staging_directory": "{{ user `ansible_staging_directory` }}",
-      "clean_staging_directory",: "false",
+      "clean_staging_directory": "false",
       "playbook_dir": "{{ user `ansible_playbook_dir` }}",
       "playbook_file": "{{ user `ansible_playbook_file` }}",
       "galaxy_file": "{{ user `ansible_galaxy_req_file` }}",
