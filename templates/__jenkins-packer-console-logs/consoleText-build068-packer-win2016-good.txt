@@ -1,0 +1,992 @@
+Started by user admin
+Obtained buildTemplate.groovy from git https://gitea.admin.dettonville.int/infra/packer-boxes.git
+Loading library pipeline-automation-lib@master
+Attempting to resolve master from remote references...
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+using GIT_ASKPASS to set credentials 
+ > git ls-remote -h -- https://gitea.admin.dettonville.int/infra/pipeline-automation-lib.git # timeout=10
+Found match: refs/heads/master revision b4d145e4bb6afc0cfc3adb637052c04f072fcd93
+The recommended git tool is: NONE
+using credential dcapi-jenkins-git-user
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/dettonville/infra/packer-templates/Windows/2016@libs/1733a05d3ae2b07784f14771e944b9331eff50438c1371ba0f6c1be5f61331ab/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://gitea.admin.dettonville.int/infra/pipeline-automation-lib.git # timeout=10
+Cleaning workspace
+ > git rev-parse --verify HEAD # timeout=10
+Resetting working tree
+ > git reset --hard # timeout=10
+ > git clean -ffdx # timeout=10
+Fetching without tags
+Fetching upstream changes from https://gitea.admin.dettonville.int/infra/pipeline-automation-lib.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+using GIT_ASKPASS to set credentials 
+ > git fetch --no-tags --force --progress -- https://gitea.admin.dettonville.int/infra/pipeline-automation-lib.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Checking out Revision b4d145e4bb6afc0cfc3adb637052c04f072fcd93 (master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f b4d145e4bb6afc0cfc3adb637052c04f072fcd93 # timeout=10
+Commit message: "master - 	modified:   vars/buildVmTemplate.groovy"
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on vcontrol01 in /workspace/dettonville/infra/packer-templates/Windows/2016
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: NONE
+using credential dcapi-jenkins-git-user
+Fetching changes from the remote Git repository
+ > git rev-parse --resolve-git-dir /workspace/dettonville/infra/packer-templates/Windows/2016/.git # timeout=10
+ > git config remote.origin.url https://gitea.admin.dettonville.int/infra/packer-boxes.git # timeout=10
+Fetching upstream changes from https://gitea.admin.dettonville.int/infra/packer-boxes.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --force --progress -- https://gitea.admin.dettonville.int/infra/packer-boxes.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Checking out Revision 9bc999ffd06dd2acfc46006a1d6656ddb819b5d6 (refs/remotes/origin/master)
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 9bc999ffd06dd2acfc46006a1d6656ddb819b5d6 # timeout=10
+Commit message: "master - 	modified:   templates/Windows/2016/server/template.json"
+ > git rev-list --no-walk 2fb89ac65561af43cf9f519b4f3a44b98927d08a # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] timeout
+[2022-04-25T21:37:14.970Z] Timeout set to expire in 3 hr 0 min
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+ > git remote # timeout=10
+ > git submodule init # timeout=10
+ > git submodule sync # timeout=10
+ > git config --get remote.origin.url # timeout=10
+ > git submodule init # timeout=10
+ > git config -f .gitmodules --get-regexp ^submodule\.(.+)\.url # timeout=10
+ > git config --get submodule.ansible.url # timeout=10
+ > git remote # timeout=10
+ > git config --get remote.origin.url # timeout=10
+ > git config -f .gitmodules --get submodule.ansible.path # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git submodule update --init --recursive ansible # timeout=10
+[Pipeline] stage
+[Pipeline] { (Initialize)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+[2022-04-25T21:37:15.766Z] [INFO] buildVmTemplate : loadPipelineConfig(): jobParts=[dettonville, infra, packer-templates, Windows, 2016]
+[Pipeline] echo
+[2022-04-25T21:37:15.786Z] [INFO] buildVmTemplate : loadPipelineConfig(): jobParts[after drop]=[Windows, 2016]
+[Pipeline] echo
+[2022-04-25T21:37:15.803Z] [INFO] buildVmTemplate : loadPipelineConfig(): build_distribution=Windows
+[Pipeline] echo
+[2022-04-25T21:37:15.820Z] [INFO] buildVmTemplate : loadPipelineConfig(): build_release=2016
+[Pipeline] echo
+[2022-04-25T21:37:15.837Z] [INFO] buildVmTemplate : loadPipelineConfig(): loading build config
+[Pipeline] fileExists
+[Pipeline] readJSON
+[Pipeline] echo
+[2022-04-25T21:37:15.954Z] [INFO] buildVmTemplate : loadPipelineConfig(): loading common and build vars
+[Pipeline] readJSON
+[Pipeline] echo
+[2022-04-25T21:37:16.156Z] [INFO] buildVmTemplate : loadPipelineConfig(): commonVars={
+[2022-04-25T21:37:16.157Z]     "build_type": "vsphere-iso",
+[2022-04-25T21:37:16.157Z]     "skip_packer_build": "false",
+[2022-04-25T21:37:16.157Z]     "vcenter_host": "vcenter.dettonville.int",
+[2022-04-25T21:37:16.157Z]     "vcenter_username": "administrator@vsphere.local",
+[2022-04-25T21:37:16.157Z]     "vcenter_password": "{{ env `VMWARE_VCENTER_PASSWORD` }}",
+[2022-04-25T21:37:16.157Z]     "vcenter_datacenter_orig": "johnsondc",
+[2022-04-25T21:37:16.157Z]     "vcenter_datacenter": "dettonville-dc-01",
+[2022-04-25T21:37:16.157Z]     "vcenter_cluster": "Management",
+[2022-04-25T21:37:16.157Z]     "vcenter_folder": "templates",
+[2022-04-25T21:37:16.157Z]     "vcenter_deploy_folder": "templates",
+[2022-04-25T21:37:16.162Z]     "esxi_host_old": "esx02.dettonville.int",
+[2022-04-25T21:37:16.162Z]     "esxi_host": "esx00.dettonville.int",
+[2022-04-25T21:37:16.162Z]     "esxi_username": "root",
+[2022-04-25T21:37:16.162Z]     "esxi_password": "{{ env `VMWARE_ESXI_PASSWORD` }}",
+[2022-04-25T21:37:16.162Z]     "esxi_type": "esx5",
+[2022-04-25T21:37:16.162Z]     "ip_wait_timeout_default": "30m",
+[2022-04-25T21:37:16.162Z]     "ip_settle_timeout_default": "5s",
+[2022-04-25T21:37:16.162Z]     "ip_wait_timeout": "60m",
+[2022-04-25T21:37:16.162Z]     "ip_settle_timeout": "5s",
+[2022-04-25T21:37:16.162Z]     "vm_template_datastore_orig": "nfs_ds1",
+[2022-04-25T21:37:16.162Z]     "vm_template_datastore_orig2": "esx2_ds3",
+[2022-04-25T21:37:16.162Z]     "vm_template_datastore_orig3": "esx02_ds1",
+[2022-04-25T21:37:16.162Z]     "vm_template_datastore": "nfs_ds1",
+[2022-04-25T21:37:16.162Z]     "vm_template_folder": "templates",
+[2022-04-25T21:37:16.162Z]     "vm_template_host_old": "esx02.dettonville.int",
+[2022-04-25T21:37:16.162Z]     "vm_template_host": "esx00.dettonville.int",
+[2022-04-25T21:37:16.162Z]     "vm_host_old": "esx02.dettonville.int",
+[2022-04-25T21:37:16.162Z]     "vm_host": "esx00.dettonville.int",
+[2022-04-25T21:37:16.162Z]     "vm_datastore_orig": "esx02_ds1",
+[2022-04-25T21:37:16.162Z]     "vm_datastore_orig2": "esx2_ds3",
+[2022-04-25T21:37:16.162Z]     "vm_datastore_orig3": "esx02_ds1",
+[2022-04-25T21:37:16.162Z]     "vm_datastore": "nfs_ds1",
+[2022-04-25T21:37:16.162Z]     "vm_build_id": "{{ env `TEMPLATE_BUILD_ID` }}",
+[2022-04-25T21:37:16.162Z]     "vm_build_id_orig": "packer-template-{{ env `BUILD_ID` }}",
+[2022-04-25T21:37:16.162Z]     "vm_build_notes": "Build via Packer - date: {{ isotime }} - build tag: {{ env `BUILD_TAG` }}",
+[2022-04-25T21:37:16.162Z]     "vm_cpu_num": "1",
+[2022-04-25T21:37:16.162Z]     "vm_cpu_max_num": "2",
+[2022-04-25T21:37:16.162Z]     "vm_cpu_cores_num": "1",
+[2022-04-25T21:37:16.162Z]     "vm_mem_size": "1024",
+[2022-04-25T21:37:16.162Z]     "vm_disk_type": "lsilogic",
+[2022-04-25T21:37:16.162Z]     "vm_disk_size": "32768",
+[2022-04-25T21:37:16.162Z]     "vm_disk_thin_provisioned": "true",
+[2022-04-25T21:37:16.162Z]     "vm_network": "BridgedNetwork",
+[2022-04-25T21:37:16.162Z]     "vm_network_card_e1000": "e1000",
+[2022-04-25T21:37:16.162Z]     "vm_network_card": "vmxnet3",
+[2022-04-25T21:37:16.162Z]     "vm_network_mgt": "VM Network",
+[2022-04-25T21:37:16.162Z]     "vm_guest_os_type": "centos7_64Guest",
+[2022-04-25T21:37:16.162Z]     "vm_remote_cache_datastore": "nfs_ds1",
+[2022-04-25T21:37:16.162Z]     "vm_data_dir": "/data/datacenter/vmware",
+[2022-04-25T21:37:16.162Z]     "vm_boot_http_directory": "http",
+[2022-04-25T21:37:16.162Z]     "vm_boot_wait": "5s",
+[2022-04-25T21:37:16.162Z]     "vm_boot_command": "<esc><wait>linux inst.ks=hd:fd0:/ks.cfg<enter><wait>",
+[2022-04-25T21:37:16.162Z]     "vm_boot_order_orig": "disk,cdrom,floppy",
+[2022-04-25T21:37:16.162Z]     "vm_boot_order_install": "disk,cdrom",
+[2022-04-25T21:37:16.162Z]     "vm_boot_order": "cdrom,disk,ethernet0",
+[2022-04-25T21:37:16.162Z]     "vm_boot_keygroup_interval": "100ms",
+[2022-04-25T21:37:16.162Z]     "boot_command_prefix": "",
+[2022-04-25T21:37:16.162Z]     "box_tag": "",
+[2022-04-25T21:37:16.162Z]     "compression_level": "6",
+[2022-04-25T21:37:16.162Z]     "disk_adapter_type": "scsi",
+[2022-04-25T21:37:16.162Z]     "disk_size": "36864",
+[2022-04-25T21:37:16.162Z]     "inspec_timeout": "50m",
+[2022-04-25T21:37:16.162Z]     "iso_base_dir": "iso-repos",
+[2022-04-25T21:37:16.162Z]     "iso_name": "{{ env `JOB_BASE_NAME` }}",
+[2022-04-25T21:37:16.162Z]     "iso_dir": "",
+[2022-04-25T21:37:16.162Z]     "iso_file": "",
+[2022-04-25T21:37:16.162Z]     "iso_url": "",
+[2022-04-25T21:37:16.162Z]     "iso_checksum": "",
+[2022-04-25T21:37:16.162Z]     "iso_checksum_type": "sha256",
+[2022-04-25T21:37:16.162Z]     "qemu_accelerator": "kvm",
+[2022-04-25T21:37:16.162Z]     "ssh_user_root": "root",
+[2022-04-25T21:37:16.162Z]     "ssh_pass_root": "{{ env `VM_ROOT_PASSWORD` }}",
+[2022-04-25T21:37:16.162Z]     "ssh_username": "packer",
+[2022-04-25T21:37:16.162Z]     "ssh_password": "{{ env `PACKER_SSH_PASSWORD` }}",
+[2022-04-25T21:37:16.162Z]     "ssh_timeout": "60m",
+[2022-04-25T21:37:16.162Z]     "ssh_pty": "false",
+[2022-04-25T21:37:16.162Z]     "ssh_handshake_attempts": "20",
+[2022-04-25T21:37:16.162Z]     "vagrant_cloud_token": "",
+[2022-04-25T21:37:16.162Z]     "vagrant_cloud_username": "",
+[2022-04-25T21:37:16.162Z]     "win_guest_username": "administrator",
+[2022-04-25T21:37:16.162Z]     "win_guest_password": "{{ env `VM_ROOT_PASSWORD` }}",
+[2022-04-25T21:37:16.162Z]     "winrm_username_orig": "packer",
+[2022-04-25T21:37:16.162Z]     "winrm_password_orig": "{{ env `PACKER_SSH_PASSWORD` }}",
+[2022-04-25T21:37:16.162Z]     "ansible_vault_password": "{{env `ANSIBLE_VAULT_PASSWORD`}}",
+[2022-04-25T21:37:16.162Z]     "ansible_python_interpreter_save": "/usr/bin/python3",
+[2022-04-25T21:37:16.162Z]     "ansible_inventory_groups_save": "vm_template,linux,ca_domain,ldap_client,docker",
+[2022-04-25T21:37:16.162Z]     "ansible_inventory_groups": "vm_template",
+[2022-04-25T21:37:16.162Z]     "ansible_inventory_group_vars": "../ansible/inventory/group_vars",
+[2022-04-25T21:37:16.162Z]     "ansible_inventory_file": "../ansible/inventory/vm_template.ini",
+[2022-04-25T21:37:16.162Z]     "ansible_galaxy_req_file": "../ansible/roles/requirements.packer.yml",
+[2022-04-25T21:37:16.162Z]     "ansible_playbook_dir": "../ansible",
+[2022-04-25T21:37:16.162Z]     "ansible_playbook_file_new": "../ansible/site.yml",
+[2022-04-25T21:37:16.162Z]     "ansible_playbook_file": "../ansible/vm_template.yml"
+[2022-04-25T21:37:16.162Z] }
+[Pipeline] readJSON
+[Pipeline] echo
+[2022-04-25T21:37:16.334Z] [INFO] buildVmTemplate : distributionVars={
+[2022-04-25T21:37:16.334Z]     "vm_cpu_num": "1",
+[2022-04-25T21:37:16.334Z]     "vm_mem_size": "4096",
+[2022-04-25T21:37:16.334Z]     "vm_disk_type": "lsilogic-sas",
+[2022-04-25T21:37:16.334Z]     "vm_disk_size": "40000",
+[2022-04-25T21:37:16.334Z]     "vm_disk_thin_provisioned": "true",
+[2022-04-25T21:37:16.334Z]     "vm_network": "BridgedNetwork",
+[2022-04-25T21:37:16.334Z]     "vm_network_card_e1000": "e1000",
+[2022-04-25T21:37:16.334Z]     "vm_network_card": "vmxnet3",
+[2022-04-25T21:37:16.334Z]     "vm_network_mgt": "VM Network",
+[2022-04-25T21:37:16.334Z]     "vm_guest_os_type": "windows9Server64Guest",
+[2022-04-25T21:37:16.334Z]     "virtualbox_guest_type": "Windows2016_64",
+[2022-04-25T21:37:16.334Z]     "boot_command": "<spacebar>",
+[2022-04-25T21:37:16.334Z]     "iso_base_dir": "iso-repos",
+[2022-04-25T21:37:16.334Z]     "ip_settle_timeout": "1m",
+[2022-04-25T21:37:16.334Z]     "ip_settle_timeout_bad": "1m",
+[2022-04-25T21:37:16.334Z]     "ansible_inventory_groups_save": "vm_template,windows,ca_domain"
+[2022-04-25T21:37:16.334Z] }
+[Pipeline] readJSON
+[Pipeline] echo
+[2022-04-25T21:37:16.484Z] [INFO] buildVmTemplate : boxInfoVars={
+[2022-04-25T21:37:16.485Z]     "auto_build": "True",
+[2022-04-25T21:37:16.485Z]     "box_name": "windows2016",
+[2022-04-25T21:37:16.485Z]     "box_tag": "dettonville/windows2016",
+[2022-04-25T21:37:16.485Z]     "description": "Windows 2016 Server",
+[2022-04-25T21:37:16.485Z]     "private": "False",
+[2022-04-25T21:37:16.485Z]     "short_description": "Windows 2016 Server"
+[2022-04-25T21:37:16.485Z] }
+[Pipeline] readJSON
+[Pipeline] echo
+[2022-04-25T21:37:16.674Z] [INFO] buildVmTemplate : templateConfig={
+[2022-04-25T21:37:16.675Z]     "unattended_file_path": "./answer_files/2016/Autounattend.xml",
+[2022-04-25T21:37:16.675Z]     "unattended_file_path_save": "./answer_files/2016/datacentercore/autounattend.xml",
+[2022-04-25T21:37:16.675Z]     "iso_checksum_type_orig": "sha1",
+[2022-04-25T21:37:16.675Z]     "iso_checksum_orig": "772700802951b36c8cb26a61c040b9a8dc3816a3",
+[2022-04-25T21:37:16.675Z]     "iso_url_orig": "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
+[2022-04-25T21:37:16.675Z]     "iso_checksum_type": "sha1",
+[2022-04-25T21:37:16.675Z]     "iso_checksum": "bd1ce529842fbbe87cc36a51400a8ecde2de6023",
+[2022-04-25T21:37:16.675Z]     "iso_url": "https://archiva.admin.dettonville.int/repository/internal/org/dettonville/infra/windows/SRV2016.ENU.JUL2017.14393-1532/windows-SRV2016.ENU.JUL2017.14393-1532.iso",
+[2022-04-25T21:37:16.675Z]     "vm_firmware_save": "efi",
+[2022-04-25T21:37:16.675Z]     "vm_boot_wait": "30s",
+[2022-04-25T21:37:16.675Z]     "boot_command": "<wait10><wait><down><wait5><enter><wait5><enter>",
+[2022-04-25T21:37:16.675Z]     "vm_name_orig": "windows2016-server-packer-template",
+[2022-04-25T21:37:16.675Z]     "vm_name": "packer-template-win2016dccore"
+[2022-04-25T21:37:16.675Z] }
+[Pipeline] echo
+[2022-04-25T21:37:16.713Z] [INFO] buildVmTemplate : loadPipelineConfig(): build_distribution_config_dir=Windows
+[Pipeline] echo
+[2022-04-25T21:37:16.741Z] [INFO] buildVmTemplate : loadPipelineConfig(): build_release_config_dir=Windows/2016/server
+[Pipeline] echo
+[2022-04-25T21:37:16.774Z] [INFO] buildVmTemplate : loadPipelineConfig(): BUILD_TAG=jenkins-dettonville-infra-packer-templates-Windows-2016-68
+[Pipeline] echo
+[2022-04-25T21:37:16.798Z] [INFO] buildVmTemplate : loadPipelineConfig(): templateBuildTag=packer-templates-windows-2016-0068
+[Pipeline] echo
+[2022-04-25T21:37:16.855Z] [INFO] buildVmTemplate : config={
+[2022-04-25T21:37:16.856Z]     "jobBaseFolderLevel": 3,
+[2022-04-25T21:37:16.856Z]     "build_dir": "templates",
+[2022-04-25T21:37:16.856Z]     "timeout": 3,
+[2022-04-25T21:37:16.856Z]     "timeoutUnit": "HOURS",
+[2022-04-25T21:37:16.856Z]     "build_distribution": "Windows",
+[2022-04-25T21:37:16.856Z]     "build_release": "2016",
+[2022-04-25T21:37:16.856Z]     "build_type": "vsphere-iso",
+[2022-04-25T21:37:16.856Z]     "build_distribution_config_dir": "Windows",
+[2022-04-25T21:37:16.856Z]     "build_release_config_dir": "Windows/2016/server",
+[2022-04-25T21:37:16.856Z]     "unattended_file_path": "./answer_files/2016/Autounattend.xml",
+[2022-04-25T21:37:16.856Z]     "boot_command_prefix": "",
+[2022-04-25T21:37:16.856Z]     "box_tag": "dettonville/windows2016",
+[2022-04-25T21:37:16.856Z]     "compression_level": "6",
+[2022-04-25T21:37:16.856Z]     "disk_adapter_type": "scsi",
+[2022-04-25T21:37:16.856Z]     "vm_disk_size": "40000",
+[2022-04-25T21:37:16.856Z]     "vm_disk_type_orig": "lsilogic-sas",
+[2022-04-25T21:37:16.856Z]     "vm_disk_type_new": "pvscsi",
+[2022-04-25T21:37:16.856Z]     "vm_disk_type": "lsilogic-sas",
+[2022-04-25T21:37:16.856Z]     "vm_version": "17",
+[2022-04-25T21:37:16.856Z]     "vm_firmware_old": "bios",
+[2022-04-25T21:37:16.856Z]     "vm_firmware_alt": "efi",
+[2022-04-25T21:37:16.856Z]     "vm_firmware": "bios",
+[2022-04-25T21:37:16.856Z]     "vm_cdrom_remove": "true",
+[2022-04-25T21:37:16.856Z]     "vm_guest_os_type": "windows9Server64Guest",
+[2022-04-25T21:37:16.856Z]     "iso_checksum_type": "sha1",
+[2022-04-25T21:37:16.856Z]     "iso_checksum": "bd1ce529842fbbe87cc36a51400a8ecde2de6023",
+[2022-04-25T21:37:16.856Z]     "iso_base_dir": "iso-repos",
+[2022-04-25T21:37:16.856Z]     "iso_url": "https://archiva.admin.dettonville.int/repository/internal/org/dettonville/infra/windows/SRV2016.ENU.JUL2017.14393-1532/windows-SRV2016.ENU.JUL2017.14393-1532.iso",
+[2022-04-25T21:37:16.856Z]     "vm_mem_size": "4096",
+[2022-04-25T21:37:16.856Z]     "vagrant_cloud_token": "",
+[2022-04-25T21:37:16.856Z]     "vagrant_cloud_username": "",
+[2022-04-25T21:37:16.856Z]     "vm_cpu_num": "1",
+[2022-04-25T21:37:16.856Z]     "virtualbox_guest_type": "Windows2016_64",
+[2022-04-25T21:37:16.856Z]     "vm_name": "packer-template-win2016dccore",
+[2022-04-25T21:37:16.856Z]     "vm_boot_wait": "30s",
+[2022-04-25T21:37:16.856Z]     "winrm_password_save": "administrator",
+[2022-04-25T21:37:16.856Z]     "winrm_username_save": "yourpassword",
+[2022-04-25T21:37:16.856Z]     "winrm_password": "vagrant",
+[2022-04-25T21:37:16.856Z]     "winrm_username": "vagrant",
+[2022-04-25T21:37:16.856Z]     "vmware_guest_type": "windows9Server64Guest",
+[2022-04-25T21:37:16.856Z]     "skip_packer_build": "false",
+[2022-04-25T21:37:16.856Z]     "vcenter_host": "vcenter.dettonville.int",
+[2022-04-25T21:37:16.856Z]     "vcenter_username": "administrator@vsphere.local",
+[2022-04-25T21:37:16.856Z]     "vcenter_password": "{{ env `VMWARE_VCENTER_PASSWORD` }}",
+[2022-04-25T21:37:16.856Z]     "vcenter_datacenter_orig": "johnsondc",
+[2022-04-25T21:37:16.856Z]     "vcenter_datacenter": "dettonville-dc-01",
+[2022-04-25T21:37:16.856Z]     "vcenter_cluster": "Management",
+[2022-04-25T21:37:16.856Z]     "vcenter_folder": "templates",
+[2022-04-25T21:37:16.856Z]     "vcenter_deploy_folder": "templates",
+[2022-04-25T21:37:16.856Z]     "esxi_host_old": "esx02.dettonville.int",
+[2022-04-25T21:37:16.856Z]     "esxi_host": "esx00.dettonville.int",
+[2022-04-25T21:37:16.856Z]     "esxi_username": "root",
+[2022-04-25T21:37:16.856Z]     "esxi_password": "{{ env `VMWARE_ESXI_PASSWORD` }}",
+[2022-04-25T21:37:16.856Z]     "esxi_type": "esx5",
+[2022-04-25T21:37:16.856Z]     "ip_wait_timeout_default": "30m",
+[2022-04-25T21:37:16.856Z]     "ip_settle_timeout_default": "5s",
+[2022-04-25T21:37:16.856Z]     "ip_wait_timeout": "60m",
+[2022-04-25T21:37:16.856Z]     "ip_settle_timeout": "1m",
+[2022-04-25T21:37:16.856Z]     "vm_template_datastore_orig": "nfs_ds1",
+[2022-04-25T21:37:16.856Z]     "vm_template_datastore_orig2": "esx2_ds3",
+[2022-04-25T21:37:16.856Z]     "vm_template_datastore_orig3": "esx02_ds1",
+[2022-04-25T21:37:16.856Z]     "vm_template_datastore": "nfs_ds1",
+[2022-04-25T21:37:16.856Z]     "vm_template_folder": "templates",
+[2022-04-25T21:37:16.856Z]     "vm_template_host_old": "esx02.dettonville.int",
+[2022-04-25T21:37:16.856Z]     "vm_template_host": "esx00.dettonville.int",
+[2022-04-25T21:37:16.856Z]     "vm_host_old": "esx02.dettonville.int",
+[2022-04-25T21:37:16.856Z]     "vm_host": "esx00.dettonville.int",
+[2022-04-25T21:37:16.856Z]     "vm_datastore_orig": "esx02_ds1",
+[2022-04-25T21:37:16.856Z]     "vm_datastore_orig2": "esx2_ds3",
+[2022-04-25T21:37:16.856Z]     "vm_datastore_orig3": "esx02_ds1",
+[2022-04-25T21:37:16.856Z]     "vm_datastore": "nfs_ds1",
+[2022-04-25T21:37:16.856Z]     "vm_build_id": "packer-templates-windows-2016-0068",
+[2022-04-25T21:37:16.856Z]     "vm_build_id_orig": "packer-template-{{ env `BUILD_ID` }}",
+[2022-04-25T21:37:16.856Z]     "vm_build_notes": "Build via Packer - date: {{ isotime }} - build tag: {{ env `BUILD_TAG` }}",
+[2022-04-25T21:37:16.856Z]     "vm_cpu_max_num": "2",
+[2022-04-25T21:37:16.856Z]     "vm_cpu_cores_num": "1",
+[2022-04-25T21:37:16.856Z]     "vm_disk_thin_provisioned": "true",
+[2022-04-25T21:37:16.856Z]     "vm_network": "BridgedNetwork",
+[2022-04-25T21:37:16.856Z]     "vm_network_card_e1000": "e1000",
+[2022-04-25T21:37:16.856Z]     "vm_network_card": "vmxnet3",
+[2022-04-25T21:37:16.856Z]     "vm_network_mgt": "VM Network",
+[2022-04-25T21:37:16.856Z]     "vm_remote_cache_datastore": "nfs_ds1",
+[2022-04-25T21:37:16.856Z]     "vm_data_dir": "/data/datacenter/vmware",
+[2022-04-25T21:37:16.856Z]     "vm_boot_http_directory": "http",
+[2022-04-25T21:37:16.856Z]     "vm_boot_command": "<esc><wait>linux inst.ks=hd:fd0:/ks.cfg<enter><wait>",
+[2022-04-25T21:37:16.856Z]     "vm_boot_order_orig": "disk,cdrom,floppy",
+[2022-04-25T21:37:16.856Z]     "vm_boot_order_install": "disk,cdrom",
+[2022-04-25T21:37:16.856Z]     "vm_boot_order": "cdrom,disk,ethernet0",
+[2022-04-25T21:37:16.856Z]     "vm_boot_keygroup_interval": "100ms",
+[2022-04-25T21:37:16.856Z]     "disk_size": "36864",
+[2022-04-25T21:37:16.856Z]     "inspec_timeout": "50m",
+[2022-04-25T21:37:16.856Z]     "iso_name": "{{ env `JOB_BASE_NAME` }}",
+[2022-04-25T21:37:16.856Z]     "iso_dir": "windows/2016",
+[2022-04-25T21:37:16.856Z]     "iso_file": "windows-SRV2016.ENU.JUL2017.14393-1532.iso",
+[2022-04-25T21:37:16.856Z]     "qemu_accelerator": "kvm",
+[2022-04-25T21:37:16.856Z]     "ssh_user_root": "root",
+[2022-04-25T21:37:16.856Z]     "ssh_pass_root": "{{ env `VM_ROOT_PASSWORD` }}",
+[2022-04-25T21:37:16.856Z]     "ssh_username": "packer",
+[2022-04-25T21:37:16.856Z]     "ssh_password": "{{ env `PACKER_SSH_PASSWORD` }}",
+[2022-04-25T21:37:16.856Z]     "ssh_timeout": "60m",
+[2022-04-25T21:37:16.856Z]     "ssh_pty": "false",
+[2022-04-25T21:37:16.856Z]     "ssh_handshake_attempts": "20",
+[2022-04-25T21:37:16.856Z]     "win_guest_username": "administrator",
+[2022-04-25T21:37:16.856Z]     "win_guest_password": "{{ env `VM_ROOT_PASSWORD` }}",
+[2022-04-25T21:37:16.856Z]     "winrm_username_orig": "packer",
+[2022-04-25T21:37:16.856Z]     "winrm_password_orig": "{{ env `PACKER_SSH_PASSWORD` }}",
+[2022-04-25T21:37:16.856Z]     "ansible_vault_password": "{{env `ANSIBLE_VAULT_PASSWORD`}}",
+[2022-04-25T21:37:16.856Z]     "ansible_python_interpreter_save": "/usr/bin/python3",
+[2022-04-25T21:37:16.856Z]     "ansible_inventory_groups_save": "vm_template,windows,ca_domain",
+[2022-04-25T21:37:16.856Z]     "ansible_inventory_groups": "vm_template",
+[2022-04-25T21:37:16.856Z]     "ansible_inventory_group_vars": "../ansible/inventory/group_vars",
+[2022-04-25T21:37:16.856Z]     "ansible_inventory_file": "../ansible/inventory/vm_template.ini",
+[2022-04-25T21:37:16.856Z]     "ansible_galaxy_req_file": "../ansible/roles/requirements.packer.yml",
+[2022-04-25T21:37:16.856Z]     "ansible_playbook_dir": "../ansible",
+[2022-04-25T21:37:16.856Z]     "ansible_playbook_file_new": "../ansible/site.yml",
+[2022-04-25T21:37:16.856Z]     "ansible_playbook_file": "../ansible/vm_template.yml",
+[2022-04-25T21:37:16.856Z]     "boot_command": "<wait10><wait><down><wait5><enter><wait5><enter>",
+[2022-04-25T21:37:16.856Z]     "ip_settle_timeout_bad": "1m",
+[2022-04-25T21:37:16.856Z]     "auto_build": "True",
+[2022-04-25T21:37:16.856Z]     "box_name": "windows2016",
+[2022-04-25T21:37:16.856Z]     "description": "Windows 2016 Server",
+[2022-04-25T21:37:16.856Z]     "private": "False",
+[2022-04-25T21:37:16.856Z]     "short_description": "Windows 2016 Server",
+[2022-04-25T21:37:16.856Z]     "unattended_file_path_save": "./answer_files/2016/datacentercore/autounattend.xml",
+[2022-04-25T21:37:16.856Z]     "iso_checksum_type_orig": "sha1",
+[2022-04-25T21:37:16.856Z]     "iso_checksum_orig": "772700802951b36c8cb26a61c040b9a8dc3816a3",
+[2022-04-25T21:37:16.856Z]     "iso_url_orig": "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
+[2022-04-25T21:37:16.856Z]     "vm_firmware_save": "efi",
+[2022-04-25T21:37:16.856Z]     "vm_name_orig": "windows2016-server-packer-template",
+[2022-04-25T21:37:16.856Z]     "jenkinsNodeLabel": "packer",
+[2022-04-25T21:37:16.856Z]     "logLevel": "INFO",
+[2022-04-25T21:37:16.856Z]     "debugPipeline": false,
+[2022-04-25T21:37:16.856Z]     "image_info": {
+[2022-04-25T21:37:16.856Z]         "name": "windows/2016",
+[2022-04-25T21:37:16.856Z]         "iso_url": "https://archiva.admin.dettonville.int/repository/internal/org/dettonville/infra/windows/SRV2016.ENU.JUL2017.14393-1532/windows-SRV2016.ENU.JUL2017.14393-1532.iso",
+[2022-04-25T21:37:16.856Z]         "iso_file": "windows-SRV2016.ENU.JUL2017.14393-1532.iso",
+[2022-04-25T21:37:16.856Z]         "iso_checksum": "sha1:bd1ce529842fbbe87cc36a51400a8ecde2de6023"
+[2022-04-25T21:37:16.856Z]     }
+[2022-04-25T21:37:16.856Z] }
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Pre-check if template already exists)
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+[2022-04-25T21:37:17.477Z] [INFO] buildVmTemplate : checking if template already exists...
+[Pipeline] withCredentials
+[2022-04-25T21:37:17.505Z] Masking supported pattern matches of $GOVC_USERNAME or $GOVC_PASSWORD
+[Pipeline] {
+[Pipeline] sh
+[2022-04-25T21:37:17.832Z] + govc vm.info packer-template-win2016dccore
+[Pipeline] sh
+[2022-04-25T21:37:18.449Z] + grep UUID:
+[2022-04-25T21:37:18.450Z] + govc vm.info packer-template-win2016dccore
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] echo
+[2022-04-25T21:37:18.583Z] [INFO] buildVmTemplate : initial check if template already exists=>false
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Fetch OS image)
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
+[2022-04-25T21:37:19.575Z] + grep windows-SRV2016.ENU.JUL2017.14393-1532.iso
+[2022-04-25T21:37:19.576Z] + ls -Fla /data/datacenter/vmware/iso-repos/windows/2016/
+[2022-04-25T21:37:19.576Z] -rw-r--r-- 1 root root 7243595776 abr 24 15:52 windows-SRV2016.ENU.JUL2017.14393-1532.iso
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run Packer to validate json settings)
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] dir
+[2022-04-25T21:37:20.308Z] Running in /workspace/dettonville/infra/packer-templates/Windows/2016/templates
+[Pipeline] {
+[Pipeline] withCredentials
+[2022-04-25T21:37:20.419Z] Masking supported pattern matches of $VMWARE_VCENTER_PASSWORD or $VMWARE_ESXI_PASSWORD or $PACKER_SSH_PASSWORD or $VM_ROOT_PASSWORD or $ANSIBLE_VAULT_PASSWORD
+[Pipeline] {
+[Pipeline] tool
+[Pipeline] sh
+[2022-04-25T21:37:20.837Z] + /tools/biz.neustar.jenkins.plugins.packer.PackerInstallation/packer-1.6.2/packer validate -only vsphere-iso -var-file=common-vars.json -var-file=Windows/distribution-vars.json -var-file=Windows/2016/server/box_info.json -var-file=Windows/2016/server/template.json -var vm_build_id=packer-templates-windows-2016-0068 -var iso_dir=windows/2016 -var iso_file=windows-SRV2016.ENU.JUL2017.14393-1532.iso /workspace/dettonville/infra/packer-templates/Windows/2016/templates/Windows/build-config.json
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run Packer to build template)
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] dir
+[2022-04-25T21:37:22.925Z] Running in /workspace/dettonville/infra/packer-templates/Windows/2016/templates
+[Pipeline] {
+[Pipeline] withCredentials
+[2022-04-25T21:37:23.019Z] Masking supported pattern matches of $VMWARE_VCENTER_PASSWORD or $VMWARE_ESXI_PASSWORD or $PACKER_SSH_PASSWORD or $VM_ROOT_PASSWORD or $ANSIBLE_VAULT_PASSWORD
+[Pipeline] {
+[Pipeline] tool
+[Pipeline] sh
+[2022-04-25T21:37:23.440Z] + /tools/biz.neustar.jenkins.plugins.packer.PackerInstallation/packer-1.6.2/packer build -only vsphere-iso -on-error=abort -var-file=common-vars.json -var-file=Windows/distribution-vars.json -var-file=Windows/2016/server/box_info.json -var-file=Windows/2016/server/template.json -var vm_build_id=packer-templates-windows-2016-0068 -var iso_dir=windows/2016 -var iso_file=windows-SRV2016.ENU.JUL2017.14393-1532.iso -debug /workspace/dettonville/infra/packer-templates/Windows/2016/templates/Windows/build-config.json
+[2022-04-25T21:37:24.388Z] Debug mode enabled. Builds will not be parallelized.
+[2022-04-25T21:37:24.388Z] [1;32mvsphere-iso: output will be in this color.[0m
+[2022-04-25T21:37:24.388Z] 
+[2022-04-25T21:37:24.388Z] [1;32m==> vsphere-iso: Creating VM...[0m
+[2022-04-25T21:37:24.649Z] [1;32m==> vsphere-iso: Customizing hardware...[0m
+[2022-04-25T21:37:24.907Z] [1;32m==> vsphere-iso: Mounting ISO images...[0m
+[2022-04-25T21:37:28.190Z] [1;32m==> vsphere-iso: Adding configuration parameters...[0m
+[2022-04-25T21:37:28.190Z] [1;32m==> vsphere-iso: Creating floppy disk...[0m
+[2022-04-25T21:37:28.190Z] [0;32m    vsphere-iso: Copying files flatly from floppy_files[0m
+[2022-04-25T21:37:28.190Z] [0;32m    vsphere-iso: Copying file: ./answer_files/2016/Autounattend.xml[0m
+[2022-04-25T21:37:28.190Z] [0;32m    vsphere-iso: Copying file: ./answer_files/2016/sysprep-unattend.xml[0m
+[2022-04-25T21:37:28.190Z] [0;32m    vsphere-iso: Copying file: _common/windows/vmware/drivers/pvscsi64/pvscsi.cat[0m
+[2022-04-25T21:37:28.190Z] [0;32m    vsphere-iso: Copying file: _common/windows/vmware/drivers/pvscsi64/pvscsi.inf[0m
+[2022-04-25T21:37:28.190Z] [0;32m    vsphere-iso: Copying file: _common/windows/vmware/drivers/pvscsi64/pvscsi.sys[0m
+[2022-04-25T21:37:28.190Z] [0;32m    vsphere-iso: Copying file: _common/windows/vmware/drivers/pvscsi64/txtsetup.oem[0m
+[2022-04-25T21:37:28.190Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/install-vm-tools.cmd[0m
+[2022-04-25T21:37:28.190Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/install-vmware-tools.ps1[0m
+[2022-04-25T21:37:28.190Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/downloadandinstallcertificate.ps1[0m
+[2022-04-25T21:37:28.190Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/remove_default_apps.ps1[0m
+[2022-04-25T21:37:28.190Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/variables.ps1[0m
+[2022-04-25T21:37:28.190Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/set-power-config.ps1[0m
+[2022-04-25T21:37:28.190Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/microsoft-updates.ps1[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/win-updates.ps1[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/windows_updates.ps1[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/run-sysprep.ps1[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/run-sysprep.cmd[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/disable-winrm.ps1[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/disable-network-discovery.cmd[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/enable-winrm.ps1[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/enable-winrm.task.ps1[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/fixnetwork.ps1[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/set-temp.ps1[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/elevate.exe[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/sdelete.exe[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/sdelete.ps1[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/Set-ClientWSUSSetting.ps1[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/Set-ClientWSUSSetting.task.ps1[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Copying file: _common/windows/scripts/ConfigureRemotingForAnsible.ps1[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Done copying files from floppy_files[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Collecting paths from floppy_dirs[0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Resulting paths from floppy_dirs : [][0m
+[2022-04-25T21:37:28.191Z] [0;32m    vsphere-iso: Done copying paths from floppy_dirs[0m
+[2022-04-25T21:37:28.191Z] [1;32m==> vsphere-iso: Uploading created floppy image[0m
+[2022-04-25T21:37:28.191Z] [1;32m==> vsphere-iso: Adding generated Floppy...[0m
+[2022-04-25T21:37:28.457Z] [1;32m==> vsphere-iso: Set boot order...[0m
+[2022-04-25T21:37:28.457Z] [1;32m==> vsphere-iso: Power on VM...[0m
+[2022-04-25T21:37:29.029Z] [1;32m==> vsphere-iso: Waiting 30s for boot...[0m
+[2022-04-25T21:38:01.239Z] [1;32m==> vsphere-iso: Typing boot command...[0m
+[2022-04-25T21:38:23.161Z] [1;32m==> vsphere-iso: Waiting for IP...[0m
+[2022-04-25T21:46:14.836Z] [1;32m==> vsphere-iso: IP address: 10.10.100.98[0m
+[2022-04-25T21:46:14.836Z] [1;32m==> vsphere-iso: Using winrm communicator to connect: 10.10.100.98[0m
+[2022-04-25T21:46:14.836Z] [1;32m==> vsphere-iso: Waiting for WinRM to become available...[0m
+[2022-04-25T21:46:15.094Z] [0;32m    vsphere-iso: WinRM connected.[0m
+[2022-04-25T21:46:15.094Z] [1;31m==> vsphere-iso: #< CLIXML[0m
+[2022-04-25T21:46:15.094Z] [1;31m==> vsphere-iso: <Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="1"><TNRef RefId="0" /><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>[0m
+[2022-04-25T21:46:15.094Z] [1;32m==> vsphere-iso: Connected to WinRM![0m
+[2022-04-25T21:46:15.094Z] [1;32m==> vsphere-iso: Restarting Machine[0m
+[2022-04-25T21:46:15.361Z] [1;32m==> vsphere-iso: Waiting for machine to restart...[0m
+[2022-04-25T21:46:15.361Z] [1;31m==> vsphere-iso: A system shutdown is in progress.(1115)[0m
+[2022-04-25T21:46:54.088Z] [0;32m    vsphere-iso: windows2016 restarted.[0m
+[2022-04-25T21:46:54.088Z] [1;31m==> vsphere-iso: #< CLIXML[0m
+[2022-04-25T21:46:54.088Z] [1;31m==> vsphere-iso: <Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>[0m
+[2022-04-25T21:46:54.088Z] [1;32m==> vsphere-iso: Machine successfully restarted, moving on[0m
+[2022-04-25T21:46:54.088Z] [1;32m==> vsphere-iso: Provisioning with Powershell...[0m
+[2022-04-25T21:46:54.088Z] [1;32m==> vsphere-iso: Provisioning with powershell script: _common/windows/scripts/install-7zip.ps1[0m
+[2022-04-25T21:47:08.973Z] [0;32m    vsphere-iso: 0[0m
+[2022-04-25T21:47:08.973Z] [1;32m==> vsphere-iso: Provisioning with powershell script: _common/windows/scripts/ConfigureRemotingForAnsible.ps1[0m
+[2022-04-25T21:47:21.192Z] [0;32m    vsphere-iso: Self-signed SSL certificate generated; thumbprint: EB8DF3AECBB272CAC1A7119D2ACE30964A6A2FA1[0m
+[2022-04-25T21:47:21.192Z] [0;32m    vsphere-iso:[0m
+[2022-04-25T21:47:21.192Z] [0;32m    vsphere-iso:[0m
+[2022-04-25T21:47:21.192Z] [0;32m    vsphere-iso: wxf                 : http://schemas.xmlsoap.org/ws/2004/09/transfer[0m
+[2022-04-25T21:47:21.192Z] [0;32m    vsphere-iso: a                   : http://schemas.xmlsoap.org/ws/2004/08/addressing[0m
+[2022-04-25T21:47:21.192Z] [0;32m    vsphere-iso: w                   : http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd[0m
+[2022-04-25T21:47:21.192Z] [0;32m    vsphere-iso: lang                : en-US[0m
+[2022-04-25T21:47:21.192Z] [0;32m    vsphere-iso: Address             : http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous[0m
+[2022-04-25T21:47:21.192Z] [0;32m    vsphere-iso: ReferenceParameters : ReferenceParameters[0m
+[2022-04-25T21:47:21.192Z] [0;32m    vsphere-iso:[0m
+[2022-04-25T21:47:21.759Z] [0;32m    vsphere-iso: Ok.[0m
+[2022-04-25T21:47:21.759Z] [0;32m    vsphere-iso:[0m
+[2022-04-25T21:47:22.332Z] [1;32m==> vsphere-iso: Provisioning with powershell script: _common/windows/scripts/cleanup.ps1[0m
+[2022-04-25T21:47:25.628Z] [0;32m    vsphere-iso: Removing temp folders[0m
+[2022-04-25T21:47:25.628Z] [0;32m    vsphere-iso: Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase[0m
+[2022-04-25T21:47:25.628Z] [0;32m    vsphere-iso:[0m
+[2022-04-25T21:47:25.628Z] [0;32m    vsphere-iso: Deployment Image Servicing and Management tool[0m
+[2022-04-25T21:47:25.628Z] [0;32m    vsphere-iso: Version: 10.0.14393.0[0m
+[2022-04-25T21:47:25.628Z] [0;32m    vsphere-iso:[0m
+[2022-04-25T21:47:26.561Z] [0;32m    vsphere-iso: Image Version: 10.0.14393.0[0m
+[2022-04-25T21:47:26.561Z] [0;32m    vsphere-iso:[0m
+[2022-04-25T21:47:30.780Z] [0;32m    vsphere-iso: [=                          2.4%                           ][0m
+[2022-04-25T21:47:31.714Z] [0;32m    vsphere-iso: [==                         3.9%                           ][0m
+[2022-04-25T21:47:32.653Z] [0;32m    vsphere-iso: [===                        5.6%                           ][0m
+[2022-04-25T21:47:33.589Z] [0;32m    vsphere-iso: [====                       7.3%                           ][0m
+[2022-04-25T21:47:34.526Z] [0;32m    vsphere-iso: [=====                      8.7%                           ][0m
+[2022-04-25T21:47:35.907Z] [0;32m    vsphere-iso: [=====                      9.6%                           ][0m
+[2022-04-25T21:47:36.845Z] [0;32m    vsphere-iso: [=====                      9.6%                           ][0m
+[2022-04-25T21:47:37.414Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:47:39.323Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:47:39.893Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:47:41.276Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:47:42.656Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:47:43.616Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:47:44.645Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:47:46.571Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:47:48.483Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:47:49.871Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:47:51.774Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:47:53.667Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:47:55.590Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:47:57.539Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:00.081Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:00.654Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:02.558Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:03.940Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:04.874Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:06.789Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:08.697Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:09.635Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:12.167Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:14.067Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:15.097Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:17.059Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:17.996Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:19.902Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:21.803Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:23.704Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:25.077Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:26.988Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:28.908Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:29.840Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:32.372Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:33.761Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:36.312Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:38.220Z] [0;32m    vsphere-iso: [===========                20.0%                          ][0m
+[2022-04-25T21:48:39.157Z] [0;32m    vsphere-iso: [=============              23.7%                          ][0m
+[2022-04-25T21:48:40.532Z] [0;32m    vsphere-iso: [=============              23.7%                          ][0m
+[2022-04-25T21:48:41.466Z] [0;32m    vsphere-iso: [=============              23.7%                          ][0m
+[2022-04-25T21:48:42.850Z] [0;32m    vsphere-iso: [=============              23.7%                          ][0m
+[2022-04-25T21:48:44.224Z] [0;32m    vsphere-iso: [=============              23.7%                          ][0m
+[2022-04-25T21:48:45.158Z] [0;32m    vsphere-iso: [=============              23.7%                          ][0m
+[2022-04-25T21:48:46.534Z] [0;32m    vsphere-iso: [=============              23.7%                          ][0m
+[2022-04-25T21:48:47.509Z] [0;32m    vsphere-iso: [==============             24.7%                          ][0m
+[2022-04-25T21:48:48.514Z] [0;32m    vsphere-iso: [===============            26.0%                          ][0m
+[2022-04-25T21:48:49.892Z] [0;32m    vsphere-iso: [===============            27.4%                          ][0m
+[2022-04-25T21:48:50.828Z] [0;32m    vsphere-iso: [=================          29.5%                          ][0m
+[2022-04-25T21:48:51.760Z] [0;32m    vsphere-iso: [=================          30.5%                          ][0m
+[2022-04-25T21:48:54.301Z] [0;32m    vsphere-iso: [==================         32.6%                          ][0m
+[2022-04-25T21:48:54.866Z] [0;32m    vsphere-iso: [===================        33.3%                          ][0m
+[2022-04-25T21:48:56.238Z] [0;32m    vsphere-iso: [===================        33.3%                          ][0m
+[2022-04-25T21:48:57.179Z] [0;32m    vsphere-iso: [===================        34.0%                          ][0m
+[2022-04-25T21:48:59.734Z] [0;32m    vsphere-iso: [====================       34.7%                          ][0m
+[2022-04-25T21:49:00.314Z] [0;32m    vsphere-iso: [====================       35.8%                          ][0m
+[2022-04-25T21:49:01.247Z] [0;32m    vsphere-iso: [=====================      36.5%                          ][0m
+[2022-04-25T21:49:02.191Z] [0;32m    vsphere-iso: [=====================      37.8%                          ][0m
+[2022-04-25T21:49:03.581Z] [0;32m    vsphere-iso: [=======================    39.9%                          ][0m
+[2022-04-25T21:49:04.529Z] [0;32m    vsphere-iso: [=======================    41.0%                          ][0m
+[2022-04-25T21:49:05.908Z] [0;32m    vsphere-iso: [=======================    41.0%                          ][0m
+[2022-04-25T21:49:06.475Z] [0;32m    vsphere-iso: [========================   41.7%                          ][0m
+[2022-04-25T21:49:09.010Z] [0;32m    vsphere-iso: [=========================  43.8%                          ][0m
+[2022-04-25T21:49:10.915Z] [0;32m    vsphere-iso: [========================== 45.5%                          ][0m
+[2022-04-25T21:49:11.482Z] [0;32m    vsphere-iso: [===========================47.6%                          ][0m
+[2022-04-25T21:49:12.862Z] [0;32m    vsphere-iso: [===========================48.3%                          ][0m
+[2022-04-25T21:49:14.281Z] [0;32m    vsphere-iso: [===========================50.7%                          ][0m
+[2022-04-25T21:49:15.269Z] [0;32m    vsphere-iso: [===========================51.7%                          ][0m
+[2022-04-25T21:49:16.209Z] [0;32m    vsphere-iso: [===========================53.5%                          ][0m
+[2022-04-25T21:49:17.166Z] [0;32m    vsphere-iso: [===========================55.2%                          ][0m
+[2022-04-25T21:49:18.115Z] [0;32m    vsphere-iso: [===========================57.3%=                         ][0m
+[2022-04-25T21:49:19.494Z] [0;32m    vsphere-iso: [===========================59.0%==                        ][0m
+[2022-04-25T21:49:20.870Z] [0;32m    vsphere-iso: [===========================59.7%==                        ][0m
+[2022-04-25T21:49:21.810Z] [0;32m    vsphere-iso: [===========================59.7%==                        ][0m
+[2022-04-25T21:49:22.744Z] [0;32m    vsphere-iso: [===========================61.1%===                       ][0m
+[2022-04-25T21:49:24.132Z] [0;32m    vsphere-iso: [===========================64.2%=====                     ][0m
+[2022-04-25T21:49:25.065Z] [0;32m    vsphere-iso: [===========================64.6%=====                     ][0m
+[2022-04-25T21:49:26.005Z] [0;32m    vsphere-iso: [===========================64.6%=====                     ][0m
+[2022-04-25T21:49:27.387Z] [0;32m    vsphere-iso: [===========================65.3%=====                     ][0m
+[2022-04-25T21:49:28.334Z] [0;32m    vsphere-iso: [===========================66.3%======                    ][0m
+[2022-04-25T21:49:30.239Z] [0;32m    vsphere-iso: [===========================68.4%=======                   ][0m
+[2022-04-25T21:49:31.630Z] [0;32m    vsphere-iso: [===========================69.8%========                  ][0m
+[2022-04-25T21:49:32.577Z] [0;32m    vsphere-iso: [===========================70.5%========                  ][0m
+[2022-04-25T21:49:33.531Z] [0;32m    vsphere-iso: [===========================72.6%==========                ][0m
+[2022-04-25T21:49:34.489Z] [0;32m    vsphere-iso: [===========================74.0%==========                ][0m
+[2022-04-25T21:49:35.863Z] [0;32m    vsphere-iso: [===========================75.7%===========               ][0m
+[2022-04-25T21:49:36.797Z] [0;32m    vsphere-iso: [===========================76.8%============              ][0m
+[2022-04-25T21:49:38.172Z] [0;32m    vsphere-iso: [===========================78.5%=============             ][0m
+[2022-04-25T21:49:39.146Z] [0;32m    vsphere-iso: [===========================78.8%=============             ][0m
+[2022-04-25T21:49:41.693Z] [0;32m    vsphere-iso: [===========================81.3%===============           ][0m
+[2022-04-25T21:49:42.631Z] [0;32m    vsphere-iso: [===========================82.7%===============           ][0m
+[2022-04-25T21:49:43.666Z] [0;32m    vsphere-iso: [===========================84.7%=================         ][0m
+[2022-04-25T21:49:44.747Z] [0;32m    vsphere-iso: [===========================85.4%=================         ][0m
+[2022-04-25T21:49:45.679Z] [0;32m    vsphere-iso: [===========================86.1%=================         ][0m
+[2022-04-25T21:49:46.628Z] [0;32m    vsphere-iso: [===========================87.2%==================        ][0m
+[2022-04-25T21:49:48.534Z] [0;32m    vsphere-iso: [===========================88.9%===================       ][0m
+[2022-04-25T21:49:49.933Z] [0;32m    vsphere-iso: [===========================90.3%====================      ][0m
+[2022-04-25T21:49:50.870Z] [0;32m    vsphere-iso: [===========================91.1%====================      ][0m
+[2022-04-25T21:49:51.808Z] [0;32m    vsphere-iso: [===========================92.1%=====================     ][0m
+[2022-04-25T21:49:52.752Z] [0;32m    vsphere-iso: [===========================94.0%======================    ][0m
+[2022-04-25T21:49:53.695Z] [0;32m    vsphere-iso: [===========================95.3%=======================   ][0m
+[2022-04-25T21:49:56.243Z] [0;32m    vsphere-iso: [===========================96.4%=======================   ][0m
+[2022-04-25T21:49:56.814Z] [0;32m    vsphere-iso: [===========================96.4%=======================   ][0m
+[2022-04-25T21:49:59.353Z] [0;32m    vsphere-iso: [===========================97.8%========================  ][0m
+[2022-04-25T21:49:59.925Z] [0;32m    vsphere-iso: [==========================100.0%==========================][0m
+[2022-04-25T21:49:59.925Z] [0;32m    vsphere-iso: The operation completed successfully.[0m
+[2022-04-25T21:49:59.925Z] [1;32m==> vsphere-iso: Provisioning with powershell script: _common/windows/scripts/ultradefrag.ps1[0m
+[2022-04-25T21:50:02.500Z] [1;31m==> vsphere-iso: At C:\Windows\Temp\script-62671494-6d99-cc62-351f-9989508fb57e.ps1:56 char:28[0m
+[2022-04-25T21:50:02.500Z] [1;31m==> vsphere-iso: + &"$install_path\udefrag.exe" --optimize --repeat $($env:SystemDrive)[0m
+[2022-04-25T21:50:02.500Z] [1;31m==> vsphere-iso: +                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[2022-04-25T21:50:02.500Z] [1;31m==> vsphere-iso: The string is missing the terminator: ".[0m
+[2022-04-25T21:50:02.500Z] [1;31m==> vsphere-iso:     + CategoryInfo          : ParserError: (:) [], ParseException[0m
+[2022-04-25T21:50:02.500Z] [1;31m==> vsphere-iso:     + FullyQualifiedErrorId : TerminatorExpectedAtEndOfString[0m
+[2022-04-25T21:50:02.769Z] [1;31m==> vsphere-iso:[0m
+[2022-04-25T21:50:02.769Z] [1;32m==> vsphere-iso: Provisioning with powershell script: _common/windows/scripts/optimize-drive.ps1[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE: Invoking defragmentation on Windows 2016 (C:)...[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE: Analysis:  0% complete...[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE: Analysis:  96% complete...[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE: Analysis:  99% complete...[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE: Analysis:  100% complete.[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: Pre-Optimization Report:[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso:  Volume Information:[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:   Volume size                 = 38.71 GB[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:   Cluster size                = 4 KB[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:   Used space                  = 7.57 GB[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:   Free space                  = 31.14 GB[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso:  Fragmentation:[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:   Total fragmented space      = 6%[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:   Average fragments per file  = 1.03[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:   Movable files and folders   = 37951[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:   Unmovable files and folders = 5[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso:  Files:[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:   Fragmented files            = 187[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:   Total file fragments        = 1165[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso:  Folders:[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:   Total folders               = 2922[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:   Fragmented folders          = 167[0m
+[2022-04-25T21:50:17.637Z] [0;32m    vsphere-iso: VERBOSE:   Total folder fragments      = 654[0m
+[2022-04-25T21:50:17.638Z] [0;32m    vsphere-iso: VERBOSE:[0m
+[2022-04-25T21:50:17.638Z] [0;32m    vsphere-iso:  Free space:[0m
+[2022-04-25T21:50:17.638Z] [0;32m    vsphere-iso: VERBOSE:   Free space count            = 420[0m
+[2022-04-25T21:50:17.638Z] [0;32m    vsphere-iso: VERBOSE:   Average free space size     = 75.60 MB[0m
+[2022-04-25T21:50:17.638Z] [0;32m    vsphere-iso: VERBOSE:   Largest free space size     = 30.80 GB[0m
+[2022-04-25T21:50:17.638Z] [0;32m    vsphere-iso: VERBOSE:[0m
+[2022-04-25T21:50:17.638Z] [0;32m    vsphere-iso:  Master File Table (MFT):[0m
+[2022-04-25T21:50:17.638Z] [0;32m    vsphere-iso: VERBOSE:   MFT size                    = 60.75 MB[0m
+[2022-04-25T21:50:17.638Z] [0;32m    vsphere-iso: VERBOSE:   MFT record count            = 62207[0m
+[2022-04-25T21:50:17.638Z] [0;32m    vsphere-iso: VERBOSE:   MFT usage                   = 100%[0m
+[2022-04-25T21:50:17.638Z] [0;32m    vsphere-iso: VERBOSE:   Total MFT fragments         = 1[0m
+[2022-04-25T21:50:17.638Z] [0;32m    vsphere-iso: VERBOSE:  Note: File fragments larger than 64MB are not included in the fragmentation statistics.[0m
+[2022-04-25T21:50:17.638Z] [0;32m    vsphere-iso: VERBOSE: Performing pass 1:[0m
+[2022-04-25T21:50:17.638Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  0% complete...[0m
+[2022-04-25T21:50:18.575Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  1% complete...[0m
+[2022-04-25T21:50:21.166Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  2% complete...[0m
+[2022-04-25T21:50:23.708Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  4% complete...[0m
+[2022-04-25T21:50:26.232Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  10% complete...[0m
+[2022-04-25T21:50:26.232Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  11% complete...[0m
+[2022-04-25T21:50:26.232Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  15% complete...[0m
+[2022-04-25T21:50:26.232Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  19% complete...[0m
+[2022-04-25T21:50:26.232Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  20% complete...[0m
+[2022-04-25T21:50:26.232Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  21% complete...[0m
+[2022-04-25T21:50:26.232Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  23% complete...[0m
+[2022-04-25T21:50:28.768Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  30% complete...[0m
+[2022-04-25T21:50:28.768Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  35% complete...[0m
+[2022-04-25T21:50:28.768Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  40% complete...[0m
+[2022-04-25T21:50:31.307Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  45% complete...[0m
+[2022-04-25T21:50:31.307Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  47% complete...[0m
+[2022-04-25T21:50:31.307Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  49% complete...[0m
+[2022-04-25T21:50:31.307Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  50% complete...[0m
+[2022-04-25T21:50:33.842Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  69% complete...[0m
+[2022-04-25T21:50:36.370Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  70% complete...[0m
+[2022-04-25T21:50:36.370Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  71% complete...[0m
+[2022-04-25T21:50:36.370Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  73% complete...[0m
+[2022-04-25T21:50:36.370Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  85% complete...[0m
+[2022-04-25T21:50:36.370Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  87% complete...[0m
+[2022-04-25T21:50:38.894Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  89% complete...[0m
+[2022-04-25T21:50:38.894Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  90% complete...[0m
+[2022-04-25T21:50:38.894Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  93% complete...[0m
+[2022-04-25T21:50:38.894Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  94% complete...[0m
+[2022-04-25T21:50:38.894Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  95% complete...[0m
+[2022-04-25T21:50:38.894Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  96% complete...[0m
+[2022-04-25T21:50:38.894Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  97% complete...[0m
+[2022-04-25T21:50:38.894Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  98% complete...[0m
+[2022-04-25T21:50:38.894Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  99% complete...[0m
+[2022-04-25T21:50:41.420Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  100% complete.[0m
+[2022-04-25T21:50:41.420Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  0% complete...[0m
+[2022-04-25T21:50:46.689Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  1% complete...[0m
+[2022-04-25T21:50:46.689Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  2% complete...[0m
+[2022-04-25T21:50:49.219Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  4% complete...[0m
+[2022-04-25T21:50:49.219Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  5% complete...[0m
+[2022-04-25T21:50:49.219Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  7% complete...[0m
+[2022-04-25T21:50:51.752Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  8% complete...[0m
+[2022-04-25T21:50:51.752Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  11% complete...[0m
+[2022-04-25T21:50:51.752Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  12% complete...[0m
+[2022-04-25T21:50:54.275Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  18% complete...[0m
+[2022-04-25T21:50:54.275Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  19% complete...[0m
+[2022-04-25T21:50:54.275Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  26% complete...[0m
+[2022-04-25T21:50:56.829Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  27% complete...[0m
+[2022-04-25T21:50:56.829Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  35% complete...[0m
+[2022-04-25T21:50:56.829Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  37% complete...[0m
+[2022-04-25T21:50:56.829Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  38% complete...[0m
+[2022-04-25T21:50:59.424Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  39% complete...[0m
+[2022-04-25T21:50:59.424Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  52% complete...[0m
+[2022-04-25T21:50:59.424Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  53% complete...[0m
+[2022-04-25T21:50:59.424Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  54% complete...[0m
+[2022-04-25T21:50:59.424Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  55% complete...[0m
+[2022-04-25T21:51:01.967Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  56% complete...[0m
+[2022-04-25T21:51:01.967Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  71% complete...[0m
+[2022-04-25T21:51:01.967Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  100% complete.[0m
+[2022-04-25T21:51:01.967Z] [0;32m    vsphere-iso: VERBOSE: Performing pass 2:[0m
+[2022-04-25T21:51:01.967Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  4% complete...[0m
+[2022-04-25T21:51:01.967Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  100% complete.[0m
+[2022-04-25T21:51:01.967Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  0% complete...[0m
+[2022-04-25T21:51:07.264Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  2% complete...[0m
+[2022-04-25T21:51:09.178Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  4% complete...[0m
+[2022-04-25T21:51:09.178Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  5% complete...[0m
+[2022-04-25T21:51:09.179Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  7% complete...[0m
+[2022-04-25T21:51:09.179Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  11% complete...[0m
+[2022-04-25T21:51:11.706Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  26% complete...[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  100% complete.[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE: Performing pass 3:[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  0% complete...[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE: Defragmentation:  100% complete.[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  0% complete...[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  2% complete...[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  4% complete...[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  11% complete...[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  100% complete.[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE: Performing pass 4:[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  79% complete...[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE: Free Space Consolidation:  100% complete.[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE:[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: Post Defragmentation Report:[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE:[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso:  Volume Information:[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE:   Volume size                 = 38.71 GB[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE:   Cluster size                = 4 KB[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE:   Used space                  = 7.57 GB[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE:   Free space                  = 31.14 GB[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE:[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso:  Fragmentation:[0m
+[2022-04-25T21:51:11.707Z] [0;32m    vsphere-iso: VERBOSE:   Total fragmented space      = 0%[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   Average fragments per file  = 1.00[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   Movable files and folders   = 37947[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   Unmovable files and folders = 5[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso:  Files:[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   Fragmented files            = 0[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   Total file fragments        = 0[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso:  Folders:[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   Total folders               = 2922[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   Fragmented folders          = 0[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   Total folder fragments      = 0[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso:  Free space:[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   Free space count            = 84[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   Average free space size     = 756.05 MB[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   Largest free space size     = 30.62 GB[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso:  Master File Table (MFT):[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   MFT size                    = 60.75 MB[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   MFT record count            = 62207[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   MFT usage                   = 100%[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:   Total MFT fragments         = 1[0m
+[2022-04-25T21:51:11.708Z] [0;32m    vsphere-iso: VERBOSE:  Note: File fragments larger than 64MB are not included in the fragmentation statistics.[0m
+[2022-04-25T21:51:11.708Z] [1;32m==> vsphere-iso: Provisioning with powershell script: _common/windows/scripts/sdelete.ps1[0m
+[2022-04-25T21:51:18.272Z] [0;32m    vsphere-iso:[0m
+[2022-04-25T21:51:18.272Z] [0;32m    vsphere-iso: SDelete - Secure Delete v1.61[0m
+[2022-04-25T21:51:18.272Z] [0;32m    vsphere-iso: Copyright (C) 1999-2012 Mark Russinovich[0m
+[2022-04-25T21:51:18.272Z] [0;32m    vsphere-iso: Sysinternals - www.sysinternals.com[0m
+[2022-04-25T21:51:18.272Z] [0;32m    vsphere-iso:[0m
+[2022-04-25T21:51:18.272Z] [0;32m    vsphere-iso: SDelete is set for 1 pass.[0m
+[2022-04-25T22:00:10.098Z] [0;32m    vsphere-iso: Free space cleaned on C:\[0m
+[2022-04-25T22:00:10.098Z] [0;32m    vsphere-iso: 1 drives zapped[0m
+[2022-04-25T22:00:10.098Z] [0;32m    vsphere-iso:[0m
+[2022-04-25T22:00:10.098Z] [1;32m==> vsphere-iso: Executing shutdown command...[0m
+[2022-04-25T22:00:42.200Z] [1;32m==> vsphere-iso: Deleting Floppy drives...[0m
+[2022-04-25T22:00:42.200Z] [1;32m==> vsphere-iso: Deleting Floppy image...[0m
+[2022-04-25T22:00:42.200Z] [1;32m==> vsphere-iso: Eject CD-ROM drives...[0m
+[2022-04-25T22:00:42.200Z] [1;32m==> vsphere-iso: Deleting CD-ROM drives...[0m
+[2022-04-25T22:00:42.200Z] [1;32m==> vsphere-iso: Convert VM into template...[0m
+[2022-04-25T22:00:42.200Z] [1;32m==> vsphere-iso: Running post-processor: manifest[0m
+[2022-04-25T22:00:42.200Z] [1;32mBuild 'vsphere-iso' finished after 23 minutes 17 seconds.[0m
+[2022-04-25T22:00:42.200Z] 
+[2022-04-25T22:00:42.200Z] ==> Wait completed after 23 minutes 17 seconds
+[2022-04-25T22:00:42.200Z] 
+[2022-04-25T22:00:42.200Z] ==> Builds finished. The artifacts of successful builds are:
+[2022-04-25T22:00:42.200Z] --> vsphere-iso: packer-templates-windows-2016-0068
+[2022-04-25T22:00:42.200Z] --> vsphere-iso: 
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy Template)
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withCredentials
+[2022-04-25T22:00:45.219Z] Masking supported pattern matches of $GOVC_USERNAME or $GOVC_PASSWORD
+[Pipeline] {
+[Pipeline] sh
+[2022-04-25T22:00:45.568Z] + govc vm.info packer-template-win2016dccore
+[Pipeline] sh
+[2022-04-25T22:00:45.994Z] + govc vm.info packer-template-win2016dccore
+[2022-04-25T22:00:45.995Z] + grep UUID:
+[Pipeline] echo
+[2022-04-25T22:00:46.160Z] [INFO] buildVmTemplate : vmTemplateExists=false
+[Pipeline] sh
+[2022-04-25T22:00:46.482Z] + govc vm.clone -ds=nfs_ds1 -vm=packer-templates-windows-2016-0068 -host=esx00.dettonville.int -folder=templates -template packer-template-win2016dccore
+[Pipeline] sh
+[2022-04-25T22:08:53.744Z] + jq .. |.Config?.VmPathName? | select(. != null)
+[2022-04-25T22:08:53.749Z] + govc vm.info -json packer-template-win2016dccore
+[2022-04-25T22:08:53.749Z] "[nfs_ds1] packer-template-win2016dccore/packer-template-win2016dccore.vmtx"
+[Pipeline] sh
+[2022-04-25T22:08:54.424Z] + govc vm.info+  -json packer-template-win2016dccore
+[2022-04-25T22:08:54.432Z] jq .. |.Config?.VmPathName? | select(. != null)
+[Pipeline] echo
+[2022-04-25T22:08:54.631Z] [INFO] buildVmTemplate : vmDatastore=[nfs_ds1] vmPath='[nfs_ds1] packer-template-win2016dccore'
+[Pipeline] echo
+[2022-04-25T22:08:54.666Z] [INFO] buildVmTemplate : targetPath='[nfs_ds1] templates'
+[Pipeline] echo
+[2022-04-25T22:08:54.718Z] [INFO] buildVmTemplate : moving VM from '[nfs_ds1] packer-template-win2016dccore' to '[nfs_ds1] templates'
+[Pipeline] sh
+[2022-04-25T22:08:55.115Z] + govc vm.unregister packer-template-win2016dccore
+[Pipeline] sh
+[2022-04-25T22:08:55.706Z] + govc datastore.mkdir -p -ds=nfs_ds1 templates
+[Pipeline] sh
+[2022-04-25T22:08:56.637Z] + govc datastore.mv -ds=nfs_ds1 packer-template-win2016dccore templates/packer-template-win2016dccore
+[2022-04-25T22:08:56.647Z] [K[25-04-22 18:08:56] Moving [nfs_ds1] packer-template-win2016dccore to [nfs_ds1] templates/packer-template-win2016dccore...OK
+[Pipeline] sh
+[2022-04-25T22:08:57.223Z] + govc vm.register -template=true -ds=nfs_ds1 -folder=templates -host=esx00.dettonville.int templates/packer-template-win2016dccore/packer-template-win2016dccore.vmtx
+[Pipeline] sh
+[2022-04-25T22:08:58.362Z] + govc datastore.ls -ds=nfs_ds1 templates
+[2022-04-25T22:08:58.634Z] packer-template-debian10
+[2022-04-25T22:08:58.634Z] packer-template-centos8
+[2022-04-25T22:08:58.634Z] packer-template-ubuntu18
+[2022-04-25T22:08:58.635Z] packer-template-centos8-stream
+[2022-04-25T22:08:58.635Z] packer-template-win11e
+[2022-04-25T22:08:58.635Z] packer-template-debian9
+[2022-04-25T22:08:58.635Z] packer-template-win2016dccore
+[2022-04-25T22:08:58.635Z] packer-template-centos7
+[Pipeline] echo
+[2022-04-25T22:08:58.802Z] [INFO] buildVmTemplate : removing temporary template build packer-templates-windows-2016-0068
+[Pipeline] sh
+[2022-04-25T22:08:59.142Z] + govc vm.destroy packer-templates-windows-2016-0068
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
