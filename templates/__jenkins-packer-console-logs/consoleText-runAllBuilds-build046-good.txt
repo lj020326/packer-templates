@@ -1,0 +1,577 @@
+Started by user admin
+Obtained runAllBuilds.groovy from git https://gitea.admin.dettonville.int/infra/packer-boxes.git
+Loading library pipeline-automation-lib@master
+Attempting to resolve master from remote references...
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+using GIT_ASKPASS to set credentials 
+ > git ls-remote -h -- https://gitea.admin.dettonville.int/infra/pipeline-automation-lib.git # timeout=10
+Found match: refs/heads/master revision d656703b1c6bd3db6ca4fd9b1c2016db53b23402
+The recommended git tool is: NONE
+using credential dcapi-jenkins-git-user
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/dettonville/infra/packer-templates/run-all-builds@libs/1733a05d3ae2b07784f14771e944b9331eff50438c1371ba0f6c1be5f61331ab/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://gitea.admin.dettonville.int/infra/pipeline-automation-lib.git # timeout=10
+Cleaning workspace
+ > git rev-parse --verify HEAD # timeout=10
+Resetting working tree
+ > git reset --hard # timeout=10
+ > git clean -ffdx # timeout=10
+Fetching without tags
+Fetching upstream changes from https://gitea.admin.dettonville.int/infra/pipeline-automation-lib.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+using GIT_ASKPASS to set credentials 
+ > git fetch --no-tags --force --progress -- https://gitea.admin.dettonville.int/infra/pipeline-automation-lib.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Checking out Revision d656703b1c6bd3db6ca4fd9b1c2016db53b23402 (master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f d656703b1c6bd3db6ca4fd9b1c2016db53b23402 # timeout=10
+Commit message: "master - 	modified:   README.md"
+[Pipeline] Start of Pipeline
+[Pipeline] readYaml
+[Pipeline] echo
+[INFO] runJobs : Loading Default Configs
+[Pipeline] echo
+[INFO] runJobs : loadPipelineConfig(): pipeline config file not specified, using defaults...
+[Pipeline] echo
+[INFO] runJobs : loadPipelineConfig(): log.level=DEBUG
+[Pipeline] echo
+[DEBUG] runJobs : loadPipelineConfig(): params={
+    "continueIfFailed": false,
+    "alwaysEmailList": "ljohnson@dettonville.org",
+    "runInParallel": true,
+    "logLevel": "DEBUG",
+    "jobList": [
+        {
+            "stage": "Build Templates",
+            "jobs": [
+                {
+                    "job": "dettonville/infra/packer-templates/Debian/buster64"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/Debian/stretch64"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/CentOS/7"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/CentOS/8"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/CentOS/8-stream"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/Ubuntu/bionic64"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/Ubuntu/focal64"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/Windows/2016"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/Windows/2019"
+                }
+            ]
+        }
+    ]
+}
+[Pipeline] echo
+[INFO] runJobs : loadPipelineConfig(): config={
+    "supportedJobParams": [
+        "changedEmailList",
+        "alwaysEmailList",
+        "failedEmailList"
+    ],
+    "continueIfFailed": false,
+    "alwaysEmailList": "ljohnson@dettonville.org",
+    "runInParallel": true,
+    "logLevel": "DEBUG",
+    "jobList": [
+        {
+            "stage": "Build Templates",
+            "jobs": [
+                {
+                    "job": "dettonville/infra/packer-templates/Debian/buster64"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/Debian/stretch64"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/CentOS/7"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/CentOS/8"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/CentOS/8-stream"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/Ubuntu/bionic64"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/Ubuntu/focal64"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/Windows/2016"
+                },
+                {
+                    "job": "dettonville/infra/packer-templates/Windows/2019"
+                }
+            ]
+        }
+    ],
+    "jenkinsJobNodeNodeLabel": "any",
+    "debugPipeline": false,
+    "wait": true,
+    "failFast": false
+}
+[Pipeline] node
+Running on vcontrol01 in /workspace/dettonville/infra/packer-templates/run-all-builds
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] timeout
+[2022-05-12T13:28:16.070Z] Timeout set to expire in 4 hr 0 min
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Run Jobs)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+[2022-05-12T13:28:16.577Z] [INFO] runJobs : Running tests
+[Pipeline] echo
+[2022-05-12T13:28:16.622Z] [INFO] runJobs : runJobList(): started
+[Pipeline] echo
+[2022-05-12T13:28:16.664Z] [INFO] runJobs : runJobList(): i=0 it=[stage:Build Templates, jobs:[[job:dettonville/infra/packer-templates/Debian/buster64], [job:dettonville/infra/packer-templates/Debian/stretch64], [job:dettonville/infra/packer-templates/CentOS/7], [job:dettonville/infra/packer-templates/CentOS/8], [job:dettonville/infra/packer-templates/CentOS/8-stream], [job:dettonville/infra/packer-templates/Ubuntu/bionic64], [job:dettonville/infra/packer-templates/Ubuntu/focal64], [job:dettonville/infra/packer-templates/Windows/2016], [job:dettonville/infra/packer-templates/Windows/2019]]]
+[Pipeline] stage
+[Pipeline] { (Running Build Templates Test)
+[Pipeline] echo
+[2022-05-12T13:28:16.772Z] [INFO] runJobs : runJobList(): starting stage Build Templates
+[Pipeline] echo
+[2022-05-12T13:28:16.797Z] [DEBUG] runJobs : runJobList(): jobStage Build Templates: config.jobList=[[stage:Build Templates, jobs:[[job:dettonville/infra/packer-templates/Debian/buster64], [job:dettonville/infra/packer-templates/Debian/stretch64], [job:dettonville/infra/packer-templates/CentOS/7], [job:dettonville/infra/packer-templates/CentOS/8], [job:dettonville/infra/packer-templates/CentOS/8-stream], [job:dettonville/infra/packer-templates/Ubuntu/bionic64], [job:dettonville/infra/packer-templates/Ubuntu/focal64], [job:dettonville/infra/packer-templates/Windows/2016], [job:dettonville/infra/packer-templates/Windows/2019]]]]
+[Pipeline] echo
+[2022-05-12T13:28:16.834Z] [DEBUG] runJobs : runJobList(): jobStage Build Templates: jobResults=[:]
+[Pipeline] echo
+[2022-05-12T13:28:16.864Z] [DEBUG] runJobs : runJobList(): jobStage Build Templates: resultList=[]
+[Pipeline] echo
+[2022-05-12T13:28:16.897Z] [DEBUG] runJobs : runJobList(): jobStage Build Templates: prior stage results=true
+[Pipeline] echo
+[2022-05-12T13:28:16.934Z] [INFO] runJobs : runJobs(): started
+[Pipeline] echo
+[2022-05-12T13:28:16.982Z] [DEBUG] runJobs : runJobs(): config={
+[2022-05-12T13:28:16.983Z]     "supportedJobParams": [
+[2022-05-12T13:28:16.983Z]         "changedEmailList",
+[2022-05-12T13:28:16.983Z]         "alwaysEmailList",
+[2022-05-12T13:28:16.983Z]         "failedEmailList"
+[2022-05-12T13:28:16.983Z]     ],
+[2022-05-12T13:28:16.983Z]     "continueIfFailed": false,
+[2022-05-12T13:28:16.983Z]     "alwaysEmailList": "ljohnson@dettonville.org",
+[2022-05-12T13:28:16.983Z]     "runInParallel": true,
+[2022-05-12T13:28:16.984Z]     "logLevel": "DEBUG",
+[2022-05-12T13:28:16.984Z]     "jenkinsJobNodeNodeLabel": "any",
+[2022-05-12T13:28:16.984Z]     "debugPipeline": false,
+[2022-05-12T13:28:16.984Z]     "wait": true,
+[2022-05-12T13:28:16.984Z]     "failFast": false,
+[2022-05-12T13:28:16.984Z]     "stage": "Build Templates",
+[2022-05-12T13:28:16.984Z]     "jobs": [
+[2022-05-12T13:28:16.984Z]         {
+[2022-05-12T13:28:16.984Z]             "job": "dettonville/infra/packer-templates/Debian/buster64"
+[2022-05-12T13:28:16.984Z]         },
+[2022-05-12T13:28:16.984Z]         {
+[2022-05-12T13:28:16.984Z]             "job": "dettonville/infra/packer-templates/Debian/stretch64"
+[2022-05-12T13:28:16.984Z]         },
+[2022-05-12T13:28:16.986Z]         {
+[2022-05-12T13:28:16.986Z]             "job": "dettonville/infra/packer-templates/CentOS/7"
+[2022-05-12T13:28:16.986Z]         },
+[2022-05-12T13:28:16.986Z]         {
+[2022-05-12T13:28:16.986Z]             "job": "dettonville/infra/packer-templates/CentOS/8"
+[2022-05-12T13:28:16.987Z]         },
+[2022-05-12T13:28:16.987Z]         {
+[2022-05-12T13:28:16.987Z]             "job": "dettonville/infra/packer-templates/CentOS/8-stream"
+[2022-05-12T13:28:16.987Z]         },
+[2022-05-12T13:28:16.988Z]         {
+[2022-05-12T13:28:16.988Z]             "job": "dettonville/infra/packer-templates/Ubuntu/bionic64"
+[2022-05-12T13:28:16.990Z]         },
+[2022-05-12T13:28:16.990Z]         {
+[2022-05-12T13:28:16.990Z]             "job": "dettonville/infra/packer-templates/Ubuntu/focal64"
+[2022-05-12T13:28:16.990Z]         },
+[2022-05-12T13:28:16.990Z]         {
+[2022-05-12T13:28:16.990Z]             "job": "dettonville/infra/packer-templates/Windows/2016"
+[2022-05-12T13:28:16.990Z]         },
+[2022-05-12T13:28:16.990Z]         {
+[2022-05-12T13:28:16.991Z]             "job": "dettonville/infra/packer-templates/Windows/2019"
+[2022-05-12T13:28:16.991Z]         }
+[2022-05-12T13:28:16.991Z]     ]
+[2022-05-12T13:28:16.991Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.032Z] [INFO] runJobs : runJobs(): i=0 it={
+[2022-05-12T13:28:17.033Z]     "job": "dettonville/infra/packer-templates/Debian/buster64"
+[2022-05-12T13:28:17.033Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.090Z] [DEBUG] runJobs : runJobs(): i=0 jobConfig={
+[2022-05-12T13:28:17.092Z]     "supportedJobParams": [
+[2022-05-12T13:28:17.092Z]         "changedEmailList",
+[2022-05-12T13:28:17.092Z]         "alwaysEmailList",
+[2022-05-12T13:28:17.092Z]         "failedEmailList"
+[2022-05-12T13:28:17.093Z]     ],
+[2022-05-12T13:28:17.093Z]     "continueIfFailed": false,
+[2022-05-12T13:28:17.093Z]     "alwaysEmailList": "ljohnson@dettonville.org",
+[2022-05-12T13:28:17.093Z]     "runInParallel": true,
+[2022-05-12T13:28:17.093Z]     "logLevel": "DEBUG",
+[2022-05-12T13:28:17.093Z]     "jenkinsJobNodeNodeLabel": "any",
+[2022-05-12T13:28:17.093Z]     "debugPipeline": false,
+[2022-05-12T13:28:17.093Z]     "wait": true,
+[2022-05-12T13:28:17.093Z]     "failFast": false,
+[2022-05-12T13:28:17.093Z]     "job": "dettonville/infra/packer-templates/Debian/buster64",
+[2022-05-12T13:28:17.093Z]     "jobId": "job-1"
+[2022-05-12T13:28:17.093Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.144Z] [INFO] runJobs : runJobs(): i=1 it={
+[2022-05-12T13:28:17.145Z]     "job": "dettonville/infra/packer-templates/Debian/stretch64"
+[2022-05-12T13:28:17.145Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.203Z] [DEBUG] runJobs : runJobs(): i=1 jobConfig={
+[2022-05-12T13:28:17.205Z]     "supportedJobParams": [
+[2022-05-12T13:28:17.205Z]         "changedEmailList",
+[2022-05-12T13:28:17.205Z]         "alwaysEmailList",
+[2022-05-12T13:28:17.205Z]         "failedEmailList"
+[2022-05-12T13:28:17.205Z]     ],
+[2022-05-12T13:28:17.205Z]     "continueIfFailed": false,
+[2022-05-12T13:28:17.205Z]     "alwaysEmailList": "ljohnson@dettonville.org",
+[2022-05-12T13:28:17.207Z]     "runInParallel": true,
+[2022-05-12T13:28:17.207Z]     "logLevel": "DEBUG",
+[2022-05-12T13:28:17.207Z]     "jenkinsJobNodeNodeLabel": "any",
+[2022-05-12T13:28:17.207Z]     "debugPipeline": false,
+[2022-05-12T13:28:17.207Z]     "wait": true,
+[2022-05-12T13:28:17.207Z]     "failFast": false,
+[2022-05-12T13:28:17.207Z]     "job": "dettonville/infra/packer-templates/Debian/stretch64",
+[2022-05-12T13:28:17.208Z]     "jobId": "job-2"
+[2022-05-12T13:28:17.208Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.243Z] [INFO] runJobs : runJobs(): i=2 it={
+[2022-05-12T13:28:17.243Z]     "job": "dettonville/infra/packer-templates/CentOS/7"
+[2022-05-12T13:28:17.243Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.294Z] [DEBUG] runJobs : runJobs(): i=2 jobConfig={
+[2022-05-12T13:28:17.295Z]     "supportedJobParams": [
+[2022-05-12T13:28:17.295Z]         "changedEmailList",
+[2022-05-12T13:28:17.295Z]         "alwaysEmailList",
+[2022-05-12T13:28:17.295Z]         "failedEmailList"
+[2022-05-12T13:28:17.295Z]     ],
+[2022-05-12T13:28:17.295Z]     "continueIfFailed": false,
+[2022-05-12T13:28:17.295Z]     "alwaysEmailList": "ljohnson@dettonville.org",
+[2022-05-12T13:28:17.295Z]     "runInParallel": true,
+[2022-05-12T13:28:17.295Z]     "logLevel": "DEBUG",
+[2022-05-12T13:28:17.295Z]     "jenkinsJobNodeNodeLabel": "any",
+[2022-05-12T13:28:17.295Z]     "debugPipeline": false,
+[2022-05-12T13:28:17.295Z]     "wait": true,
+[2022-05-12T13:28:17.295Z]     "failFast": false,
+[2022-05-12T13:28:17.295Z]     "job": "dettonville/infra/packer-templates/CentOS/7",
+[2022-05-12T13:28:17.295Z]     "jobId": "job-3"
+[2022-05-12T13:28:17.295Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.336Z] [INFO] runJobs : runJobs(): i=3 it={
+[2022-05-12T13:28:17.337Z]     "job": "dettonville/infra/packer-templates/CentOS/8"
+[2022-05-12T13:28:17.337Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.464Z] [DEBUG] runJobs : runJobs(): i=3 jobConfig={
+[2022-05-12T13:28:17.466Z]     "supportedJobParams": [
+[2022-05-12T13:28:17.466Z]         "changedEmailList",
+[2022-05-12T13:28:17.466Z]         "alwaysEmailList",
+[2022-05-12T13:28:17.466Z]         "failedEmailList"
+[2022-05-12T13:28:17.466Z]     ],
+[2022-05-12T13:28:17.466Z]     "continueIfFailed": false,
+[2022-05-12T13:28:17.466Z]     "alwaysEmailList": "ljohnson@dettonville.org",
+[2022-05-12T13:28:17.466Z]     "runInParallel": true,
+[2022-05-12T13:28:17.466Z]     "logLevel": "DEBUG",
+[2022-05-12T13:28:17.466Z]     "jenkinsJobNodeNodeLabel": "any",
+[2022-05-12T13:28:17.466Z]     "debugPipeline": false,
+[2022-05-12T13:28:17.466Z]     "wait": true,
+[2022-05-12T13:28:17.466Z]     "failFast": false,
+[2022-05-12T13:28:17.466Z]     "job": "dettonville/infra/packer-templates/CentOS/8",
+[2022-05-12T13:28:17.466Z]     "jobId": "job-4"
+[2022-05-12T13:28:17.466Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.578Z] [INFO] runJobs : runJobs(): i=4 it={
+[2022-05-12T13:28:17.579Z]     "job": "dettonville/infra/packer-templates/CentOS/8-stream"
+[2022-05-12T13:28:17.579Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.648Z] [DEBUG] runJobs : runJobs(): i=4 jobConfig={
+[2022-05-12T13:28:17.649Z]     "supportedJobParams": [
+[2022-05-12T13:28:17.649Z]         "changedEmailList",
+[2022-05-12T13:28:17.649Z]         "alwaysEmailList",
+[2022-05-12T13:28:17.649Z]         "failedEmailList"
+[2022-05-12T13:28:17.649Z]     ],
+[2022-05-12T13:28:17.649Z]     "continueIfFailed": false,
+[2022-05-12T13:28:17.649Z]     "alwaysEmailList": "ljohnson@dettonville.org",
+[2022-05-12T13:28:17.649Z]     "runInParallel": true,
+[2022-05-12T13:28:17.649Z]     "logLevel": "DEBUG",
+[2022-05-12T13:28:17.649Z]     "jenkinsJobNodeNodeLabel": "any",
+[2022-05-12T13:28:17.649Z]     "debugPipeline": false,
+[2022-05-12T13:28:17.650Z]     "wait": true,
+[2022-05-12T13:28:17.650Z]     "failFast": false,
+[2022-05-12T13:28:17.650Z]     "job": "dettonville/infra/packer-templates/CentOS/8-stream",
+[2022-05-12T13:28:17.650Z]     "jobId": "job-5"
+[2022-05-12T13:28:17.650Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.699Z] [INFO] runJobs : runJobs(): i=5 it={
+[2022-05-12T13:28:17.701Z]     "job": "dettonville/infra/packer-templates/Ubuntu/bionic64"
+[2022-05-12T13:28:17.701Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.763Z] [DEBUG] runJobs : runJobs(): i=5 jobConfig={
+[2022-05-12T13:28:17.764Z]     "supportedJobParams": [
+[2022-05-12T13:28:17.764Z]         "changedEmailList",
+[2022-05-12T13:28:17.764Z]         "alwaysEmailList",
+[2022-05-12T13:28:17.764Z]         "failedEmailList"
+[2022-05-12T13:28:17.764Z]     ],
+[2022-05-12T13:28:17.764Z]     "continueIfFailed": false,
+[2022-05-12T13:28:17.764Z]     "alwaysEmailList": "ljohnson@dettonville.org",
+[2022-05-12T13:28:17.764Z]     "runInParallel": true,
+[2022-05-12T13:28:17.764Z]     "logLevel": "DEBUG",
+[2022-05-12T13:28:17.764Z]     "jenkinsJobNodeNodeLabel": "any",
+[2022-05-12T13:28:17.764Z]     "debugPipeline": false,
+[2022-05-12T13:28:17.764Z]     "wait": true,
+[2022-05-12T13:28:17.764Z]     "failFast": false,
+[2022-05-12T13:28:17.764Z]     "job": "dettonville/infra/packer-templates/Ubuntu/bionic64",
+[2022-05-12T13:28:17.764Z]     "jobId": "job-6"
+[2022-05-12T13:28:17.764Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.815Z] [INFO] runJobs : runJobs(): i=6 it={
+[2022-05-12T13:28:17.816Z]     "job": "dettonville/infra/packer-templates/Ubuntu/focal64"
+[2022-05-12T13:28:17.816Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.868Z] [DEBUG] runJobs : runJobs(): i=6 jobConfig={
+[2022-05-12T13:28:17.869Z]     "supportedJobParams": [
+[2022-05-12T13:28:17.869Z]         "changedEmailList",
+[2022-05-12T13:28:17.869Z]         "alwaysEmailList",
+[2022-05-12T13:28:17.869Z]         "failedEmailList"
+[2022-05-12T13:28:17.869Z]     ],
+[2022-05-12T13:28:17.869Z]     "continueIfFailed": false,
+[2022-05-12T13:28:17.869Z]     "alwaysEmailList": "ljohnson@dettonville.org",
+[2022-05-12T13:28:17.869Z]     "runInParallel": true,
+[2022-05-12T13:28:17.869Z]     "logLevel": "DEBUG",
+[2022-05-12T13:28:17.869Z]     "jenkinsJobNodeNodeLabel": "any",
+[2022-05-12T13:28:17.869Z]     "debugPipeline": false,
+[2022-05-12T13:28:17.869Z]     "wait": true,
+[2022-05-12T13:28:17.869Z]     "failFast": false,
+[2022-05-12T13:28:17.869Z]     "job": "dettonville/infra/packer-templates/Ubuntu/focal64",
+[2022-05-12T13:28:17.870Z]     "jobId": "job-7"
+[2022-05-12T13:28:17.870Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.908Z] [INFO] runJobs : runJobs(): i=7 it={
+[2022-05-12T13:28:17.909Z]     "job": "dettonville/infra/packer-templates/Windows/2016"
+[2022-05-12T13:28:17.909Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.951Z] [DEBUG] runJobs : runJobs(): i=7 jobConfig={
+[2022-05-12T13:28:17.952Z]     "supportedJobParams": [
+[2022-05-12T13:28:17.952Z]         "changedEmailList",
+[2022-05-12T13:28:17.952Z]         "alwaysEmailList",
+[2022-05-12T13:28:17.952Z]         "failedEmailList"
+[2022-05-12T13:28:17.952Z]     ],
+[2022-05-12T13:28:17.952Z]     "continueIfFailed": false,
+[2022-05-12T13:28:17.952Z]     "alwaysEmailList": "ljohnson@dettonville.org",
+[2022-05-12T13:28:17.952Z]     "runInParallel": true,
+[2022-05-12T13:28:17.952Z]     "logLevel": "DEBUG",
+[2022-05-12T13:28:17.952Z]     "jenkinsJobNodeNodeLabel": "any",
+[2022-05-12T13:28:17.952Z]     "debugPipeline": false,
+[2022-05-12T13:28:17.952Z]     "wait": true,
+[2022-05-12T13:28:17.952Z]     "failFast": false,
+[2022-05-12T13:28:17.952Z]     "job": "dettonville/infra/packer-templates/Windows/2016",
+[2022-05-12T13:28:17.952Z]     "jobId": "job-8"
+[2022-05-12T13:28:17.952Z] }
+[Pipeline] echo
+[2022-05-12T13:28:17.990Z] [INFO] runJobs : runJobs(): i=8 it={
+[2022-05-12T13:28:17.991Z]     "job": "dettonville/infra/packer-templates/Windows/2019"
+[2022-05-12T13:28:17.991Z] }
+[Pipeline] echo
+[2022-05-12T13:28:18.034Z] [DEBUG] runJobs : runJobs(): i=8 jobConfig={
+[2022-05-12T13:28:18.036Z]     "supportedJobParams": [
+[2022-05-12T13:28:18.036Z]         "changedEmailList",
+[2022-05-12T13:28:18.036Z]         "alwaysEmailList",
+[2022-05-12T13:28:18.036Z]         "failedEmailList"
+[2022-05-12T13:28:18.036Z]     ],
+[2022-05-12T13:28:18.036Z]     "continueIfFailed": false,
+[2022-05-12T13:28:18.036Z]     "alwaysEmailList": "ljohnson@dettonville.org",
+[2022-05-12T13:28:18.036Z]     "runInParallel": true,
+[2022-05-12T13:28:18.036Z]     "logLevel": "DEBUG",
+[2022-05-12T13:28:18.036Z]     "jenkinsJobNodeNodeLabel": "any",
+[2022-05-12T13:28:18.036Z]     "debugPipeline": false,
+[2022-05-12T13:28:18.036Z]     "wait": true,
+[2022-05-12T13:28:18.036Z]     "failFast": false,
+[2022-05-12T13:28:18.036Z]     "job": "dettonville/infra/packer-templates/Windows/2019",
+[2022-05-12T13:28:18.036Z]     "jobId": "job-9"
+[2022-05-12T13:28:18.036Z] }
+[Pipeline] echo
+[2022-05-12T13:28:18.065Z] [INFO] runJobs : runJobs(): parallelJobs=[split-job-1:org.jenkinsci.plugins.workflow.cps.CpsClosure2@1415bb13, split-job-2:org.jenkinsci.plugins.workflow.cps.CpsClosure2@a5299f9, split-job-3:org.jenkinsci.plugins.workflow.cps.CpsClosure2@29ce3edf, split-job-4:org.jenkinsci.plugins.workflow.cps.CpsClosure2@78c48fa4, split-job-5:org.jenkinsci.plugins.workflow.cps.CpsClosure2@41307e8c, split-job-6:org.jenkinsci.plugins.workflow.cps.CpsClosure2@5fb3aa02, split-job-7:org.jenkinsci.plugins.workflow.cps.CpsClosure2@7d34fed, split-job-8:org.jenkinsci.plugins.workflow.cps.CpsClosure2@5bb6491c, split-job-9:org.jenkinsci.plugins.workflow.cps.CpsClosure2@193098f8]
+[Pipeline] parallel
+[Pipeline] { (Branch: split-job-1)
+[Pipeline] { (Branch: split-job-2)
+[Pipeline] { (Branch: split-job-3)
+[Pipeline] { (Branch: split-job-4)
+[Pipeline] { (Branch: split-job-5)
+[Pipeline] { (Branch: split-job-6)
+[Pipeline] { (Branch: split-job-7)
+[Pipeline] { (Branch: split-job-8)
+[Pipeline] { (Branch: split-job-9)
+[Pipeline] echo
+[2022-05-12T13:28:18.278Z] [INFO] runJobs : runJob(): started
+[Pipeline] echo
+[2022-05-12T13:28:18.305Z] [INFO] runJobs : runJob(): started
+[Pipeline] echo
+[2022-05-12T13:28:18.339Z] [INFO] runJobs : runJob(): started
+[Pipeline] echo
+[2022-05-12T13:28:18.373Z] [INFO] runJobs : runJob(): started
+[Pipeline] echo
+[2022-05-12T13:28:18.425Z] [INFO] runJobs : runJob(): started
+[Pipeline] echo
+[2022-05-12T13:28:18.453Z] [INFO] runJobs : runJob(): started
+[Pipeline] echo
+[2022-05-12T13:28:18.481Z] [INFO] runJobs : runJob(): started
+[Pipeline] echo
+[2022-05-12T13:28:18.502Z] [INFO] runJobs : runJob(): started
+[Pipeline] echo
+[2022-05-12T13:28:18.523Z] [INFO] runJobs : runJob(): started
+[Pipeline] echo
+[2022-05-12T13:28:18.693Z] [INFO] runJobs : runJob(): starting job dettonville/infra/packer-templates/Debian/buster64
+[Pipeline] build
+[2022-05-12T13:28:18.732Z] Scheduling project: dettonville » infra » packer-templates » Debian » buster64
+[Pipeline] echo
+[2022-05-12T13:28:18.782Z] [INFO] runJobs : runJob(): starting job dettonville/infra/packer-templates/Debian/stretch64
+[Pipeline] build
+[2022-05-12T13:28:18.807Z] Scheduling project: dettonville » infra » packer-templates » Debian » stretch64
+[Pipeline] echo
+[2022-05-12T13:28:18.857Z] [INFO] runJobs : runJob(): starting job dettonville/infra/packer-templates/CentOS/7
+[Pipeline] build
+[2022-05-12T13:28:18.880Z] Scheduling project: dettonville » infra » packer-templates » CentOS » 7
+[Pipeline] echo
+[2022-05-12T13:28:18.913Z] [INFO] runJobs : runJob(): starting job dettonville/infra/packer-templates/CentOS/8
+[Pipeline] build
+[2022-05-12T13:28:18.934Z] Scheduling project: dettonville » infra » packer-templates » CentOS » 8
+[Pipeline] echo
+[2022-05-12T13:28:18.958Z] [INFO] runJobs : runJob(): starting job dettonville/infra/packer-templates/CentOS/8-stream
+[Pipeline] build
+[2022-05-12T13:28:18.991Z] Scheduling project: dettonville » infra » packer-templates » CentOS » 8-stream
+[Pipeline] echo
+[2022-05-12T13:28:19.023Z] [INFO] runJobs : runJob(): starting job dettonville/infra/packer-templates/Ubuntu/bionic64
+[Pipeline] build
+[2022-05-12T13:28:19.052Z] Scheduling project: dettonville » infra » packer-templates » Ubuntu » bionic64
+[Pipeline] echo
+[2022-05-12T13:28:19.084Z] [INFO] runJobs : runJob(): starting job dettonville/infra/packer-templates/Ubuntu/focal64
+[Pipeline] build
+[2022-05-12T13:28:19.109Z] Scheduling project: dettonville » infra » packer-templates » Ubuntu » focal64
+[Pipeline] echo
+[2022-05-12T13:28:19.143Z] [INFO] runJobs : runJob(): starting job dettonville/infra/packer-templates/Windows/2016
+[Pipeline] build
+[2022-05-12T13:28:19.174Z] Scheduling project: dettonville » infra » packer-templates » Windows » 2016
+[Pipeline] echo
+[2022-05-12T13:28:19.220Z] [INFO] runJobs : runJob(): starting job dettonville/infra/packer-templates/Windows/2019
+[Pipeline] build
+[2022-05-12T13:28:19.249Z] Scheduling project: dettonville » infra » packer-templates » Windows » 2019
+[2022-05-12T13:28:24.911Z] Starting building: dettonville » infra » packer-templates » CentOS » 7 #70
+[2022-05-12T13:28:25.047Z] Starting building: dettonville » infra » packer-templates » Debian » stretch64 #37
+[2022-05-12T13:28:25.047Z] Starting building: dettonville » infra » packer-templates » Debian » buster64 #52
+[2022-05-12T13:28:25.047Z] Starting building: dettonville » infra » packer-templates » Windows » 2016 #74
+[2022-05-12T13:28:25.047Z] Starting building: dettonville » infra » packer-templates » CentOS » 8-stream #66
+[2022-05-12T13:28:25.047Z] Starting building: dettonville » infra » packer-templates » CentOS » 8 #109
+[2022-05-12T13:28:25.047Z] Starting building: dettonville » infra » packer-templates » Windows » 2019 #10
+[2022-05-12T13:28:25.047Z] Starting building: dettonville » infra » packer-templates » Ubuntu » bionic64 #25
+[2022-05-12T13:28:25.047Z] Starting building: dettonville » infra » packer-templates » Ubuntu » focal64 #136
+[Pipeline] echo
+[2022-05-12T13:29:20.847Z] [INFO] runJobs : runJob(): Build dettonville/infra/packer-templates/Ubuntu/bionic64 returned result: SUCCESS
+[Pipeline] echo
+[2022-05-12T13:29:20.894Z] [INFO] runJobs : runJob(): finished with result = true
+[Pipeline] }
+[Pipeline] echo
+[2022-05-12T13:29:45.983Z] [INFO] runJobs : runJob(): Build dettonville/infra/packer-templates/Ubuntu/focal64 returned result: SUCCESS
+[Pipeline] echo
+[2022-05-12T13:29:46.039Z] [INFO] runJobs : runJob(): finished with result = true
+[Pipeline] }
+[Pipeline] echo
+[2022-05-12T13:29:47.283Z] [INFO] runJobs : runJob(): Build dettonville/infra/packer-templates/Windows/2019 returned result: SUCCESS
+[Pipeline] echo
+[2022-05-12T13:29:47.339Z] [INFO] runJobs : runJob(): finished with result = true
+[Pipeline] }
+[Pipeline] echo
+[2022-05-12T13:29:47.690Z] [INFO] runJobs : runJob(): Build dettonville/infra/packer-templates/CentOS/8-stream returned result: SUCCESS
+[Pipeline] echo
+[2022-05-12T13:29:47.738Z] [INFO] runJobs : runJob(): finished with result = true
+[Pipeline] }
+[Pipeline] echo
+[2022-05-12T13:29:48.220Z] [INFO] runJobs : runJob(): Build dettonville/infra/packer-templates/Windows/2016 returned result: SUCCESS
+[Pipeline] echo
+[2022-05-12T13:29:48.276Z] [INFO] runJobs : runJob(): finished with result = true
+[Pipeline] }
+[Pipeline] echo
+[2022-05-12T13:30:24.163Z] [INFO] runJobs : runJob(): Build dettonville/infra/packer-templates/Debian/buster64 returned result: SUCCESS
+[Pipeline] echo
+[2022-05-12T13:30:24.202Z] [INFO] runJobs : runJob(): finished with result = true
+[Pipeline] }
+[Pipeline] echo
+[2022-05-12T14:09:14.237Z] [INFO] runJobs : runJob(): Build dettonville/infra/packer-templates/Debian/stretch64 returned result: SUCCESS
+[Pipeline] echo
+[2022-05-12T14:09:14.301Z] [INFO] runJobs : runJob(): finished with result = true
+[Pipeline] }
+[Pipeline] echo
+[2022-05-12T14:13:22.559Z] [INFO] runJobs : runJob(): Build dettonville/infra/packer-templates/CentOS/7 returned result: SUCCESS
+[Pipeline] echo
+[2022-05-12T14:13:22.580Z] [INFO] runJobs : runJob(): finished with result = true
+[Pipeline] }
+[Pipeline] echo
+[2022-05-12T14:31:23.032Z] [INFO] runJobs : runJob(): Build dettonville/infra/packer-templates/CentOS/8 returned result: SUCCESS
+[Pipeline] echo
+[2022-05-12T14:31:23.058Z] [INFO] runJobs : runJob(): finished with result = true
+[Pipeline] }
+[Pipeline] // parallel
+[Pipeline] echo
+[2022-05-12T14:31:23.251Z] [INFO] runJobs : runJobs(): finished: result = true
+[Pipeline] echo
+[2022-05-12T14:31:23.269Z] [INFO] runJobs : runJobList(): finishing stage Build Templates: result=true
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] echo
+[2022-05-12T14:31:23.366Z] [INFO] runJobs : runJobList(): jobResults={
+[2022-05-12T14:31:23.367Z]     "Build Templates": true
+[2022-05-12T14:31:23.367Z] }
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Clean WorkSpace)
+[Pipeline] cleanWs
+[2022-05-12T14:31:23.644Z] [WS-CLEANUP] Deleting project workspace...
+[2022-05-12T14:31:23.648Z] [WS-CLEANUP] Deferred wipeout is used...
+[2022-05-12T14:31:23.746Z] [WS-CLEANUP] done
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Set Pipeline Status)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+[2022-05-12T14:31:23.925Z] [INFO] runJobs : **** final test results = [{
+[2022-05-12T14:31:23.926Z]     "Build Templates": true
+[2022-05-12T14:31:23.926Z] }]
+[Pipeline] echo
+[2022-05-12T14:31:23.947Z] [INFO] runJobs : **** final result = [true]
+[Pipeline] echo
+[2022-05-12T14:31:23.972Z] [INFO] runJobs : **** currentBuild.result=SUCCESS
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] emailextrecipients
+[Pipeline] mail
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

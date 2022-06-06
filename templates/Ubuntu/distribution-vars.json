@@ -1,4 +1,5 @@
 {
+    "ansible_staging_directory": "/var/tmp/packer-provisioner-ansible-local",
     "vm_cpu_num": "1",
     "vm_mem_size": "1024",
     "vm_disk_type_orig": "pvscsi",
