@@ -7,9 +7,13 @@ autoinstall:
   keyboard:
     layout: us
   early-commands:
-    - sudo systemctl stop ssh
+#    # otherwise packer tries to connect and exceed max attempts
+#    - systemctl stop ssh
+    # Block inbound SSH to stop Packer trying to connect during initial install
+    - iptables -A INPUT -p tcp --dport 22 -j DROP
   ssh:
-    install-server: true
+    # For now we install openssh-server during package installs
+    install-server: no
     allow-pw: true
   storage:
     layout:

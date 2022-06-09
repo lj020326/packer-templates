@@ -3,10 +3,13 @@
 ## ref: https://ubuntu.com/server/docs/install/autoinstall
 autoinstall:
   version: 1
+  locale: en_US
+  keyboard:
+    layout: us
   early-commands:
 #    # otherwise packer tries to connect and exceed max attempts
 #    - systemctl stop ssh
-    # Block inbound SSH to stop Packer trying to connect during intial install
+    # Block inbound SSH to stop Packer trying to connect during initial install
     - iptables -A INPUT -p tcp --dport 22 -j DROP
   identity:
     hostname: ubuntu-server
@@ -37,9 +40,10 @@ autoinstall:
       name: lvm
   packages:
     - open-vm-tools
+    - openssh-server
+    - cloud-init
     - bc
     - lsb-release
-    - openssh-server
     - wget
     - curl
     - rsync
