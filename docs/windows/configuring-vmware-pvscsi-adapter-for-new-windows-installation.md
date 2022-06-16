@@ -1,7 +1,5 @@
 
-Configuring The VMware PVSCSI Adapter for a New Windows Installation
-
-===
+# Configuring The VMware PVSCSI Adapter for a New Windows Installation
 
 It feels like it took a while to get here. In this post though, it's time for the juice! Previous posts have covered the background, terminology and components of Packer. Now it's time to create a template file and get Packer to build.
 
