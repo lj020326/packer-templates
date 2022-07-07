@@ -121,6 +121,7 @@ echo "${rsync_cmd}"
 eval $rsync_cmd
 
 mirrorDirList="
+.github
 inspec
 templates
 "
