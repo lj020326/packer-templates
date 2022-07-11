@@ -4,6 +4,11 @@ This project contains the Packer build configurations for all of Dettonville Box
 
 You can also fork this repository and customize a build configuration with your own Ansible roles and playbooks to build a fully custom box using Packer. 
 
+### GitHub Actions
+
+[![Template Validation](https://github.com/lj020326/packer-templates/actions/workflows/main.yml/badge.svg)](https://github.com/lj020326/packer-templates/actions/workflows/main.yml)
+[![License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat)](LICENSE)
+
 ## Requirements
 
 The following software must be installed/present on your local machine before you can use Packer to build any of these Vagrant boxes:
