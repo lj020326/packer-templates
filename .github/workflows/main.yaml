@@ -39,11 +39,11 @@ jobs:
             packer validate \
                 -only vsphere-iso \
                 -var-file=common-vars.json \
-                -var-file=${{ matrix.distro.build_distribution_config_dir }}/distribution-vars.json \
-                -var-file=${{ matrix.distro.build_release_config_dir }}/box_info.json \
-                -var-file=${{ matrix.distro.build_release_config_dir }}/template.json \
-                -var vm_build_id=${{ matrix.distro.vm_build_id }} \
-                ${{ matrix.distro.build_distribution_config_dir }}/build-config.json
+                -var-file=${{ matrix.template.build_distribution_config_dir }}/distribution-vars.json \
+                -var-file=${{ matrix.template.build_release_config_dir }}/box_info.json \
+                -var-file=${{ matrix.template.build_release_config_dir }}/template.json \
+                -var vm_build_id=${{ matrix.template.vm_build_id }} \
+                ${{ matrix.template.build_distribution_config_dir }}/build-config.json
 
 #  release:
 #    needs:
