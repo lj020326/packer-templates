@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           path: "${{ github.repository }}"
-#          submodules: true
+          submodules: true
 
       - name: Download Packer
         run: |
@@ -41,7 +41,7 @@ jobs:
                 -var vm_build_id=$TEMPLATE_BUILD_ID \
                 ${{ matrix.template.build_distribution_config_dir }}/build-config.json
         env:
-          TEMPLATE_BUILD_ID: ${{ github.workflow }}-${{ github.run_id }}
+          TEMPLATE_BUILD_ID: ${{ github.job }}-${{ github.ref }}-${{ github.run_id }}
           VMWARE_VCENTER_PASSWORD: 'foobar'
 
 #  release:
