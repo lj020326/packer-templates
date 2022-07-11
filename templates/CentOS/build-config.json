@@ -236,7 +236,6 @@
     "vagrant_cloud_token": "",
     "vagrant_cloud_username": "",
     "vm_cpu_num": "1",
-    "vm_boot_command": "<esc><wait>linux inst.ks=hd:fd0:/ks.cfg<enter><wait>",
-    "vm_name": ""
+    "vm_boot_command": "<esc><wait>linux inst.ks=hd:fd0:/ks.cfg<enter><wait>"
   }
 }

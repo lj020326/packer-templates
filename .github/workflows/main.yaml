@@ -29,9 +29,6 @@ jobs:
           curl -s "https://releases.hashicorp.com/packer/${PACKER_LATEST_VERSION}/packer_${PACKER_LATEST_VERSION}_linux_amd64.zip" --output /tmp/packer_linux_amd64.zip
           sudo unzip -o /tmp/packer_linux_amd64.zip -d /usr/local/bin/
 
-#       - name: "Validate Packer templates"
-#         run: ./packer validate ${{ matrix.template }}
-
       - name: "Validate Packer templates"
         working-directory: "${{ github.repository }}/templates"
         run: |
