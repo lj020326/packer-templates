@@ -11,8 +11,30 @@ jobs:
     strategy:
       matrix:
         template:
-          - build_distribution_config_dir: CentOS
+          - name: Debian8
+            build_distribution_config_dir: Debian
+            build_release_config_dir: Debian/8/server
+          - name: Debian9
+            build_distribution_config_dir: Debian
+            build_release_config_dir: Debian/9/server
+          - name: Debian10
+            build_distribution_config_dir: Debian
+            build_release_config_dir: Debian/10/server
+          - name: CentOS7
+            build_distribution_config_dir: CentOS
+            build_release_config_dir: CentOS/7/server
+          - name: CentOS8
+            build_distribution_config_dir: CentOS
             build_release_config_dir: CentOS/8/server
+          - name: Ubuntu1804
+            build_distribution_config_dir: Ubuntu
+            build_release_config_dir: Ubuntu/18.04/server
+          - name: Ubuntu2004
+            build_distribution_config_dir: Ubuntu
+            build_release_config_dir: Ubuntu/20.04/server
+          - name: Ubuntu2204
+            build_distribution_config_dir: Ubuntu
+            build_release_config_dir: Ubuntu/22.04/server
 
     name: Validate
     runs-on: ubuntu-latest
@@ -41,7 +63,7 @@ jobs:
                 -var vm_build_id=$TEMPLATE_BUILD_ID \
                 ${{ matrix.template.build_distribution_config_dir }}/build-config.json
         env:
-          TEMPLATE_BUILD_ID: ${{ github.job }}-${{ github.ref }}-${{ github.run_id }}
+          TEMPLATE_BUILD_ID: ${{ github.job }}-${{ template.name }}-${{ github.run_id }}
           VMWARE_VCENTER_PASSWORD: 'foobar'
 
 #  release:
