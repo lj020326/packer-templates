@@ -12,8 +12,8 @@ jobs:
       matrix:
         template:
           - build_distribution_config_dir: CentOS
-            build_release_config_dir: linux/CentOS/8
-            iso_dir: linux/CentOS/8
+            build_release_config_dir: CentOS/8
+            iso_dir: CentOS/8
 
     name: Validate
     runs-on: ubuntu-latest
