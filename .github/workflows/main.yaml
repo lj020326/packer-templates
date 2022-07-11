@@ -38,7 +38,7 @@ jobs:
                 -var-file=${{ matrix.template.build_distribution_config_dir }}/distribution-vars.json \
                 -var-file=${{ matrix.template.build_release_config_dir }}/box_info.json \
                 -var-file=${{ matrix.template.build_release_config_dir }}/template.json \
-                -var vm_build_id=${{ matrix.template.vm_build_id }} \
+                -var vm_build_id=$TEMPLATE_BUILD_ID \
                 ${{ matrix.template.build_distribution_config_dir }}/build-config.json
         env:
           TEMPLATE_BUILD_ID: ${{ github.workflow }}-${{ github.run_id }}
