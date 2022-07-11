@@ -35,6 +35,12 @@ jobs:
           - name: Ubuntu2204
             build_distribution_config_dir: Ubuntu
             build_release_config_dir: Ubuntu/22.04/server
+          - name: Windows2016
+            build_distribution_config_dir: Windows
+            build_release_config_dir: Windows/2016/server
+          - name: Windows2019
+            build_distribution_config_dir: Windows
+            build_release_config_dir: Windows/2019/server
 
     name: Validate
     runs-on: ubuntu-latest
