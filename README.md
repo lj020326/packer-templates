@@ -8,6 +8,7 @@ You can also fork this repository and customize a build configuration with your 
 
 [![Template Validation](https://github.com/lj020326/packer-templates/actions/workflows/main.yml/badge.svg)](https://github.com/lj020326/packer-templates/actions/workflows/main.yml)
 [![License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat)](LICENSE)
+[![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/leejjohnson/)
 
 ## Requirements
 
